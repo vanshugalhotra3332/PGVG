@@ -13,8 +13,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav>
-      <div className="flex-no-wrap  flex w-full items-center justify-between bg-neutral-100 py-4 shadow-black/5 dark:bg-neutral-600 dark:shadow-black/10 lg:flex-wrap lg:justify-start shadow-lg sticky top-0 z-50">
+    <nav className="sticky top-0">
+      <div className="flex-no-wrap  flex w-full items-center justify-between bg-neutral-100 py-4 shadow-black/5 dark:bg-neutral-600 dark:shadow-black/10 lg:flex-wrap lg:justify-start shadow-lg z-50">
         {/* overall div */}
         <div className="flex w-full flex-wrap items-center justify-between px-6">
           {/* burger icon to collapse nav */}
@@ -118,8 +118,8 @@ const Navbar = () => {
 
       <div
         className={`relative top-1 w-full h-auto transform ${
-          toggleNav ? "translate-x-0" : "-translate-x-full"
-        } transition-all ease-out duration-200 md:hidden`}
+          toggleNav ? "translate-x-0 block" : "-translate-x-full hidden"
+        } transition-all ease-out duration-200`}
       >
         <ul className="p-4 bg-gray-50">
           <li className="pt-4 text-lg text-neutral-700 active:text-blue-500 transition-all ease-out duration-100">
