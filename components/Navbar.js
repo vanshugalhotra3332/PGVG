@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0">
+    <nav className="sticky top-0 z-[1000]">
       <div className="flex-no-wrap  flex w-full items-center justify-between bg-neutral-100 py-4 shadow-black/5 dark:bg-neutral-600 dark:shadow-black/10 lg:flex-wrap lg:justify-start shadow-lg z-50">
         {/* overall div */}
         <div className="flex w-full flex-wrap items-center justify-between px-6">

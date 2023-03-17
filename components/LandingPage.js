@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import WhyChoose from "./Cards/WhyChoose";
+import NearbyPG from "./Cards/NearbyPG";
 
 const LandingPage = () => {
   return (
@@ -31,7 +32,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className="mt-28 h-[40vh]">
+      <section className="mt-28">
         <div className="flex justify-center">
           <div className="heading">
             <div className="relative md:text-[2.8rem] font-normal text-3xl">
@@ -42,25 +43,39 @@ const LandingPage = () => {
         </div>
         <div className="flex items-center justify-center md:mt-20 mt-6 md:px-14 flex-col md:flex-row">
           <WhyChoose
-            src={"assets\\img\\icons\\thumbsup.svg"}
+            img={"assets\\img\\icons\\thumbsup.svg"}
             title={"Hassle Free Booking"}
             description={"Book your hotel from our website without any hassle."}
           />
           <WhyChoose
-            src={"assets\\img\\icons\\reviews.svg"}
+            img={"assets\\img\\icons\\reviews.svg"}
             title={"28K Reviews"}
             description={"Book your hotel from our website without any hassle."}
           />
           <WhyChoose
-            src={"assets\\img\\icons\\calendar.svg"}
+            img={"assets\\img\\icons\\calendar.svg"}
             title={"Free Cancellation"}
             description={"Book your hotel from our website without any hassle."}
           />
           <WhyChoose
-            src={"assets\\img\\icons\\support.svg"}
+            img={"assets\\img\\icons\\support.svg"}
             title={"24/7 Support"}
             description={"Book your hotel from our website without any hassle."}
           />
+        </div>
+      </section>
+
+      <section className="mt-6">
+        <div className="text-center heading text-5xl leading-snug">
+          <h1>
+            Nearby <span className="text-blue-500">PG</span> Locations
+          </h1>
+        </div>
+        <div className="nearby-pg-cards py-16 flex items-center justify-center lg:px-20 px-8 flex-col sm:flex-row md:px-12">
+          <NearbyPG img={"/assets/img/locations/sec15.jpg"} location={"Sector 15"} />
+          <NearbyPG img={"/assets/img/locations/sec15.jpg"} location={"Sector 15"} />
+          <NearbyPG img={"/assets/img/locations/sec15.jpg"} location={"Sector 15"} />
+          <NearbyPG img={"/assets/img/locations/sec15.jpg"} location={"Sector 15"} />
         </div>
       </section>
     </>
