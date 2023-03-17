@@ -104,7 +104,7 @@ const Navbar = () => {
             <div className="relative" data-te-dropdown-ref>
               <div className="md:mr-10 cursor-pointer mr-4">
                 <Image
-                  src={"/user.jpg"}
+                  src={"/assets/img/others/user.jpg"}
                   alt={""}
                   height={40}
                   width={40}
