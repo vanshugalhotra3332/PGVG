@@ -33,7 +33,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section className="mt-28">
+      <section className="lg:mt-28 md:mt-16 mt-8">
         <div className="flex justify-center">
           <div className="heading">
             <div className="relative md:text-[2.8rem] font-normal text-3xl">
@@ -72,7 +72,7 @@ const LandingPage = () => {
             Nearby <span className="text-blue-500">PG</span> Locations
           </h1>
         </div>
-        <div className="nearby-pg-cards py-10 flex items-center justify-center lg:px-20 px-8 flex-col sm:flex-row md:px-12">
+        <div className="nearby-pg-cards py-10 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 items-center justify-center lg:px-20 px-8 md:px-12">
           <NearbyPG
             img={"/assets/img/locations/sec15.jpg"}
             location={"Sector 15"}
@@ -99,9 +99,9 @@ const LandingPage = () => {
           </h1>
         </div>
         <div className="testimonials flex flex-col lg:flex-row justify-around items-center mt-14 lg:px-36 md:px-20 px-10">
-          <Testimonial img={'/assets/img/others/test.jpg'} />
-          <Testimonial img={'/assets/img/others/test.jpg'} />
-          <Testimonial img={'/assets/img/others/test.jpg'} />
+          <Testimonial img={"/assets/img/others/test.jpg"} />
+          <Testimonial img={"/assets/img/others/test.jpg"} />
+          <Testimonial img={"/assets/img/others/test.jpg"} />
         </div>
       </section>
     </>

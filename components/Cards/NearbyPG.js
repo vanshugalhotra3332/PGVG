@@ -3,8 +3,8 @@ import Image from "next/image";
 
 const NearbyPG = ({ img, location }) => {
   return (
-    <div className="p-4 md:w-1/4 w:1/3 cursor-pointer transition-all duration-200 ease-out">
-      <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-xl overflow-hidden  ">
+    <div className="p-4 w-full cursor-pointer transition-all duration-200 ease-out">
+      <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-xl overflow-hidden ">
         <div className="relative h-[50vh]">
           <Image
             className="lg:h-48 md:h-36 w-full object-cover object-center"

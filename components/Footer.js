@@ -11,7 +11,6 @@ const Footer = () => {
               fill="none"
               stroke="currentColor"
               strokeLinecap="round"
-              strokeLine
               strokeLinejoin="round"
               strokeWidth="2"
               className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
