@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Testimonial = ({ img }) => {
   return (
-    <div className="cursor-pointer transition-all ease-out duration-150 hover:border-blue-500 active:border-blue-500 p-1 w-full border-2 border-gray-200 border-opacity-60 rounded-xl overflow-hidden mx-3 my-3">
+    <div className="cursor-pointer transition-all ease-out duration-150 hover:border-blue-500 active:border-blue-500 p-1 w-3/4 md:w-full border-2 border-gray-200 border-opacity-60 rounded-xl overflow-hidden">
       <div className="h-full bg-white p-4 rounded-lg">
         <a className="inline-flex items-center relative">
           <Image

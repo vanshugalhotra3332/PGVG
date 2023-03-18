@@ -6,7 +6,7 @@ const Navbar = () => {
   const [searchText, setSearchText] = useState("");
 
   const [toggleNav, setToggleNav] = useState(false);
-//   const [toggleUserMenu, setToggleUserMenu] = useState(false)
+  //   const [toggleUserMenu, setToggleUserMenu] = useState(false)
 
   const handleChange = (e) => {
     setSearchText(e.target.value);
@@ -115,7 +115,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
+      {/* side responsive div */}
       <div
         className={`relative top-1 w-full h-auto transform ${
           toggleNav ? "translate-x-0 block" : "-translate-x-full hidden"

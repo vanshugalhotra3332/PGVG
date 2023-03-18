@@ -3,10 +3,12 @@ import Image from "next/image";
 import WhyChoose from "./Cards/WhyChoose";
 import NearbyPG from "./Cards/NearbyPG";
 import Testimonial from "./Cards/Testimonial";
+import Carousel from "nuka-carousel/lib/carousel";
 
 const LandingPage = () => {
   return (
     <>
+      {/* image & text section */}
       <section className="flex-col justify-around items-center flex lg:flex-row">
         <div className="text lg:ml-28 lg:mt-16 flex items-center justify-center flex-col p-5 mt-8 cursor-pointer">
           <h1 className="lg:text-5xl text-4xl font-semibold capitalize lg:leading-normal leading-snug">
@@ -33,6 +35,7 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* why choose us section */}
       <section className="lg:mt-28 md:mt-16 mt-8">
         <div className="flex justify-center">
           <div className="heading">
@@ -66,6 +69,7 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* nearby locations section */}
       <section className="mt-6">
         <div className="text-center heading md:text-[2.8rem] text-4xl leading-snug">
           <h1>
@@ -92,16 +96,27 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* testimonials section  */}
       <section className="mt-6 flex flex-col items-center">
         <div className="heading text-[2.8rem] leading-snug">
           <h1 className="relative before:content-start before:absolute before:top-[5px] before:-left-[30px] before:h-[56px] before:w-[56px] before:rounded-[50%] before:bg-orange-400 before:-z-10 before:inline-block before:cursor-pointer before:transition-all before:duration-200 before:ease-out after:content-start after:absolute after:w-[35px] after:h-[35px] after:bg-[url('/assets/img/icons/lines.svg')] after:bg-contain after:bg-no-repeat after:bg-center after:-top-[11px] after:-left-[50px]">
             Testimonials
           </h1>
         </div>
-        <div className="testimonials flex flex-col lg:flex-row justify-around items-center mt-14 lg:px-36 md:px-20 px-10">
-          <Testimonial img={"/assets/img/others/test.jpg"} />
-          <Testimonial img={"/assets/img/others/test.jpg"} />
-          <Testimonial img={"/assets/img/others/test.jpg"} />
+        {/* className="testimonials flex flex-col lg:flex-row justify-around items-center mt-14 lg:px-36 md:px-20 px-10 space-x-5" */}
+        <div className="mt-16 w-2/3 flex items-center justify-center pl-24 md:pl-2">
+          <Carousel
+            wrapAround={true}
+            slidesToShow={3}
+            adaptiveHeight={true}
+            autoplay={true}
+            autoplayInterval={2000}
+            withoutControls
+          >
+            <Testimonial img={"/assets/img/others/test.jpg"} />
+            <Testimonial img={"/assets/img/others/test1.jpg"} />
+            <Testimonial img={"/assets/img/others/user.jpg"} />
+          </Carousel>
         </div>
       </section>
     </>
