@@ -4,8 +4,10 @@ import WhyChoose from "./Cards/WhyChoose";
 import NearbyPG from "./Cards/NearbyPG";
 import Testimonial from "./Cards/Testimonial";
 import Carousel from "nuka-carousel/lib/carousel";
+import { useRouter } from "next/router";
 
 const LandingPage = () => {
+  const router = useRouter();
   return (
     <>
       {/* image & text section */}
@@ -19,7 +21,14 @@ const LandingPage = () => {
             Find your escape, stay with us
           </p>
           <div className="p-2 w-full mt-6 m-auto">
-            <button className="outline-none flex mx-auto text-blue-500 border-blue-500 border-[1px] py-2 px-12 focus:outline-none rounded-md full text-lg transition-all duration-200 ease-out active:shadow-md active:scale-105 hover:text-white hover:bg-blue-500 active:bg-blue-500 active:text-white font-semibold">
+            <button
+              className="outline-none flex mx-auto text-blue-500 border-blue-500 border-[1px] py-2 px-12 focus:outline-none rounded-md full text-lg transition-all duration-200 ease-out active:shadow-md active:scale-105 hover:text-white hover:bg-blue-500 active:bg-blue-500 active:text-white font-semibold"
+              onClick={() => {
+                router.push({
+                  pathname: "/explore",
+                });
+              }}
+            >
               Explore
             </button>
           </div>

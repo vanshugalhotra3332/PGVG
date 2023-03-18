@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { UilSearch, UilBars, UilTimes } from "@iconscout/react-unicons";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const [searchText, setSearchText] = useState("");
 
   const [toggleNav, setToggleNav] = useState(false);
   //   const [toggleUserMenu, setToggleUserMenu] = useState(false)
+
+  const router = useRouter();
 
   const handleChange = (e) => {
     setSearchText(e.target.value);
@@ -71,9 +74,12 @@ const Navbar = () => {
             >
               <li className="lg:pr-2" data-te-nav-item-ref>
                 <a
-                  className="text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-zinc-400"
-                  href="#"
-                  data-te-nav-link-ref
+                  className="text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:text-neutral-200 dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-zinc-400 cursor-pointer"
+                  onClick={() => {
+                    router.push({
+                      pathname: "/explore",
+                    });
+                  }}
                 >
                   Explore
                 </a>
@@ -122,7 +128,14 @@ const Navbar = () => {
         } transition-all ease-out duration-200`}
       >
         <ul className="p-4 bg-gray-50">
-          <li className="pt-4 text-lg text-neutral-700 active:text-blue-500 transition-all ease-out duration-100">
+          <li
+            className="pt-4 text-lg text-neutral-700 active:text-blue-500 transition-all ease-out duration-100"
+            onClick={() => {
+              router.push({
+                pathname: "/explore",
+              });
+            }}
+          >
             Explore
           </li>
           <li className="pt-4 text-lg text-neutral-700 active:text-blue-500 transition-all ease-out duration-100">
