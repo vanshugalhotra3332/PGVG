@@ -1,5 +1,6 @@
 import RangeSlider from "@/components/RangeSlider";
 import React, { useState } from "react";
+import Map from "@/components/Map";
 
 import {
   UilMapMarker,
@@ -14,6 +15,7 @@ import {
   UilBed,
   UilFilter,
   UilArrowsVAlt,
+  UilTimes,
 } from "@iconscout/react-unicons";
 
 const Explore = () => {
@@ -35,6 +37,18 @@ const Explore = () => {
     "Rating",
   ];
 
+  const coordinates = [
+    [30.7521, 76.7757],
+    [30.7511, 76.7767],
+    [30.7531, 76.7759],
+    [30.7521, 76.7752],
+    [30.7523, 76.7762],
+    [30.7523, 76.7762],
+    [30.7515, 76.7926],
+    [30.7512, 76.7925],
+    [30.7545, 76.7925],
+  ];
+
   const propertyClick = (event) => {
     setPropertyType(event.target.value);
     setTogglePopDD(false);
@@ -50,11 +64,11 @@ const Explore = () => {
   };
 
   return (
-    <>
+    <section className="flex">
       <div
         className={`${
-          toggleFilterMenu ? "translate-x-0" : "-translate-x-full"
-        } lg:translate-x-0 sidebar w-full lg:w-[25vw] border-2 border-gray-200 border-opacity-60 rounded-lg border-t-0 transition-all transform duration-300 ease-in-out`}
+          toggleFilterMenu ? "!inline-block" : "hidden"
+        } hidden lg:!inline-block sidebar w-full lg:w-1/4 border-2 border-gray-200 border-opacity-60 rounded-lg border-t-0 transition-all transform duration-300 ease-in-out`}
       >
         <div className="sidebar-elements px-10 py-5">
           {/* filter & reset */}
@@ -63,9 +77,15 @@ const Explore = () => {
               <h1 className="text-3xl font-semibold inline-flex">Filter</h1>
               <UilFilter className="mb-[0.7rem] hidden md:inline-flex text-gray-800 mx-2 transition-all duration-200 ease-out hover:-translate-y-[.5px] pointer-events-none" />
             </div>
-            <span className="text-lg text-blue-600 cursor-pointer mt-3 transition-all duration-150 ease-out hover:text-blue-500">
+            <span className="text-lg text-blue-600 cursor-pointer mt-3 transition-all duration-150 ease-out hover:text-blue-500 ">
               Reset
             </span>
+            <UilTimes
+              className="h-6 w-6 cursor-pointer text-sm lg:!hidden"
+              onClick={() => {
+                setToggleFilterMenu(false);
+              }}
+            />
           </div>
 
           {/* sort  */}
@@ -311,28 +331,45 @@ const Explore = () => {
         </div>
       </div>
 
-      <div className="lg:hidden mobile-view-tabs w-full">
-        <div className="tabs w-full h-[6vh] fixed bottom-0 flex items-center justify-between">
-          <div className="tab">
-            <UilArrowsVAlt className="w-5 h-5 text-gray-700" />
-            <span className="capitalize text-lg text-gray-700 font-semibold ml-3">
-              SORT
-            </span>
-          </div>
-          <div
-            className="tab"
-            onClick={() => {
-              setToggleFilterMenu(!toggleFilterMenu);
-            }}
-          >
-            <UilFilter className="w-5 h-5 text-gray-700" />
-            <span className="capitalize text-lg text-gray-700 font-semibold ml-3">
-              FILTER
-            </span>
+      <div
+        className={`content w-full ${
+          toggleFilterMenu ? "hidden" : "inline-block"
+        } lg:w-3/4 lg:px-16 px-6 py-4`}
+      >
+        {/* mobile view tabs */}
+        <div className="lg:hidden mobile-view-tabs w-full">
+          <div className="tabs w-full h-[6vh] fixed bottom-0 left-0 flex items-center justify-between">
+            <div className="tab">
+              <UilArrowsVAlt className="w-5 h-5 text-gray-700" />
+              <span className="capitalize text-lg text-gray-700 font-semibold ml-3">
+                SORT
+              </span>
+            </div>
+            <div
+              className="tab"
+              onClick={() => {
+                setToggleFilterMenu(!toggleFilterMenu);
+              }}
+            >
+              <UilFilter className="w-5 h-5 text-gray-700" />
+              <span className="capitalize text-lg text-gray-700 font-semibold ml-3">
+                FILTER
+              </span>
+            </div>
           </div>
         </div>
+
+        {/* real content - map & pgs */}
+        <div className="content-text py-6">
+          <h1 className="text-3xl font-semibold leading-normal align-middle">
+            16 Results
+          </h1>
+        </div>
+        <div className="map">
+          <Map className="h-full" coords={coordinates} />
+        </div>
       </div>
-    </>
+    </section>
   );
 };
 
