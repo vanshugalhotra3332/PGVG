@@ -32,17 +32,20 @@ input[type="range"]::-webkit-slider-thumb {
   .convenience-badge {
     @apply cursor-pointer px-3 py-2 inline-block bg-white border-2
      border-gray-200 border-opacity-60 rounded-2xl transition-all duration-200 ease-out shadow-md
-      hover:border-gray-900 hover:scale-[1.02] active:border-gray-900 active:scale-[1.02] m-2;
+      hover:border-gray-900 hover:scale-[1.02] m-2;
   }
   .badge-select {
     @apply border-gray-900 scale-[1.02];
   }
   .convenience-badge-icon {
-    @apply hidden md:inline-flex text-gray-400 rounded-full 
+    @apply inline-flex text-gray-400 rounded-full 
     cursor-pointer mx-2 transition-all duration-200 ease-out 
     hover:-translate-y-[.5px] pointer-events-none;
   }
   .convenience-badge-text {
     @apply text-base text-gray-800 align-middle whitespace-nowrap mx-2 pointer-events-none;
+  }
+  .tab {
+    @apply w-1/2 flex justify-center bg-white h-full items-center border-2 rounded-md border-gray-200 border-opacity-60 transition-all duration-200 ease-out active:border-gray-900;
   }
 }

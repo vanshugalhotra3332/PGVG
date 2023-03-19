@@ -46,14 +46,14 @@ const RangeSlider = ({
   return (
     <div>
       {/* price input */}
-      <div className="price-input mt-2 flex justify-between items-center space-x-4">
+      <div className="price-input mt-2 flex justify-between items-center space-x-4 w-[inherit]">
         <input
           type="number"
           value={min}
           onChange={(e) => {
             setMin(e.target.value);
           }}
-          className="outline-none bg-gray-100 py-3 px-3 rounded-lg w-36"
+          className="outline-none bg-gray-100 py-3 px-3 rounded-lg w-1/2"
           placeholder="From"
         />
         <input
@@ -62,7 +62,7 @@ const RangeSlider = ({
           onChange={(e) => {
             setMax(e.target.value);
           }}
-          className="outline-none bg-gray-100 py-3 px-3 rounded-lg w-36"
+          className="outline-none bg-gray-100 py-3 px-3 rounded-lg w-1/2"
           placeholder="To"
         />
       </div>

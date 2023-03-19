@@ -13,6 +13,7 @@ import {
   UilCloudMoon,
   UilBed,
   UilFilter,
+  UilArrowsVAlt,
 } from "@iconscout/react-unicons";
 
 const Explore = () => {
@@ -22,6 +23,9 @@ const Explore = () => {
   const [location, setLocation] = useState("");
   const [convenienceSearch, setConvenienceSearch] = useState("");
   const [sortby, setSortby] = useState("Popularity");
+
+  const [toggleFilterMenu, setToggleFilterMenu] = useState(false);
+
   const properties = ["All", "PG", "Flat"];
   const sortByOptions = [
     "Popularity",
@@ -42,19 +46,15 @@ const Explore = () => {
   };
 
   const badgeClick = (event) => {
-    console.log(event.target.classList);
-    if (event.target.classList.contains("badge-select")) {
-      event.target.classList.remove("badge-select");
-    } else {
-      event.target.classList.add("badge-select");
-    }
+    event.target.classList.toggle("badge-select");
   };
 
   return (
     <>
       <div
-        className="sidebar w-[25vw] border-2
-     border-gray-200 border-opacity-60 rounded-lg border-t-0"
+        className={`${
+          toggleFilterMenu ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0 sidebar w-full lg:w-[25vw] border-2 border-gray-200 border-opacity-60 rounded-lg border-t-0 transition-all transform duration-300 ease-in-out`}
       >
         <div className="sidebar-elements px-10 py-5">
           {/* filter & reset */}
@@ -72,7 +72,7 @@ const Explore = () => {
           <div className="sort mt-4">
             <h2 className="filter-heading">Sort by</h2>
             {/* dropdown */}
-            <div className="relative inline-block text-left bg-gray-100 w-[20vw] filter-element">
+            <div className="relative inline-block text-left bg-gray-100 w-full filter-element">
               <div>
                 <button
                   type="button"
@@ -149,7 +149,7 @@ const Explore = () => {
             <div className="property-type">
               <h2 className="filter-heading">Property Type </h2>
               {/* dropdown */}
-              <div className="relative inline-block text-left bg-gray-100 w-[20vw] filter-element">
+              <div className="relative inline-block text-left bg-gray-100 w-full filter-element">
                 <div>
                   <button
                     type="button"
@@ -210,7 +210,7 @@ const Explore = () => {
             <div className="location-filter mt-4">
               <h2 className="filter-heading">Nearby Location</h2>
               <div className="flex items-center md:border-2 rounded-full py-2  md:shadow-sm filter-element">
-                <UilMapMarker className="hidden md:inline-flex text-blue-700 rounded-full cursor-pointer mx-2 transition-all duration-200 ease-out hover:-translate-y-[.5px]" />
+                <UilMapMarker className="inline-flex text-blue-700 rounded-full cursor-pointer mx-2 transition-all duration-200 ease-out hover:-translate-y-[.5px]" />
                 <input
                   value={location}
                   onChange={(e) => {
@@ -228,7 +228,7 @@ const Explore = () => {
               <h2 className="filter-heading">Conveniences</h2>
               {/* search bar */}
               <div className="flex items-center md:border-2 rounded-full py-2  md:shadow-sm filter-element">
-                <UilCheckCircle className="hidden md:inline-flex text-blue-700 rounded-full cursor-pointer mx-2 transition-all duration-200 ease-out hover:-translate-y-[.5px]" />
+                <UilCheckCircle className="inline-flex text-blue-700 rounded-full cursor-pointer mx-2 transition-all duration-200 ease-out hover:-translate-y-[.5px]" />
                 <input
                   value={convenienceSearch}
                   onChange={(e) => {
@@ -301,11 +301,34 @@ const Explore = () => {
               </div>
             </div>
           </div>
+
           {/* apply button */}
           <div className="p-2 w-full mt-6">
             <button className="font-semibold bg-gray-700 w-full py-3 rounded-xl text-gray-100 transition-all duration-150 ease-out hover:bg-gray-800 active:bg-gray-800 hover:shadow-sm active:shadow-sm">
               Apply
             </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="lg:hidden mobile-view-tabs w-full">
+        <div className="tabs w-full h-[6vh] fixed bottom-0 flex items-center justify-between">
+          <div className="tab">
+            <UilArrowsVAlt className="w-5 h-5 text-gray-700" />
+            <span className="capitalize text-lg text-gray-700 font-semibold ml-3">
+              SORT
+            </span>
+          </div>
+          <div
+            className="tab"
+            onClick={() => {
+              setToggleFilterMenu(!toggleFilterMenu);
+            }}
+          >
+            <UilFilter className="w-5 h-5 text-gray-700" />
+            <span className="capitalize text-lg text-gray-700 font-semibold ml-3">
+              FILTER
+            </span>
           </div>
         </div>
       </div>
