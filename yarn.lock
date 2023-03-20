@@ -78,6 +78,13 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
+"@iconscout/react-unicons-solid@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@iconscout/react-unicons-solid/-/react-unicons-solid-1.0.0.tgz#fec6b596c2feef0ca9387d09727f99c24905f68e"
+  integrity sha512-CoZgVqRmKADzIZp3b6ii6Q6P1l9Mh12AqeiYD4iiRznQNdVRwTghj96sOiNnXtC/iJ+iDm7pjGpLvG6uGh0fZQ==
+  dependencies:
+    react ">=15.0.0 <17.0.0"
+
 "@iconscout/react-unicons@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@iconscout/react-unicons/-/react-unicons-2.0.0.tgz#e5ca9cbf9315587ee3386b7df8d8f0c34a2bc161"

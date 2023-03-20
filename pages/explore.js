@@ -17,6 +17,7 @@ import {
   UilArrowsVAlt,
   UilTimes,
 } from "@iconscout/react-unicons";
+import PGcard from "@/components/Cards/PGcard";
 
 const Explore = () => {
   const [togglePopDD, setTogglePopDD] = useState(false);
@@ -360,13 +361,18 @@ const Explore = () => {
         </div>
 
         {/* real content - map & pgs */}
-        <div className="content-text py-6">
+        <div className="content-text py-3 xs:py-6">
           <h1 className="text-3xl font-semibold leading-normal align-middle">
             16 Results
           </h1>
         </div>
         <div className="map">
           <Map className="h-full" coords={coordinates} />
+        </div>
+        <div className="listing mt-16 grid md:grid-cols-2 grid-cols-1">
+          <PGcard img={"/assets/img/pgs/pg.jpg"} />
+          <PGcard img={"/assets/img/pgs/pg.jpg"} />
+          <PGcard img={"/assets/img/pgs/pg.jpg"} />
         </div>
       </div>
     </section>
