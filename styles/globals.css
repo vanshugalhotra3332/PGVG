@@ -48,4 +48,12 @@ input[type="range"]::-webkit-slider-thumb {
   .tab {
     @apply w-1/2 flex justify-center bg-white h-full items-center border-2 rounded-md border-gray-200 border-opacity-60 transition-all duration-200 ease-out active:border-gray-900;
   }
+
+  .active-tab {
+    @apply border-b-2 border-gray-800 !text-gray-800;
+  }
+
+  .tab-button {
+    @apply font-medium uppercase inline-flex items-center h-10 -mb-px text-xs text-gray-500 bg-transparent sm:text-base  whitespace-nowrap focus:outline-none transition-all duration-200 ease-out hover:text-gray-800 outline-none;
+  }
 }

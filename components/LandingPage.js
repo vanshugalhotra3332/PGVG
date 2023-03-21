@@ -48,7 +48,7 @@ const LandingPage = () => {
       <section className="lg:mt-28 md:mt-16 mt-8">
         <div className="flex justify-center">
           <div className="heading">
-            <div className="relative md:text-[2.8rem] font-normal text-3xl">
+            <div className="relative md:text-[2.8rem] font-normal xs:text-3xl text-2xl">
               Why book from PGVG?
             </div>
             <div className="scribble-shape relative h-6 before:content-start before:absolute before:h-8 before:w-auto before:bg-contain before:bg-center before:bg-no-repeat before:bg-[url('/assets/img/others/scribble_shape.svg')] before:top-1 before:left-0 before:right-0"></div>
@@ -107,12 +107,11 @@ const LandingPage = () => {
 
       {/* testimonials section  */}
       <section className="mt-6 flex flex-col items-center">
-        <div className="heading text-[2.8rem] leading-snug">
-          <h1 className="relative before:content-start before:absolute before:top-[5px] before:-left-[30px] before:h-[56px] before:w-[56px] before:rounded-[50%] before:bg-orange-400 before:-z-10 before:inline-block before:cursor-pointer before:transition-all before:duration-200 before:ease-out after:content-start after:absolute after:w-[35px] after:h-[35px] after:bg-[url('/assets/img/icons/lines.svg')] after:bg-contain after:bg-no-repeat after:bg-center after:-top-[11px] after:-left-[50px]">
+        <div className="heading xs:text-[2.8rem] text-4xl leading-snug">
+          <h1 className="relative before:content-start before:absolute before:top-[5px] xs:before:-left-[30px] before:-left-[27px] xs:before:h-[56px] xs:before:w-[56px] before:w-[46px] before:h-[46px] before:rounded-[50%] before:bg-orange-400 before:-z-10 before:inline-block before:cursor-pointer before:transition-all before:duration-200 before:ease-out after:content-start after:absolute after:w-[35px] after:h-[35px] after:bg-[url('/assets/img/icons/lines.svg')] after:bg-contain after:bg-no-repeat after:bg-center after:-top-[11px] xs:after:-left-[50px] after:-left-[39px]">
             Testimonials
           </h1>
         </div>
-        {/* className="testimonials flex flex-col lg:flex-row justify-around items-center mt-14 lg:px-36 md:px-20 px-10 space-x-5" */}
         <div className="mt-16 w-2/3 flex items-center justify-center pl-24 md:pl-2">
           <Carousel
             wrapAround={true}

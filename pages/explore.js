@@ -370,9 +370,9 @@ const Explore = () => {
           <Map className="h-full" coords={coordinates} />
         </div>
         <div className="listing mt-16 grid md:grid-cols-2 grid-cols-1">
-          <PGcard img={"/assets/img/pgs/pg.jpg"} />
-          <PGcard img={"/assets/img/pgs/pg.jpg"} />
-          <PGcard img={"/assets/img/pgs/pg.jpg"} />
+          <PGcard img={"/assets/img/pgs/pg.webp"} />
+          <PGcard img={"/assets/img/pgs/pg.webp"} />
+          <PGcard img={"/assets/img/pgs/pg.webp"} />
         </div>
       </div>
     </section>

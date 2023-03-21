@@ -6,9 +6,9 @@ const PGcard = ({ img }) => {
   return (
     <div className="p-4 w-full cursor-pointer transition-all duration-200 ease-out">
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-2xl overflow-hidden ">
-        <div className="relative h-[28vh]">
+        <div className="relative h-[28vh] overflow-hidden">
           <Image
-            className="lg:h-48 md:h-36 w-full object-cover object-center"
+            className="lg:h-48 md:h-36 w-full object-cover object-center hover:scale-105 transition-all duration-300 ease-out"
             src={img}
             alt=""
             layout="fill"
@@ -36,7 +36,7 @@ const PGcard = ({ img }) => {
               </span>
             </div>
           </div>
-          <div className="price-details py-4 md:py-8 flex flex-col xs:flex-row justify-between items-center px-5 border-t-2 border-gray-200 border-opacity-60 rounded-xl">
+          <div className="price-details py-4 flex flex-col xs:flex-row justify-between items-center px-5 border-t-2 border-gray-200 border-opacity-60 rounded-xl">
             <div className="price py-1">
               <h2 className="text-lg xs:text-xl md:text-2xl text-blue-500 font-bold inline-block">
                 ₹4999
