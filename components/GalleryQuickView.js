@@ -7,41 +7,43 @@ import {
 import Carousel from "nuka-carousel/lib/carousel";
 import GalleryImage from "./Cards/GalleryImage";
 
-const GalleryQuickView = ({ setToggleQuickView }) => {
+const GalleryQuickView = ({ setShowQuickView }) => {
   return (
     <div className="relative top-0 gallery-quick-view z-[100] bg-gray-100/10">
       <div
         className="cross absolute right-6 top-4 cursor-pointer transition-all duration-200 ease-out hover:-translate-y-[1px]"
         onClick={() => {
-          setToggleQuickView(false);
+          setShowQuickView(false);
         }}
       >
-        <UilTimes className="h-8 w-8 text-gray-700 font-semibold" />
+        <UilTimes className="md:h-8 md:w-8 h-6 w-6 text-gray-700 font-semibold" />
       </div>
-      <div className="topbar px-40 py-7">
-        <div className="title-button flex justify-between">
-          <div className="title mt-2">
-            <span className="text-lg font-medium">
-              3 RK Apartment in , Sector 15 for rent - Chandigarh |
+      {/* topbar */}
+      <div className="topbar md:px-40 px-4 py-7">
+        <div className="title-button flex flex-col md:flex-row justify-between">
+          <div className="title m-4">
+            <span className="md:text-xl text-base font-medium">
+              3 RK Apartment in , Sector 15 for rent - Chandigarh
             </span>
           </div>
-          <div className="contact-button">
-            <button className="bg-blue-500 cursor-pointer text-white text-base py-2 px-5 rounded-md hover:bg-blue-600 transition-all duration-200 ease-out">
+          <div className="contact-button m-auto md:m-0">
+            <button className="bg-blue-500 cursor-pointer text-white md:text-base text-sm py-2 md:px-5 px-2 rounded-md hover:bg-blue-600 transition-all duration-200 ease-out">
               Contact Owner
             </button>
           </div>
         </div>
-        <div className="flex overflow-x-auto overflow-y-hidden border-b border-gray-200 whitespace-nowrap dark:border-gray-700 mt-3 space-x-7">
+        <div className="hidden md:flex overflow-x-auto overflow-y-hidden border-b border-gray-200 whitespace-nowrap dark:border-gray-700 mt-3 space-x-7">
           <button className="tab-button active-tab">bedroom</button>
           <button className="tab-button">balcony</button>
           <button className="tab-button">bathroom</button>
           <button className="tab-button">others</button>
         </div>
       </div>
+      {/* image carousel */}
       <div className="image-carousel">
         <Carousel
           wrapAround={true}
-          slidesToShow={2}
+          slidesToShow={`${window.innerWidth > 1100 ? 2 : 1}`}
           adaptiveHeight={true}
           autoplay={false}
           autoplayInterval={2000}

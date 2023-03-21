@@ -3,8 +3,8 @@ import Image from "next/image";
 
 const GalleryImage = ({ img }) => {
   return (
-    <div className="relative h-[70vh] w-[97%]">
-      <Image src={img} alt={""} layout="fill" style={{ objectFit: "cover" }} unoptimized className="mx-96 rounded-lg"/>
+    <div className="relative lg:h-[70vh] md:h-[55vh] h-[40vh] w-[97%]">
+      <Image src={img} alt={""} layout="fill" style={{ objectFit: "cover" }} unoptimized className="lg:mx-96 md:mx-5 rounded-lg"/>
     </div>
   );
 };
