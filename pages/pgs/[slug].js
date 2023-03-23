@@ -9,6 +9,14 @@ import {
   UilAngleRight,
   UilAngleDown,
   UilCheck,
+  UilWifi,
+  UilRestaurant,
+  UilHouseUser,
+  UilToiletPaper,
+  UilWind,
+  UilWater,
+  UilCloudMoon,
+  UilArrowRight,
 } from "@iconscout/react-unicons";
 
 import Image from "next/image";
@@ -27,6 +35,7 @@ const Slug = () => {
       {showQuickView && (
         <GalleryQuickView setShowQuickView={setShowQuickView} />
       )}
+      {/* image section */}
       <section className="xl:px-44 lg:px-24 px-5 md:px-20 sm:px-10 pt-4">
         {!showQuickView && (
           <div className="image-location">
@@ -167,6 +176,7 @@ const Slug = () => {
         </div>
       </section>
 
+      {/* navigation tabs section             */}
       <section className="hidden lg:flex items-center justify-between border-t-2 border-gray-200 border-opacity-60 sticky top-[80px] z-[900] bg-white shadow-md px-44">
         <div className="flex overflow-x-auto overflow-y-hidden whitespace-nowrap space-x-7">
           <button className="big-tab-button big-active-tab">overview</button>
@@ -177,11 +187,13 @@ const Slug = () => {
         </div>
       </section>
 
+      {/* tabs content & reviews */}
       <section className="my-4 flex justify-between mx-44 relative gap-6">
+        {/* tabs content */}
         <div className="tabs-content w-[60%]">
           {/* overview div */}
           <div
-            className="overview border-2 rounded-lg border-gray-200 border-opacity-60"
+            className="overview border-2 my-4 rounded-lg border-gray-200 border-opacity-60"
             id="overview"
           >
             <div className="title bg-white px-4 py-4 border-b-2 border-gray-200 border-opacity-60 ">
@@ -261,14 +273,17 @@ const Slug = () => {
           </div>
 
           {/* rooms offered div */}
-          <div className="rooms-offered border-2 rounded-lg border-gray-200 border-opacity-60">
+          <div
+            className="rooms-offered border-2 my-4 rounded-lg border-gray-200 border-opacity-60"
+            id="rooms"
+          >
             <div className="title bg-white px-4 py-4 border-b-2 border-gray-200 border-opacity-60 ">
               <h2 className="text-xl text-gray-800 tracking-wide font-semibold">
                 Rooms Offered
               </h2>
             </div>
             <div className="sharing-option px-8 py-4">
-              <div className="sharing">
+              <div className="sharing py-4">
                 <div className="text-gray-600 inline-flex items-center justify-center">
                   <span>
                     <UilBed className="h-6 w-6" />
@@ -453,8 +468,127 @@ const Slug = () => {
             </div>
           </div>
 
+          {/* amenities */}
+          <div className="amenities my-4 border-2 rounded-lg border-gray-200 border-opacity-60">
+            <div className="title bg-white px-4 py-4 border-b-2 border-gray-200 border-opacity-60 ">
+              <h2 className="text-xl text-gray-800 tracking-wide font-semibold">
+                Top Amenities
+              </h2>
+            </div>
+            <div className="amen bg-gray-100/60 py-4">
+              <div className="item my-2 mx-4 max-w-[150px] inline-flex flex-col items-center justify-center px-2 py-1">
+                <div className="icon my-1">
+                  <UilWifi className="h-6 w-6 text-gray-500" />
+                </div>
+                <span className="text-sm text-gray-500 font-normal capitalize">
+                  Wi-fi
+                </span>
+              </div>
+              <div className="item my-2 mx-4 max-w-[150px] inline-flex flex-col items-center justify-center px-2 py-1">
+                <div className="icon my-1">
+                  <UilWater className="h-6 w-6 text-gray-500" />
+                </div>
+                <span className="text-sm text-gray-500 font-normal capitalize">
+                  Laundry
+                </span>
+              </div>
+              <div className="item my-2 mx-4 max-w-[150px] inline-flex flex-col items-center justify-center px-2 py-1">
+                <div className="icon my-1">
+                  <UilRestaurant className="h-6 w-6 text-gray-500" />
+                </div>
+                <span className="text-sm text-gray-500 font-normal capitalize">
+                  Food
+                </span>
+              </div>
+              <div className="item my-2 mx-4 max-w-[150px] inline-flex flex-col items-center justify-center px-2 py-1">
+                <div className="icon my-1">
+                  <UilWind className="h-6 w-6 text-gray-500" />
+                </div>
+                <span className="text-sm text-gray-500 font-normal capitalize">
+                  Air Conditioner
+                </span>
+              </div>
+              <div className="item my-2 mx-4 max-w-[150px] inline-flex flex-col items-center justify-center px-2 py-1">
+                <div className="icon my-1">
+                  <UilCloudMoon className="h-6 w-6 text-gray-500" />
+                </div>
+                <span className="text-sm text-gray-500 font-normal capitalize">
+                  24/7
+                </span>
+              </div>{" "}
+              <div className="item my-2 mx-4 max-w-[150px] inline-flex flex-col items-center justify-center px-2 py-1">
+                <div className="icon my-1">
+                  <UilToiletPaper className="h-6 w-6 text-gray-500" />
+                </div>
+                <span className="text-sm text-gray-500 font-normal capitalize">
+                  Attached Washrooms
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* rules  */}
+          <div className="rules my-4 border-2 rounded-lg border-gray-200 border-opacity-60" id="rules">
+            <div className="title bg-white px-4 py-4 border-b-2 border-gray-200 border-opacity-60 ">
+              <h2 className="text-xl text-gray-800 tracking-wide font-semibold">
+                Rules
+              </h2>
+            </div>
+            <div className="house-rules px-8 py-4">
+              <div className="rule my-2">
+                <span>
+                  <UilArrowRight className="h-6 w-6 text-green-500 inline-block" />
+                </span>
+                <span className="mx-2 text-gray-700 text-sm font-semibold leading-tight">
+                  Non veg food is allowed
+                </span>
+              </div>
+              <div className="rule my-2">
+                <span>
+                  <UilArrowRight className="h-6 w-6 text-green-500 inline-block" />
+                </span>
+                <span className="mx-2 text-gray-700 text-sm font-semibold leading-tight">
+                  Visitors are allowed
+                </span>
+              </div>
+              <div className="rule my-2">
+                <span>
+                  <UilArrowRight className="h-6 w-6 text-green-500 inline-block" />
+                </span>
+                <span className="mx-2 text-gray-700 text-sm font-semibold leading-tight">
+                  Cooking Allowed
+                </span>
+              </div>
+              <div className="rule my-2">
+                <span>
+                  <UilArrowRight className="h-6 w-6 text-red-500 inline-block" />
+                </span>
+                <span className="mx-2 text-gray-700 text-sm font-semibold leading-tight">
+                  Guests of opposite gender are not allowed
+                </span>
+              </div>
+              <div className="rule my-2">
+                <span>
+                  <UilArrowRight className="h-6 w-6 text-red-500 inline-block" />
+                </span>
+                <span className="mx-2 text-gray-700 text-sm font-semibold leading-tight">
+                  Drinking Not Allowed
+                </span>
+              </div>
+              <div className="rule my-2">
+                <span>
+                  <UilArrowRight className="h-6 w-6 text-red-500 inline-block" />
+                </span>
+                <span className="mx-2 text-gray-700 text-sm font-semibold leading-tight">
+                  Smoking is not allowed
+                </span>
+              </div>
+            </div>
+          </div>
+
         </div>
-        
+
+        {/* reviews */}
         <div className="reviews w-1/4 sticky top-[44px]"></div>
       </section>
     </>
