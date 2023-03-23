@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { UilMapMarker, UilPlus } from "@iconscout/react-unicons";
+import {
+  UilMapMarker,
+  UilPlus,
+  UilShareAlt,
+  UilHeartAlt,
+} from "@iconscout/react-unicons";
 import Image from "next/image";
 import GalleryQuickView from "@/components/GalleryQuickView";
 
@@ -15,7 +20,7 @@ const Slug = () => {
       {showQuickView && (
         <GalleryQuickView setShowQuickView={setShowQuickView} />
       )}
-      <section className="xl:px-44 lg:px-24 px-5 md:px-20 sm:px-10 h-[100vh] mb-3">
+      <section className="xl:px-44 lg:px-24 px-5 md:px-20 sm:px-10 pt-4">
         {!showQuickView && (
           <div className="image-location">
             {/* location & last updated details */}
@@ -81,7 +86,7 @@ const Slug = () => {
                     className="transition-all duration-300 ease-in-out hover:scale-[1.02]"
                   />
                   <div className="see-more relative flex flex-col justify-center items-center bg-gray-800/40 w-full h-full">
-                    <div className="mr-2 transition-all duration-200 ease-in-out hover:-translate-y-[1px]">
+                    <div className="mr-2 up-icon">
                       <UilPlus className="h-8 w-8 font-semibold text-gray-100 " />
                     </div>
                     <span className="text-white text-2xl">3 more</span>
@@ -91,6 +96,164 @@ const Slug = () => {
             </div>
           </div>
         )}
+
+        <div className="pg-details my-4">
+          <div className="name-price flex flex-col md:flex-row justify-between items-center">
+            <div className="name inline-flex justify-center items-center">
+              <span className="xs:text-2xl text-xl font-medium tracking-wider leading-relaxed text-gray-800">
+                King Suite Rooms
+              </span>
+              <span className="mt-2">
+                <span className="inline-block ml-4 up-icon">
+                  <UilShareAlt className="h-4 w-4 xs:h-6 xs:w-6 text-gray-500" />
+                </span>
+                <span className="inline-block ml-3 up-icon">
+                  <UilHeartAlt className="h-4 w-4 xs:h-6 xs:w-6 text-red-500" />
+                </span>
+              </span>
+            </div>
+            <div className="price align-middle">
+              <span className="xs:text-2xl text-xl font-semibold text-gray-800 tracking-wider mb-2">
+                ₹10,500<span className="xs:text-lg text-base">/Month</span>
+              </span>
+            </div>
+          </div>
+          <div className="mt-2 sharing-details flex flex-col md:flex-row justify-between items-center">
+            <div className="sharing">
+              <span className="xs:text-sm text-xs tracking-wider font-medium text-gray-700">
+                Double Sharing{" "}
+              </span>
+              <span className="text-xs text-gray-500 font-medium ml-1">
+                for
+              </span>
+              <span className="uppercase text-xs text-gray-100 bg-blue-500 py-1 px-2 rounded ml-2">
+                boys
+              </span>
+            </div>
+            <div className="">
+              <span className="text-blue-500 text-sm tracking-wider cursor-pointer capitalize font-semibold">
+                View Rooms
+              </span>
+            </div>
+          </div>
+          <div className="location-details my-8 inline-flex justify-between items-center">
+            <div className="icon relative h-16 w-16 cursor-pointer">
+              <Image
+                src={"/assets/img/icons/loc.webp"}
+                alt={"Map"}
+                layout="fill"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+            <div className="details px-8 space-y-1">
+              <p className="text-gray-500 text-sm font-medium tracking-wider">
+                Property Location
+              </p>
+              <p className="text-gray-800 text-sm font-semibold tracking-wider">
+                15D, Sector 15, Chandigarh
+              </p>
+              <p className="text-blue-500 text-xs font-medium tracking-wider cursor-pointer">
+                View On Map
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="hidden lg:flex items-center justify-between border-t-2 border-gray-200 border-opacity-60 sticky top-[80px] z-[900] bg-white shadow-md px-44">
+        <div className="flex overflow-x-auto overflow-y-hidden whitespace-nowrap space-x-7">
+          <button className="big-tab-button big-active-tab">overview</button>
+          <button className="big-tab-button">rooms offered</button>
+          <button className="big-tab-button">amenities</button>
+          <button className="big-tab-button">rules</button>
+          <button className="big-tab-button">explore neighbourhood</button>
+        </div>
+      </section>
+
+      <section className="my-4 flex justify-between mx-44 relative gap-6">
+        <div className="tabs-content w-[60%] h-[100vh]">
+          {/* overview div */}
+          <div
+            className="overview border-2 rounded-lg border-gray-200 border-opacity-60"
+            id="overview"
+          >
+            <div className="title bg-white px-4 py-4 border-b-2 border-gray-200 border-opacity-60 ">
+              <h2 className="text-xl text-gray-800 tracking-wide font-semibold">
+                Overview
+              </h2>
+            </div>
+            <div className="details pt-10 pb-6 px-8">
+              <div className="py-2 grid grid-cols-2">
+                <div className="info my-3">
+                  <span className="text-sm tracking-widest font-semibold text-gray-500 leading-relaxed">
+                    Meal Types
+                  </span>
+                  <p className="text-gray-800 text-base font-semibold tracking-widest">
+                    Breakfast, Lunch, Dinner
+                  </p>
+                </div>
+                <div className="info my-3">
+                  <span className="text-sm tracking-widest font-semibold text-gray-500 leading-relaxed">
+                    Meal Offerings
+                  </span>
+                  <p className="text-gray-800 text-base font-semibold tracking-widest">
+                    Punjabi, South Indian, North Indian
+                  </p>
+                </div>
+                <div className="info my-3">
+                  <span className="text-sm tracking-widest font-semibold text-gray-500 leading-relaxed">
+                    Total Beds
+                  </span>
+                  <p className="text-gray-800 text-base font-semibold tracking-widest">
+                    4
+                  </p>
+                </div>
+                <div className="info my-3">
+                  <span className="text-sm tracking-widest font-semibold text-gray-500 leading-relaxed">
+                    Notice Period
+                  </span>
+                  <p className="text-gray-800 text-base font-semibold tracking-widest">
+                    30 days
+                  </p>
+                </div>
+                <div className="info my-3">
+                  <span className="text-sm tracking-widest font-semibold text-gray-500 leading-relaxed">
+                    Lock in Period
+                  </span>
+                  <p className="text-gray-800 text-base font-semibold tracking-widest">
+                    Zero lock in Period
+                  </p>
+                </div>
+                <div className="info my-3">
+                  <span className="text-sm tracking-widest font-semibold text-gray-500 leading-relaxed">
+                    Power Backup
+                  </span>
+                  <p className="text-gray-800 text-base font-semibold tracking-widest">
+                    No Backup
+                  </p>
+                </div>
+              </div>
+              <div className="managed-by inline-flex py-1 my-4 px-2 rounded-md items-center bg-gray-100">
+                <div className="px-2 logo relative h-8 w-8 rounded-[50%]">
+                  <Image
+                    src={"/assets/img/others/user.jpg"}
+                    alt={""}
+                    layout="fill"
+                    className="rounded-[50%]"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <span className="text-xs pl-3 font-semibold text-gray-800 tracking-tight leading-relaxed">
+                  Property Managed By{" "}
+                  <span className="cursor-pointer font-bold text-gray-900">
+                    Vanshu Galhotra
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="reviews w-1/4 sticky top-[44px]"></div>
       </section>
     </>
   );

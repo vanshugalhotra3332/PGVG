@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { UilSearch, UilBars, UilTimes } from "@iconscout/react-unicons";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const Navbar = () => {
   const [searchText, setSearchText] = useState("");
@@ -47,12 +48,12 @@ const Navbar = () => {
             className="items-center lg:!flex lg:basis-auto ml-6 md:ml-3"
             id="logoDiv"
           >
-            <a
+            <Link
               className="mt-2 mr-2 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:mt-0"
-              href="#"
+              href="/"
             >
               <span className="text-2xl font-bold">PGVG</span>
-            </a>
+            </Link>
           </div>
 
           {/* search and nav elements */}

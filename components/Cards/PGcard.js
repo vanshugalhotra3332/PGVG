@@ -2,7 +2,11 @@ import React from "react";
 import Image from "next/image";
 import { UisStar } from "@iconscout/react-unicons-solid";
 import { UilMapMarker } from "@iconscout/react-unicons";
+import { useRouter } from "next/router";
+
 const PGcard = ({ img }) => {
+  const router = useRouter();
+
   return (
     <div className="p-4 w-full cursor-pointer transition-all duration-200 ease-out">
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-2xl overflow-hidden ">
@@ -39,13 +43,18 @@ const PGcard = ({ img }) => {
           <div className="price-details py-4 flex flex-col xs:flex-row justify-between items-center px-5 border-t-2 border-gray-200 border-opacity-60 rounded-xl">
             <div className="price py-1">
               <h2 className="text-lg xs:text-xl md:text-2xl text-blue-500 font-bold inline-block">
-                ₹4999
+                ₹10,500
               </h2>
               <span className="text-base xs:text-lg md:text-xl text-blue-500 capitalize relative top-2 left-1">
                 /month
               </span>
             </div>
-            <button className="my-4 xs:ml-2 outline-none inline-flex hover:text-blue-500 hover:border-blue-500 border-[1px] py-2 px-7 focus:outline-none rounded-md text-sm xs:text-base md:text-lg transition-all duration-300 ease-out active:shadow-md active:scale-105 hover:bg-white text-white bg-blue-500 active:bg-white active:text-blue-500 font-semibold">
+            <button
+              className="my-4 xs:ml-2 outline-none inline-flex hover:text-blue-500 hover:border-blue-500 border-[1px] py-2 px-7 focus:outline-none rounded-md text-sm xs:text-base md:text-lg transition-all duration-300 ease-out active:shadow-md active:scale-105 hover:bg-white text-white bg-blue-500 active:bg-white active:text-blue-500 font-semibold"
+              onClick={() => {
+                router.push("/pgs/kingsuite");
+              }}
+            >
               See Details
             </button>
           </div>

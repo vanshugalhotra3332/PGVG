@@ -31,7 +31,7 @@ input[type="range"]::-webkit-slider-thumb {
 
   .convenience-badge {
     @apply cursor-pointer px-3 py-2 inline-block bg-white border-2
-     border-gray-200 border-opacity-60 rounded-2xl transition-all duration-200 ease-out shadow-md
+      border-gray-200 border-opacity-60 rounded-2xl transition-all duration-200 ease-out shadow-md
       hover:border-gray-900 hover:scale-[1.02] m-2;
   }
   .badge-select {
@@ -55,5 +55,17 @@ input[type="range"]::-webkit-slider-thumb {
 
   .tab-button {
     @apply font-medium uppercase inline-flex items-center h-10 -mb-px text-xs text-gray-500 bg-transparent sm:text-base  whitespace-nowrap focus:outline-none transition-all duration-200 ease-out hover:text-gray-800 outline-none;
+  }
+
+  .up-icon {
+    @apply transition-all duration-300 ease-in-out hover:-translate-y-[1px] cursor-pointer;
+  }
+
+  .big-tab-button {
+    @apply text-base tracking-wider leading-snug text-gray-800 uppercase font-bold py-6;
+  }
+
+  .big-active-tab {
+    @apply border-blue-500 border-b-2 text-blue-500;
   }
 }

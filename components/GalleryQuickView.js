@@ -11,18 +11,18 @@ const GalleryQuickView = ({ setShowQuickView }) => {
   return (
     <div className="relative top-0 gallery-quick-view z-[100] bg-gray-100/10">
       <div
-        className="cross absolute right-6 top-4 cursor-pointer transition-all duration-200 ease-out hover:-translate-y-[1px]"
+        className="cross absolute right-6 md:top-4 top-7 cursor-pointer transition-all duration-200 ease-out hover:-translate-y-[1px]"
         onClick={() => {
           setShowQuickView(false);
         }}
       >
-        <UilTimes className="md:h-8 md:w-8 h-6 w-6 text-gray-700 font-semibold" />
+        <UilTimes className="h-8 w-8 text-gray-700 font-semibold" />
       </div>
       {/* topbar */}
-      <div className="topbar md:px-40 px-4 py-7">
+      <div className="topbar md:px-40 px-4 py-10">
         <div className="title-button flex flex-col md:flex-row justify-between">
           <div className="title m-4">
-            <span className="md:text-xl text-base font-medium">
+            <span className="md:text-xl text-lg font-medium">
               3 RK Apartment in , Sector 15 for rent - Chandigarh
             </span>
           </div>
