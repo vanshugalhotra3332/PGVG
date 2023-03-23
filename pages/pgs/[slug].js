@@ -5,7 +5,12 @@ import {
   UilPlus,
   UilShareAlt,
   UilHeartAlt,
+  UilBed,
+  UilAngleRight,
+  UilAngleDown,
+  UilCheck,
 } from "@iconscout/react-unicons";
+
 import Image from "next/image";
 import GalleryQuickView from "@/components/GalleryQuickView";
 
@@ -13,6 +18,8 @@ const Slug = () => {
   const router = useRouter();
   const { slug } = router.query;
   const [showQuickView, setShowQuickView] = useState(false);
+  const [showIncludedItem, setShowIncludedItem] = useState(true);
+  const [showIncludedItem1, setShowIncludedItem1] = useState(false);
 
   return (
     <>
@@ -171,7 +178,7 @@ const Slug = () => {
       </section>
 
       <section className="my-4 flex justify-between mx-44 relative gap-6">
-        <div className="tabs-content w-[60%] h-[100vh]">
+        <div className="tabs-content w-[60%]">
           {/* overview div */}
           <div
             className="overview border-2 rounded-lg border-gray-200 border-opacity-60"
@@ -252,7 +259,202 @@ const Slug = () => {
               </div>
             </div>
           </div>
+
+          {/* rooms offered div */}
+          <div className="rooms-offered border-2 rounded-lg border-gray-200 border-opacity-60">
+            <div className="title bg-white px-4 py-4 border-b-2 border-gray-200 border-opacity-60 ">
+              <h2 className="text-xl text-gray-800 tracking-wide font-semibold">
+                Rooms Offered
+              </h2>
+            </div>
+            <div className="sharing-option px-8 py-4">
+              <div className="sharing">
+                <div className="text-gray-600 inline-flex items-center justify-center">
+                  <span>
+                    <UilBed className="h-6 w-6" />
+                  </span>
+                  <span className="font-semibold tracking-wide text-sm ml-2">
+                    Double Sharing
+                  </span>
+                  <span className="ml-3 mt-1">
+                    {showIncludedItem && (
+                      <UilAngleDown
+                        className="h-6 w-6 cursor-pointer"
+                        onClick={() => {
+                          setShowIncludedItem(false);
+                        }}
+                      />
+                    )}
+                    {!showIncludedItem && (
+                      <UilAngleRight
+                        className="h-6 w-6 cursor-pointer"
+                        onClick={() => {
+                          setShowIncludedItem(true);
+                        }}
+                      />
+                    )}
+                  </span>
+                </div>
+                <div
+                  className={` ${
+                    showIncludedItem ? "block" : "hidden"
+                  } price-details py-2 px-3 bg-gray-100/60`}
+                >
+                  <div className="price flex justify-between items-center">
+                    <span className="text-gray-600 font-semibold uppercase text-sm tracking-tight leading-relaxed">
+                      Option 1
+                    </span>
+                    <span className="text-gray-900 font-semibold text-xl tracking-wide leading-relaxed">
+                      ₹10,500{" "}
+                      <span className="text-sm text-gray-700">/bed</span>
+                    </span>
+                  </div>
+                  <div className="deposit py-4 border-b-2 border-gray-200 border-opacity-80">
+                    <span className="text-sm text-gray-500 tracking-wide capitalize leading-snug font-semibold">
+                      One time security deposit :{" "}
+                      <span className="text-base text-black">₹5,500</span>
+                    </span>
+                  </div>
+                  <div className="included grid grid-cols-3">
+                    <div className="included-item inline-flex items-center py-2 gap-2">
+                      <span>
+                        <UilCheck className="h-4 w-4 text-gray-500" />
+                      </span>
+                      <span className="text-gray-500 text-xs font-normal">
+                        Independent Cupboard
+                      </span>
+                    </div>
+                    <div className="included-item inline-flex items-center py-2 gap-2">
+                      <span>
+                        <UilCheck className="h-4 w-4 text-gray-500" />
+                      </span>
+                      <span className="text-gray-500 text-xs font-normal">
+                        Table-Chair
+                      </span>
+                    </div>
+                    <div className="included-item inline-flex items-center py-2 gap-2">
+                      <span>
+                        <UilCheck className="h-4 w-4 text-gray-500" />
+                      </span>
+                      <span className="text-gray-500 text-xs font-normal">
+                        Wifi
+                      </span>
+                    </div>
+                    <div className="included-item inline-flex items-center py-2 gap-2">
+                      <span>
+                        <UilCheck className="h-4 w-4 text-gray-500" />
+                      </span>
+                      <span className="text-gray-500 text-xs font-normal">
+                        TV
+                      </span>
+                    </div>
+                    <div className="included-item inline-flex items-center py-2 gap-2">
+                      <span>
+                        <UilCheck className="h-4 w-4 text-gray-500" />
+                      </span>
+                      <span className="text-gray-500 text-xs font-normal">
+                        Meals Included
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="sharing">
+                <div className="text-gray-600 inline-flex items-center justify-center">
+                  <span>
+                    <UilBed className="h-6 w-6" />
+                  </span>
+                  <span className="font-semibold tracking-wide text-sm ml-2">
+                    Single Sharing
+                  </span>
+                  <span className="ml-3 mt-1">
+                    {showIncludedItem1 && (
+                      <UilAngleDown
+                        className="h-6 w-6 cursor-pointer"
+                        onClick={() => {
+                          setShowIncludedItem1(false);
+                        }}
+                      />
+                    )}
+                    {!showIncludedItem1 && (
+                      <UilAngleRight
+                        className="h-6 w-6 cursor-pointer"
+                        onClick={() => {
+                          setShowIncludedItem1(true);
+                        }}
+                      />
+                    )}
+                  </span>
+                </div>
+                <div
+                  className={` ${
+                    showIncludedItem1 ? "block" : "hidden"
+                  } price-details py-2 px-3 bg-gray-100/60`}
+                >
+                  <div className="price flex justify-between items-center">
+                    <span className="text-gray-600 font-semibold uppercase text-sm tracking-tight leading-relaxed">
+                      Option 1
+                    </span>
+                    <span className="text-gray-900 font-semibold text-xl tracking-wide leading-relaxed">
+                      ₹12,500{" "}
+                      <span className="text-sm text-gray-700">/bed</span>
+                    </span>
+                  </div>
+                  <div className="deposit py-4 border-b-2 border-gray-200 border-opacity-80">
+                    <span className="text-sm text-gray-500 tracking-wide capitalize leading-snug font-semibold">
+                      One time security deposit :{" "}
+                      <span className="text-base text-black">₹7,500</span>
+                    </span>
+                  </div>
+                  <div className="included grid grid-cols-3">
+                    <div className="included-item inline-flex items-center py-2 gap-2">
+                      <span>
+                        <UilCheck className="h-4 w-4 text-gray-500" />
+                      </span>
+                      <span className="text-gray-500 text-xs font-normal">
+                        Independent Cupboard
+                      </span>
+                    </div>
+                    <div className="included-item inline-flex items-center py-2 gap-2">
+                      <span>
+                        <UilCheck className="h-4 w-4 text-gray-500" />
+                      </span>
+                      <span className="text-gray-500 text-xs font-normal">
+                        Table-Chair
+                      </span>
+                    </div>
+                    <div className="included-item inline-flex items-center py-2 gap-2">
+                      <span>
+                        <UilCheck className="h-4 w-4 text-gray-500" />
+                      </span>
+                      <span className="text-gray-500 text-xs font-normal">
+                        Wifi
+                      </span>
+                    </div>
+                    <div className="included-item inline-flex items-center py-2 gap-2">
+                      <span>
+                        <UilCheck className="h-4 w-4 text-gray-500" />
+                      </span>
+                      <span className="text-gray-500 text-xs font-normal">
+                        TV
+                      </span>
+                    </div>
+                    <div className="included-item inline-flex items-center py-2 gap-2">
+                      <span>
+                        <UilCheck className="h-4 w-4 text-gray-500" />
+                      </span>
+                      <span className="text-gray-500 text-xs font-normal">
+                        Meals Included
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
+        
         <div className="reviews w-1/4 sticky top-[44px]"></div>
       </section>
     </>
