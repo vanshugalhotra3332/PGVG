@@ -43,7 +43,7 @@ const GalleryQuickView = ({ setShowQuickView }) => {
       <div className="image-carousel">
         <Carousel
           wrapAround={true}
-          slidesToShow={`${window.innerWidth > 1100 ? 2 : 1}`}
+          slidesToShow={`${window ? (window.innerWidth > 1100 ? 2 : 1) : 1}`}
           adaptiveHeight={true}
           autoplay={false}
           autoplayInterval={2000}

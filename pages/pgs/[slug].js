@@ -11,14 +11,20 @@ import {
   UilCheck,
   UilWifi,
   UilRestaurant,
-  UilHouseUser,
   UilToiletPaper,
   UilWind,
   UilWater,
   UilCloudMoon,
   UilArrowRight,
+  UilBusAlt,
+  UilUniversity,
+  UilFilm,
+  UilMedkit,
+  UilTrees,
+  UilShoppingCartAlt,
 } from "@iconscout/react-unicons";
 
+import Map from "@/components/Map";
 import Image from "next/image";
 import GalleryQuickView from "@/components/GalleryQuickView";
 
@@ -188,9 +194,9 @@ const Slug = () => {
       </section>
 
       {/* tabs content & reviews */}
-      <section className="my-4 flex justify-between mx-44 relative gap-6">
+      <section className="my-4 flex justify-between lg:mx-44 mx-8 relative gap-6">
         {/* tabs content */}
-        <div className="tabs-content w-[60%]">
+        <div className="tabs-content lg:w-[60%] w-full">
           {/* overview div */}
           <div
             className="overview border-2 my-4 rounded-lg border-gray-200 border-opacity-60"
@@ -201,55 +207,31 @@ const Slug = () => {
                 Overview
               </h2>
             </div>
-            <div className="details pt-10 pb-6 px-8">
+            <div className="details lg:pt-10 pt-4 pb-6 lg:px-8 px-3">
               <div className="py-2 grid grid-cols-2">
-                <div className="info my-3">
-                  <span className="text-sm tracking-widest font-semibold text-gray-500 leading-relaxed">
-                    Meal Types
-                  </span>
-                  <p className="text-gray-800 text-base font-semibold tracking-widest">
-                    Breakfast, Lunch, Dinner
-                  </p>
+                <div className="overview-info">
+                  <span className="">Meal Types</span>
+                  <p className="">Breakfast, Lunch, Dinner</p>
                 </div>
-                <div className="info my-3">
-                  <span className="text-sm tracking-widest font-semibold text-gray-500 leading-relaxed">
-                    Meal Offerings
-                  </span>
-                  <p className="text-gray-800 text-base font-semibold tracking-widest">
-                    Punjabi, South Indian, North Indian
-                  </p>
+                <div className="overview-info">
+                  <span className="">Meal Offerings</span>
+                  <p className="">Punjabi, South Indian, North Indian</p>
                 </div>
-                <div className="info my-3">
-                  <span className="text-sm tracking-widest font-semibold text-gray-500 leading-relaxed">
-                    Total Beds
-                  </span>
-                  <p className="text-gray-800 text-base font-semibold tracking-widest">
-                    4
-                  </p>
+                <div className="overview-info">
+                  <span className="">Total Beds</span>
+                  <p className="">4</p>
                 </div>
-                <div className="info my-3">
-                  <span className="text-sm tracking-widest font-semibold text-gray-500 leading-relaxed">
-                    Notice Period
-                  </span>
-                  <p className="text-gray-800 text-base font-semibold tracking-widest">
-                    30 days
-                  </p>
+                <div className="overview-info">
+                  <span className="">Notice Period</span>
+                  <p className="">30 days</p>
                 </div>
-                <div className="info my-3">
-                  <span className="text-sm tracking-widest font-semibold text-gray-500 leading-relaxed">
-                    Lock in Period
-                  </span>
-                  <p className="text-gray-800 text-base font-semibold tracking-widest">
-                    Zero lock in Period
-                  </p>
+                <div className="overview-info">
+                  <span className="">Lock In Period</span>
+                  <p className="">Zero lock in period</p>
                 </div>
-                <div className="info my-3">
-                  <span className="text-sm tracking-widest font-semibold text-gray-500 leading-relaxed">
-                    Power Backup
-                  </span>
-                  <p className="text-gray-800 text-base font-semibold tracking-widest">
-                    No Backup
-                  </p>
+                <div className="overview-info">
+                  <span className="">Power Backup</span>
+                  <p className="">No Backup</p>
                 </div>
               </div>
               <div className="managed-by inline-flex py-1 my-4 px-2 rounded-md items-center bg-gray-100">
@@ -330,7 +312,7 @@ const Slug = () => {
                       <span className="text-base text-black">₹5,500</span>
                     </span>
                   </div>
-                  <div className="included grid grid-cols-3">
+                  <div className="included grid lg:grid-cols-3 grid-cols-2">
                     <div className="included-item inline-flex items-center py-2 gap-2">
                       <span>
                         <UilCheck className="h-4 w-4 text-gray-500" />
@@ -421,7 +403,7 @@ const Slug = () => {
                       <span className="text-base text-black">₹7,500</span>
                     </span>
                   </div>
-                  <div className="included grid grid-cols-3">
+                  <div className="included grid lg:grid-cols-3 grid-cols-2">
                     <div className="included-item inline-flex items-center py-2 gap-2">
                       <span>
                         <UilCheck className="h-4 w-4 text-gray-500" />
@@ -475,7 +457,7 @@ const Slug = () => {
                 Top Amenities
               </h2>
             </div>
-            <div className="amen bg-gray-100/60 py-4">
+            <div className="amen bg-gray-100/60 py-4 px-8 lg:px-0">
               <div className="item my-2 mx-4 max-w-[150px] inline-flex flex-col items-center justify-center px-2 py-1">
                 <div className="icon my-1">
                   <UilWifi className="h-6 w-6 text-gray-500" />
@@ -528,7 +510,10 @@ const Slug = () => {
           </div>
 
           {/* rules  */}
-          <div className="rules my-4 border-2 rounded-lg border-gray-200 border-opacity-60" id="rules">
+          <div
+            className="rules my-4 border-2 rounded-lg border-gray-200 border-opacity-60"
+            id="rules"
+          >
             <div className="title bg-white px-4 py-4 border-b-2 border-gray-200 border-opacity-60 ">
               <h2 className="text-xl text-gray-800 tracking-wide font-semibold">
                 Rules
@@ -586,10 +571,67 @@ const Slug = () => {
             </div>
           </div>
 
+          {/* explore neighbourhood */}
+          <div className="explore-neighbourhood my-4 border-2 rounded-lg border-gray-200 border-opacity-60">
+            <div className="title bg-white px-4 py-4 border-b-2 border-gray-200 border-opacity-60 ">
+              <h2 className="text-xl text-gray-800 tracking-wide font-semibold">
+                Explore Neighbourhood
+              </h2>
+            </div>
+            <div className="map-div px-4 py-4">
+              <div className="map">
+                <Map className="h-full" coords={[[30.7521, 76.7757]]} />
+              </div>
+              <div className="explore my-4 pt-2 px-4 flex items-center justify-between">
+                <div className="explore-item">
+                  <div>
+                    <UilBusAlt />
+                  </div>
+                  <span>Bus Stops</span>
+                </div>
+                <div className="explore-item">
+                  <div>
+                    <UilUniversity />
+                  </div>
+                  <span>Banks</span>
+                </div>
+                <div className="explore-item">
+                  <div>
+                    <UilFilm />
+                  </div>
+                  <span>Cinema</span>
+                </div>
+                <div className="explore-item">
+                  <div>
+                    <UilRestaurant />
+                  </div>
+                  <span>Food</span>
+                </div>
+                <div className="explore-item">
+                  <div>
+                    <UilMedkit />
+                  </div>
+                  <span>Medcare</span>
+                </div>
+                <div className="explore-item">
+                  <div>
+                    <UilTrees />
+                  </div>
+                  <span>Parks</span>
+                </div>
+                <div className="explore-item">
+                  <div>
+                    <UilShoppingCartAlt />
+                  </div>
+                  <span>Shopping</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* reviews */}
-        <div className="reviews w-1/4 sticky top-[44px]"></div>
+        <div className="hidden lg:block reviews lg:w-1/4 sticky top-[44px]"></div>
       </section>
     </>
   );

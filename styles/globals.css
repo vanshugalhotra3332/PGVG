@@ -68,4 +68,26 @@ input[type="range"]::-webkit-slider-thumb {
   .big-active-tab {
     @apply border-blue-500 border-b-2 text-blue-500;
   }
+  .overview-info {
+    @apply my-3;
+  }
+
+  .overview-info span {
+    @apply lg:text-sm text-xs tracking-widest font-semibold text-gray-500 leading-relaxed;
+  }
+  .overview-info p {
+    @apply text-gray-800 lg:text-base text-xs font-semibold tracking-widest;
+  }
+  .explore-item{
+    @apply inline-flex items-center flex-col justify-center px-2 cursor-pointer
+  }
+  .explore-item div{
+    @apply bg-white shadow-lg py-3 px-3 rounded-full border-2 border-gray-200 border-opacity-60 
+  }
+  .explore-item div svg{
+    @apply text-blue-600 h-5 w-5
+  }
+  .explore-item span{
+    @apply text-gray-700 text-xs tracking-widest font-semibold pt-2 capitalize
+  }
 }
