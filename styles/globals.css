@@ -79,10 +79,10 @@ input[type="range"]::-webkit-slider-thumb {
     @apply text-gray-800 lg:text-base text-xs font-semibold tracking-widest;
   }
   .explore-item{
-    @apply inline-flex items-center flex-col justify-center px-2 cursor-pointer
+    @apply inline-flex items-center flex-col justify-center px-2 cursor-pointer basis-auto my-2
   }
   .explore-item div{
-    @apply bg-white shadow-lg py-3 px-3 rounded-full border-2 border-gray-200 border-opacity-60 
+    @apply bg-white shadow-lg py-3 px-3 rounded-full border-2 border-gray-200 border-opacity-60 up-icon
   }
   .explore-item div svg{
     @apply text-blue-600 h-5 w-5

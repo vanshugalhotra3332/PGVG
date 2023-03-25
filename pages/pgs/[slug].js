@@ -27,6 +27,7 @@ import {
 import Map from "@/components/Map";
 import Image from "next/image";
 import GalleryQuickView from "@/components/GalleryQuickView";
+import ReviewCard from "@/components/Cards/ReviewCard";
 
 const Slug = () => {
   const router = useRouter();
@@ -183,7 +184,7 @@ const Slug = () => {
       </section>
 
       {/* navigation tabs section             */}
-      <section className="hidden lg:flex items-center justify-between border-t-2 border-gray-200 border-opacity-60 sticky top-[80px] z-[900] bg-white shadow-md px-44">
+      <section className="hidden lg:flex items-center justify-between border-t-2 border-gray-200 border-opacity-60 sticky top-[80px] z-[9000] bg-white shadow-md px-44">
         <div className="flex overflow-x-auto overflow-y-hidden whitespace-nowrap space-x-7">
           <button className="big-tab-button big-active-tab">overview</button>
           <button className="big-tab-button">rooms offered</button>
@@ -194,9 +195,9 @@ const Slug = () => {
       </section>
 
       {/* tabs content & reviews */}
-      <section className="my-4 flex justify-between lg:mx-44 mx-8 relative gap-6">
+      <section className="my-4 flex justify-between lg:mx-32 mx-8 relative gap-6">
         {/* tabs content */}
-        <div className="tabs-content lg:w-[60%] w-full">
+        <div className="tabs-content w-full">
           {/* overview div */}
           <div
             className="overview border-2 my-4 rounded-lg border-gray-200 border-opacity-60"
@@ -457,8 +458,8 @@ const Slug = () => {
                 Top Amenities
               </h2>
             </div>
-            <div className="amen bg-gray-100/60 py-4 px-8 lg:px-0">
-              <div className="item my-2 mx-4 max-w-[150px] inline-flex flex-col items-center justify-center px-2 py-1">
+            <div className="amen bg-gray-100/60 py-4 px-8 lg:px-0 flex items-center flex-wrap">
+              <div className="item my-2 mx-4 inline-flex flex-col items-center justify-center px-2 py-1">
                 <div className="icon my-1">
                   <UilWifi className="h-6 w-6 text-gray-500" />
                 </div>
@@ -466,7 +467,7 @@ const Slug = () => {
                   Wi-fi
                 </span>
               </div>
-              <div className="item my-2 mx-4 max-w-[150px] inline-flex flex-col items-center justify-center px-2 py-1">
+              <div className="item my-2 mx-4 inline-flex flex-col items-center justify-center px-2 py-1">
                 <div className="icon my-1">
                   <UilWater className="h-6 w-6 text-gray-500" />
                 </div>
@@ -474,7 +475,7 @@ const Slug = () => {
                   Laundry
                 </span>
               </div>
-              <div className="item my-2 mx-4 max-w-[150px] inline-flex flex-col items-center justify-center px-2 py-1">
+              <div className="item my-2 mx-4 inline-flex flex-col items-center justify-center px-2 py-1">
                 <div className="icon my-1">
                   <UilRestaurant className="h-6 w-6 text-gray-500" />
                 </div>
@@ -482,7 +483,7 @@ const Slug = () => {
                   Food
                 </span>
               </div>
-              <div className="item my-2 mx-4 max-w-[150px] inline-flex flex-col items-center justify-center px-2 py-1">
+              <div className="item my-2 mx-4 inline-flex flex-col items-center justify-center px-2 py-1">
                 <div className="icon my-1">
                   <UilWind className="h-6 w-6 text-gray-500" />
                 </div>
@@ -490,7 +491,7 @@ const Slug = () => {
                   Air Conditioner
                 </span>
               </div>
-              <div className="item my-2 mx-4 max-w-[150px] inline-flex flex-col items-center justify-center px-2 py-1">
+              <div className="item my-2 mx-4 inline-flex flex-col items-center justify-center px-2 py-1">
                 <div className="icon my-1">
                   <UilCloudMoon className="h-6 w-6 text-gray-500" />
                 </div>
@@ -498,7 +499,7 @@ const Slug = () => {
                   24/7
                 </span>
               </div>{" "}
-              <div className="item my-2 mx-4 max-w-[150px] inline-flex flex-col items-center justify-center px-2 py-1">
+              <div className="item my-2 mx-4 inline-flex flex-col items-center justify-center px-2 py-1">
                 <div className="icon my-1">
                   <UilToiletPaper className="h-6 w-6 text-gray-500" />
                 </div>
@@ -582,7 +583,7 @@ const Slug = () => {
               <div className="map">
                 <Map className="h-full" coords={[[30.7521, 76.7757]]} />
               </div>
-              <div className="explore my-4 pt-2 px-4 flex items-center justify-between">
+              <div className="explore my-4 pt-2 px-4 flex items-center flex-wrap justify-between">
                 <div className="explore-item">
                   <div>
                     <UilBusAlt />
@@ -631,7 +632,18 @@ const Slug = () => {
         </div>
 
         {/* reviews */}
-        <div className="hidden lg:block reviews lg:w-1/4 sticky top-[44px]"></div>
+        <div className="hidden lg:block reviews mt-16 mx-8">
+          <div className="title px-6">
+            <h2 className="text-3xl font-semibold tracking-wider leading-snug">
+              Reviews
+            </h2>
+          </div>
+          <div className="review-cards">
+            <ReviewCard />
+            <ReviewCard />
+            <ReviewCard />
+          </div>
+        </div>
       </section>
     </>
   );
