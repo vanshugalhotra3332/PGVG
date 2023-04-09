@@ -14,6 +14,7 @@ const handler = async (req, res) => {
       location: req.body.location,
       rating: req.body.rating,
       rules: req.body.rules,
+      gender: req.body.gender,
     });
     await pg.save();
 

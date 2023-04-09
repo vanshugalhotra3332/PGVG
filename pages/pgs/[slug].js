@@ -29,10 +29,22 @@ import Image from "next/image";
 import GalleryQuickView from "@/components/GalleryQuickView";
 import ReviewCard from "@/components/Cards/ReviewCard";
 import Link from "next/link";
+import PGs from "@/models/PGs";
+import mongoose from "mongoose";
 
-const Slug = () => {
-  const router = useRouter();
-  const { slug } = router.query;
+const Slug = ({ pg }) => {
+  const {
+    rules,
+    location,
+    otherInfo,
+    name,
+    image,
+    type,
+    rentPerMonth,
+    sharings,
+    amenities,
+    gender,
+  } = pg;
   const [showQuickView, setShowQuickView] = useState(false);
   const [showIncludedItem, setShowIncludedItem] = useState(true);
 
@@ -51,7 +63,7 @@ const Slug = () => {
               <span className="py-2 location inline-flex items-center m-auto sm:m-0">
                 <UilMapMarker className="h-6 w-6 text-gray-400 inline-block" />
                 <span className="inline-block text-gray-400 pl-2">
-                  B-604, Sector 15C, Chandigarh
+                  {location.address}, {location.city}
                 </span>
               </span>
               <span className="py-2 updated text-gray-400 text-sm mt-1 text-center">
@@ -63,7 +75,7 @@ const Slug = () => {
             <div className="flex image-gallery my-2 rounded-lg">
               <div className="big-image relative md:h-[60.5vh] h-[40vh] md:w-3/4 w-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden cursor-pointer">
                 <Image
-                  src={"/assets/img/pgs/pg.webp"}
+                  src={image}
                   alt={""}
                   layout="fill"
                   className="transition-all duration-300 ease-in-out hover:scale-105"
@@ -124,7 +136,7 @@ const Slug = () => {
           <div className="name-price flex flex-col md:flex-row justify-between items-center">
             <div className="name inline-flex justify-center items-center">
               <span className="xs:text-2xl text-xl font-medium tracking-wider leading-relaxed text-gray-800">
-                King Suite Rooms
+                {name}
               </span>
               <span className="mt-2">
                 <span className="inline-block ml-4 up-icon">
@@ -137,7 +149,8 @@ const Slug = () => {
             </div>
             <div className="price align-middle">
               <span className="xs:text-2xl text-xl font-semibold text-gray-800 tracking-wider mb-2">
-                ₹10,500<span className="xs:text-lg text-base">/Month</span>
+                ₹{rentPerMonth}
+                <span className="xs:text-lg text-base">/Month</span>
               </span>
             </div>
           </div>
@@ -149,8 +162,12 @@ const Slug = () => {
               <span className="text-xs text-gray-500 font-medium ml-1">
                 for
               </span>
-              <span className="uppercase text-xs text-gray-100 bg-blue-500 py-1 px-2 rounded ml-2">
-                boys
+              <span
+                className={`${
+                  gender == "boys" ? "bg-blue-500" : "bg-pink-500"
+                } uppercase text-xs text-gray-100  py-1 px-2 rounded ml-2`}
+              >
+                {gender}
               </span>
             </div>
             <div className="">
@@ -593,5 +610,20 @@ const Slug = () => {
     </>
   );
 };
+
+export async function getServerSideProps(context) {
+  if (!mongoose.connections[0].readyState) {
+    await mongoose.connect(process.env.MONGO_URI);
+  }
+
+  let pg = await PGs.findOne({ slug: context.query.slug });
+  console.log(pg);
+
+  return {
+    props: {
+      pg: JSON.parse(JSON.stringify(pg)),
+    },
+  };
+}
 
 export default Slug;

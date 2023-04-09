@@ -1,5 +1,5 @@
 import RangeSlider from "@/components/RangeSlider";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Map from "@/components/Map";
 
 import {
@@ -20,6 +20,22 @@ import {
 import PGcard from "@/components/Cards/PGcard";
 
 const Explore = () => {
+  const [pgs, setPgs] = useState([]);
+
+  useEffect(() => {
+    async function getPGs() {
+      try {
+        const response = await fetch("http://localhost:3000/api/getpgs");
+        const pgs = await response.json();
+        setPgs(pgs.pgs);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getPGs();
+    return () => {};
+  }, []);
+
   const [togglePopDD, setTogglePopDD] = useState(false);
   const [toggleSortDD, setToggleSortDD] = useState(false);
   const [propertyType, setPropertyType] = useState("All");
@@ -38,17 +54,8 @@ const Explore = () => {
     "Rating",
   ];
 
-  const coordinates = [
-    [30.7521, 76.7757],
-    [30.7511, 76.7767],
-    [30.7531, 76.7759],
-    [30.7521, 76.7752],
-    [30.7523, 76.7762],
-    [30.7523, 76.7762],
-    [30.7515, 76.7926],
-    [30.7512, 76.7925],
-    [30.7545, 76.7925],
-  ];
+  const coordinates = [];
+  pgs.map((pg) => coordinates.push(pg.location.coordinates));
 
   const propertyClick = (event) => {
     setPropertyType(event.target.value);
@@ -370,9 +377,18 @@ const Explore = () => {
           <Map className="h-full" coords={coordinates} />
         </div>
         <div className="listing mt-16 grid md:grid-cols-2 grid-cols-1">
-          <PGcard img={"/assets/img/pgs/pg.webp"} />
-          <PGcard img={"/assets/img/pgs/pg.webp"} />
-          <PGcard img={"/assets/img/pgs/pg.webp"} />
+          {pgs.map(({ slug, name, image, location, rentPerMonth }) => {
+            return (
+              <PGcard
+                key={slug}
+                name={name}
+                image={image}
+                location={location}
+                rentPerMonth={rentPerMonth}
+                slug={slug}
+              />
+            );
+          })}
         </div>
       </div>
     </section>

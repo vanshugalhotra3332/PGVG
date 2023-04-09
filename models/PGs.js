@@ -19,6 +19,9 @@ const PgSchema = new mongoose.Schema(
       type: String,
       default: "PG",
     },
+    gender: {
+      type: String,
+    },
     rentPerMonth: {
       type: Number,
       required: true,
