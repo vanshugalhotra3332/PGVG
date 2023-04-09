@@ -19,7 +19,7 @@ const ReviewCard = () => {
                   />
                 </div>
               </div>
-              <h4 className="w-full md:w-auto text-xl font-heading font-medium">
+              <h4 className="w-auto text-xl font-heading font-medium">
                 Eazy E
               </h4>
               <div className="w-full md:w-px h-2 md:h-8 mx-8 bg-transparent md:bg-gray-200"></div>
@@ -101,13 +101,13 @@ const ReviewCard = () => {
           <div className="px-4 overflow-hidden md:px-6 pt-4 pb-4 bg-white">
             <div className="flex flex-wrap">
               <div className="w-full md:w-2/3 mb-6 md:mb-0">
-                <p className="mb-8 max-w-2xl text-gray-900 text-sm font-semibold tracking-wide leading-loose">
+                <p className="mb-2 md:mb-6 max-w-2xl text-gray-900 text-sm font-semibold tracking-wide leading-loose">
                   I haretra neque non mi aliquam, finibus hart bibendum
                   molestie. Vestibulum suscipit sagittis dignissim mauris.
                 </p>
               </div>
               <div className="w-full md:w-1/3 text-right">
-                <p className="mb-8 text-xs text-gray-400">Added 2 months ago</p>
+                <p className="mb-2 md:mb-6 text-xs text-gray-400">Added 2 months ago</p>
               </div>
             </div>
           </div>

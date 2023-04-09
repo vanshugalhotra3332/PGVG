@@ -28,13 +28,13 @@ import Map from "@/components/Map";
 import Image from "next/image";
 import GalleryQuickView from "@/components/GalleryQuickView";
 import ReviewCard from "@/components/Cards/ReviewCard";
+import Link from "next/link";
 
 const Slug = () => {
   const router = useRouter();
   const { slug } = router.query;
   const [showQuickView, setShowQuickView] = useState(false);
   const [showIncludedItem, setShowIncludedItem] = useState(true);
-  const [showIncludedItem1, setShowIncludedItem1] = useState(false);
 
   return (
     <>
@@ -154,9 +154,11 @@ const Slug = () => {
               </span>
             </div>
             <div className="">
-              <span className="text-blue-500 text-sm tracking-wider cursor-pointer capitalize font-semibold">
-                View Rooms
-              </span>
+              <Link href={"#rooms"}>
+                <span className="text-blue-500 text-sm tracking-wider cursor-pointer capitalize font-semibold">
+                  View Rooms
+                </span>
+              </Link>
             </div>
           </div>
           <div className="location-details my-8 inline-flex justify-between items-center">
@@ -186,11 +188,21 @@ const Slug = () => {
       {/* navigation tabs section             */}
       <section className="hidden lg:flex items-center justify-between border-t-2 border-gray-200 border-opacity-60 sticky top-[80px] z-[9000] bg-white shadow-md px-44">
         <div className="flex overflow-x-auto overflow-y-hidden whitespace-nowrap space-x-7">
-          <button className="big-tab-button big-active-tab">overview</button>
-          <button className="big-tab-button">rooms offered</button>
-          <button className="big-tab-button">amenities</button>
-          <button className="big-tab-button">rules</button>
-          <button className="big-tab-button">explore neighbourhood</button>
+          <Link href={"#overview"}>
+            <button className="big-tab-button big-active-tab">overview</button>
+          </Link>
+          <Link href={"#rooms"}>
+            <button className="big-tab-button">rooms offered</button>
+          </Link>
+          <Link href={"#amenities"}>
+            <button className="big-tab-button">amenities</button>
+          </Link>
+          <Link href={"#rules"}>
+            <button className="big-tab-button">rules</button>
+          </Link>
+          <Link href={"#explore-neighbourhood"}>
+            <button className="big-tab-button">explore neighbourhood</button>
+          </Link>
         </div>
       </section>
 
@@ -209,7 +221,7 @@ const Slug = () => {
               </h2>
             </div>
             <div className="details lg:pt-10 pt-4 pb-6 lg:px-8 px-3">
-              <div className="py-2 grid grid-cols-2">
+              <div className="py-2 grid grid-cols-1 xs:grid-cols-2">
                 <div className="overview-info">
                   <span className="">Meal Types</span>
                   <p className="">Breakfast, Lunch, Dinner</p>
@@ -271,7 +283,7 @@ const Slug = () => {
                   <span>
                     <UilBed className="h-6 w-6" />
                   </span>
-                  <span className="font-semibold tracking-wide text-sm ml-2">
+                  <span className="font-semibold tracking-wide text-xs xs:text-sm ml-2">
                     Double Sharing
                   </span>
                   <span className="ml-3 mt-1">
@@ -296,115 +308,28 @@ const Slug = () => {
                 <div
                   className={` ${
                     showIncludedItem ? "block" : "hidden"
-                  } price-details py-2 px-3 bg-gray-100/60`}
+                  } price-details py-2 px-1 xs:px-3 bg-gray-100/60`}
                 >
                   <div className="price flex justify-between items-center">
-                    <span className="text-gray-600 font-semibold uppercase text-sm tracking-tight leading-relaxed">
+                    <span className="text-gray-600 font-semibold uppercase text-xs xs:text-sm tracking-tight leading-relaxed">
                       Option 1
                     </span>
-                    <span className="text-gray-900 font-semibold text-xl tracking-wide leading-relaxed">
+                    <span className="text-gray-900 font-semibold text-xs md:text-lg lg:text-xl tracking-wide leading-relaxed">
                       ₹10,500{" "}
-                      <span className="text-sm text-gray-700">/bed</span>
+                      <span className="text-xs xs:text-sm text-gray-700">
+                        /bed
+                      </span>
                     </span>
                   </div>
                   <div className="deposit py-4 border-b-2 border-gray-200 border-opacity-80">
-                    <span className="text-sm text-gray-500 tracking-wide capitalize leading-snug font-semibold">
+                    <span className="text-xs xs:text-sm text-gray-500 tracking-wide capitalize leading-snug font-semibold">
                       One time security deposit :{" "}
-                      <span className="text-base text-black">₹5,500</span>
+                      <span className="text-xs md:text-base text-black">
+                        ₹5,500
+                      </span>
                     </span>
                   </div>
-                  <div className="included grid lg:grid-cols-3 grid-cols-2">
-                    <div className="included-item inline-flex items-center py-2 gap-2">
-                      <span>
-                        <UilCheck className="h-4 w-4 text-gray-500" />
-                      </span>
-                      <span className="text-gray-500 text-xs font-normal">
-                        Independent Cupboard
-                      </span>
-                    </div>
-                    <div className="included-item inline-flex items-center py-2 gap-2">
-                      <span>
-                        <UilCheck className="h-4 w-4 text-gray-500" />
-                      </span>
-                      <span className="text-gray-500 text-xs font-normal">
-                        Table-Chair
-                      </span>
-                    </div>
-                    <div className="included-item inline-flex items-center py-2 gap-2">
-                      <span>
-                        <UilCheck className="h-4 w-4 text-gray-500" />
-                      </span>
-                      <span className="text-gray-500 text-xs font-normal">
-                        Wifi
-                      </span>
-                    </div>
-                    <div className="included-item inline-flex items-center py-2 gap-2">
-                      <span>
-                        <UilCheck className="h-4 w-4 text-gray-500" />
-                      </span>
-                      <span className="text-gray-500 text-xs font-normal">
-                        TV
-                      </span>
-                    </div>
-                    <div className="included-item inline-flex items-center py-2 gap-2">
-                      <span>
-                        <UilCheck className="h-4 w-4 text-gray-500" />
-                      </span>
-                      <span className="text-gray-500 text-xs font-normal">
-                        Meals Included
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="sharing">
-                <div className="text-gray-600 inline-flex items-center justify-center">
-                  <span>
-                    <UilBed className="h-6 w-6" />
-                  </span>
-                  <span className="font-semibold tracking-wide text-sm ml-2">
-                    Single Sharing
-                  </span>
-                  <span className="ml-3 mt-1">
-                    {showIncludedItem1 && (
-                      <UilAngleDown
-                        className="h-6 w-6 cursor-pointer"
-                        onClick={() => {
-                          setShowIncludedItem1(false);
-                        }}
-                      />
-                    )}
-                    {!showIncludedItem1 && (
-                      <UilAngleRight
-                        className="h-6 w-6 cursor-pointer"
-                        onClick={() => {
-                          setShowIncludedItem1(true);
-                        }}
-                      />
-                    )}
-                  </span>
-                </div>
-                <div
-                  className={` ${
-                    showIncludedItem1 ? "block" : "hidden"
-                  } price-details py-2 px-3 bg-gray-100/60`}
-                >
-                  <div className="price flex justify-between items-center">
-                    <span className="text-gray-600 font-semibold uppercase text-sm tracking-tight leading-relaxed">
-                      Option 1
-                    </span>
-                    <span className="text-gray-900 font-semibold text-xl tracking-wide leading-relaxed">
-                      ₹12,500{" "}
-                      <span className="text-sm text-gray-700">/bed</span>
-                    </span>
-                  </div>
-                  <div className="deposit py-4 border-b-2 border-gray-200 border-opacity-80">
-                    <span className="text-sm text-gray-500 tracking-wide capitalize leading-snug font-semibold">
-                      One time security deposit :{" "}
-                      <span className="text-base text-black">₹7,500</span>
-                    </span>
-                  </div>
-                  <div className="included grid lg:grid-cols-3 grid-cols-2">
+                  <div className="included grid lg:grid-cols-3 grid-cols-1 xs:grid-cols-2">
                     <div className="included-item inline-flex items-center py-2 gap-2">
                       <span>
                         <UilCheck className="h-4 w-4 text-gray-500" />
@@ -452,14 +377,17 @@ const Slug = () => {
           </div>
 
           {/* amenities */}
-          <div className="amenities my-4 border-2 rounded-lg border-gray-200 border-opacity-60">
+          <div
+            className="amenities my-4 border-2 rounded-lg border-gray-200 border-opacity-60"
+            id="amenities"
+          >
             <div className="title bg-white px-4 py-4 border-b-2 border-gray-200 border-opacity-60 ">
               <h2 className="text-xl text-gray-800 tracking-wide font-semibold">
                 Top Amenities
               </h2>
             </div>
-            <div className="amen bg-gray-100/60 py-4 px-8 lg:px-0 flex items-center flex-wrap">
-              <div className="item my-2 mx-4 inline-flex flex-col items-center justify-center px-2 py-1">
+            <div className="amen bg-gray-100/60 py-4 px-4 xs:px-8 lg:px-0 flex items-center flex-wrap">
+              <div className="amen-item ">
                 <div className="icon my-1">
                   <UilWifi className="h-6 w-6 text-gray-500" />
                 </div>
@@ -467,7 +395,7 @@ const Slug = () => {
                   Wi-fi
                 </span>
               </div>
-              <div className="item my-2 mx-4 inline-flex flex-col items-center justify-center px-2 py-1">
+              <div className="amen-item ">
                 <div className="icon my-1">
                   <UilWater className="h-6 w-6 text-gray-500" />
                 </div>
@@ -475,7 +403,7 @@ const Slug = () => {
                   Laundry
                 </span>
               </div>
-              <div className="item my-2 mx-4 inline-flex flex-col items-center justify-center px-2 py-1">
+              <div className="amen-item ">
                 <div className="icon my-1">
                   <UilRestaurant className="h-6 w-6 text-gray-500" />
                 </div>
@@ -483,7 +411,7 @@ const Slug = () => {
                   Food
                 </span>
               </div>
-              <div className="item my-2 mx-4 inline-flex flex-col items-center justify-center px-2 py-1">
+              <div className="amen-item ">
                 <div className="icon my-1">
                   <UilWind className="h-6 w-6 text-gray-500" />
                 </div>
@@ -491,7 +419,7 @@ const Slug = () => {
                   Air Conditioner
                 </span>
               </div>
-              <div className="item my-2 mx-4 inline-flex flex-col items-center justify-center px-2 py-1">
+              <div className="amen-item ">
                 <div className="icon my-1">
                   <UilCloudMoon className="h-6 w-6 text-gray-500" />
                 </div>
@@ -499,7 +427,7 @@ const Slug = () => {
                   24/7
                 </span>
               </div>{" "}
-              <div className="item my-2 mx-4 inline-flex flex-col items-center justify-center px-2 py-1">
+              <div className="amen-item ">
                 <div className="icon my-1">
                   <UilToiletPaper className="h-6 w-6 text-gray-500" />
                 </div>
@@ -520,7 +448,7 @@ const Slug = () => {
                 Rules
               </h2>
             </div>
-            <div className="house-rules px-8 py-4">
+            <div className="house-rules px-4 xs:px-8 py-4">
               <div className="rule my-2">
                 <span>
                   <UilArrowRight className="h-6 w-6 text-green-500 inline-block" />
@@ -573,7 +501,10 @@ const Slug = () => {
           </div>
 
           {/* explore neighbourhood */}
-          <div className="explore-neighbourhood my-4 border-2 rounded-lg border-gray-200 border-opacity-60">
+          <div
+            className="explore-neighbourhood my-4 border-2 rounded-lg border-gray-200 border-opacity-60"
+            id="explore-neighbourhood"
+          >
             <div className="title bg-white px-4 py-4 border-b-2 border-gray-200 border-opacity-60 ">
               <h2 className="text-xl text-gray-800 tracking-wide font-semibold">
                 Explore Neighbourhood
@@ -645,6 +576,20 @@ const Slug = () => {
           </div>
         </div>
       </section>
+
+      {/* reviews mobile view */}
+      <div className="lg:hidden block reviews mt-8 mx-12">
+        <div className="title px-6">
+          <h2 className="text-3xl font-semibold tracking-wider leading-snug">
+            Reviews
+          </h2>
+        </div>
+        <div className="review-cards">
+          <ReviewCard />
+          <ReviewCard />
+          <ReviewCard />
+        </div>
+      </div>
     </>
   );
 };

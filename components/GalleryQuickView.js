@@ -11,7 +11,7 @@ const GalleryQuickView = ({ setShowQuickView }) => {
   return (
     <div className="relative top-0 gallery-quick-view z-[100] bg-gray-100/10">
       <div
-        className="cross absolute right-6 md:top-4 top-7 cursor-pointer transition-all duration-200 ease-out hover:-translate-y-[1px]"
+        className="cross absolute right-10 md:top-4 top-10 cursor-pointer transition-all duration-200 ease-out hover:-translate-y-[1px] bg-white rounded-full px-1 py-1"
         onClick={() => {
           setShowQuickView(false);
         }}
@@ -19,10 +19,10 @@ const GalleryQuickView = ({ setShowQuickView }) => {
         <UilTimes className="h-8 w-8 text-gray-700 font-semibold" />
       </div>
       {/* topbar */}
-      <div className="topbar md:px-40 px-4 py-10">
+      <div className="topbar md:px-40 px-4 py-5">
         <div className="title-button flex flex-col md:flex-row justify-between">
           <div className="title m-4">
-            <span className="md:text-xl text-lg font-medium">
+            <span className="md:text-2xl text-lg font-medium tracking-wide">
               3 RK Apartment in , Sector 15 for rent - Chandigarh
             </span>
           </div>
@@ -32,12 +32,12 @@ const GalleryQuickView = ({ setShowQuickView }) => {
             </button>
           </div>
         </div>
-        <div className="hidden md:flex overflow-x-auto overflow-y-hidden border-b border-gray-200 whitespace-nowrap dark:border-gray-700 mt-3 space-x-7">
+        {/* <div className="hidden md:flex overflow-x-auto overflow-y-hidden border-b border-gray-200 whitespace-nowrap dark:border-gray-700 mt-3 space-x-7">
           <button className="tab-button active-tab">bedroom</button>
           <button className="tab-button">balcony</button>
           <button className="tab-button">bathroom</button>
           <button className="tab-button">others</button>
-        </div>
+        </div> */}
       </div>
       {/* image carousel */}
       <div className="image-carousel">
