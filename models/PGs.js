@@ -11,6 +11,10 @@ const PgSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
     image: {
       type: String,
       required: true,
