@@ -9,76 +9,57 @@ import GalleryImage from "./Cards/GalleryImage";
 
 const GalleryQuickView = ({ setShowQuickView }) => {
   return (
-    <div className="relative top-0 gallery-quick-view z-[100] bg-gray-100/10">
-      <div
-        className="cross absolute right-10 md:top-4 top-10 cursor-pointer transition-all duration-200 ease-out hover:-translate-y-[1px] bg-white rounded-full px-1 py-1"
-        onClick={() => {
-          setShowQuickView(false);
-        }}
-      >
-        <UilTimes className="h-8 w-8 text-gray-700 font-semibold" />
-      </div>
-      {/* topbar */}
-      <div className="topbar md:px-40 px-4 py-5">
-        <div className="title-button flex flex-col md:flex-row justify-between">
-          <div className="title m-4">
-            <span className="md:text-2xl text-lg font-medium tracking-wide">
-              3 RK Apartment in , Sector 15 for rent - Chandigarh
-            </span>
-          </div>
-          <div className="contact-button m-auto md:m-0">
-            <button className="bg-blue-500 cursor-pointer text-white md:text-base text-sm py-2 md:px-5 px-2 rounded-md hover:bg-blue-600 transition-all duration-200 ease-out">
-              Contact Owner
-            </button>
-          </div>
-        </div>
-        {/* <div className="hidden md:flex overflow-x-auto overflow-y-hidden border-b border-gray-200 whitespace-nowrap dark:border-gray-700 mt-3 space-x-7">
-          <button className="tab-button active-tab">bedroom</button>
-          <button className="tab-button">balcony</button>
-          <button className="tab-button">bathroom</button>
-          <button className="tab-button">others</button>
-        </div> */}
-      </div>
-      {/* image carousel */}
-      <div className="image-carousel">
-        <Carousel
-          wrapAround={true}
-          slidesToShow={`${window ? (window.innerWidth > 1100 ? 2 : 1) : 1}`}
-          adaptiveHeight={true}
-          autoplay={false}
-          autoplayInterval={2000}
-          withoutControls={false}
-          defaultControlsConfig={{
-            pagingDotsStyle: {
-              margin: "0 10px",
-              display: "none",
-            },
+    <>
+      <div className="relative top-0 gallery-quick-view z-[100] bg-gray-100/10">
+        <div
+          className="cross absolute inline-flex items-center justify-center right-6 cursor-pointer transition-all duration-200 ease-out hover:-translate-y-[1px] bg-white rounded-full px-1 py-1 z-[1000] top-4"
+          onClick={() => {
+            setShowQuickView(false);
           }}
-          renderCenterLeftControls={({ previousDisabled, previousSlide }) => (
-            <button
-              onClick={previousSlide}
-              disabled={previousDisabled}
-              className="w-10 bg-white rounded-full"
-            >
-              <UilAngleLeftB className="h-10 w-10 text-gray-800 font-semibold" />
-            </button>
-          )}
-          renderCenterRightControls={({ nextDisabled, nextSlide }) => (
-            <button
-              onClick={nextSlide}
-              disabled={nextDisabled}
-              className="w-10 bg-white rounded-full"
-            >
-              <UilAngleRightB className="h-10 w-10 text-gray-800" />
-            </button>
-          )}
         >
-          <GalleryImage img={"/assets/img/pgs/pg.webp"} />
-          <GalleryImage img={"/assets/img/pgs/pg1.avif"} />
-          <GalleryImage img={"/assets/img/pgs/pg2.avif"} />
-        </Carousel>
+          <UilTimes className="h-6 w-6 inline-block text-gray-700 font-semibold" />
+        </div>
+        {/* image carousel */}
+        <div className="image-carousel">
+          <Carousel
+            wrapAround={true}
+            slidesToShow={`${window ? (window.innerWidth > 1100 ? 2 : 1) : 1}`}
+            adaptiveHeight={true}
+            autoplay={false}
+            autoplayInterval={2000}
+            withoutControls={false}
+            defaultControlsConfig={{
+              pagingDotsStyle: {
+                margin: "0 10px",
+                display: "none",
+              },
+            }}
+            renderCenterLeftControls={({ previousDisabled, previousSlide }) => (
+              <button
+                onClick={previousSlide}
+                disabled={previousDisabled}
+                className="w-10 bg-white rounded-full"
+              >
+                <UilAngleLeftB className="h-10 w-10 text-gray-800 font-semibold" />
+              </button>
+            )}
+            renderCenterRightControls={({ nextDisabled, nextSlide }) => (
+              <button
+                onClick={nextSlide}
+                disabled={nextDisabled}
+                className="w-10 bg-white rounded-full"
+              >
+                <UilAngleRightB className="h-10 w-10 text-gray-800" />
+              </button>
+            )}
+          >
+            <GalleryImage img={"/assets/img/pgs/pg.webp"} />
+            <GalleryImage img={"/assets/img/pgs/pg1.avif"} />
+            <GalleryImage img={"/assets/img/pgs/pg2.avif"} />
+          </Carousel>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

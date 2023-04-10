@@ -27,7 +27,28 @@ const PgSchema = new mongoose.Schema(
       required: true,
     },
     sharings: {
-      type: Array,
+      type: Map,
+      of: new mongoose.Schema(
+        {
+          rentPerMonth: {
+            type: Number,
+            required: true,
+          },
+          beds: {
+            type: Number,
+            default: 0,
+          },
+          security: {
+            type: Number,
+            default: 0,
+          },
+          includes: {
+            type: [String],
+          },
+        },
+        { _id: false }
+      ),
+      required: true,
     },
     amenities: {
       type: Array,
