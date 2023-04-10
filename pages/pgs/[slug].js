@@ -191,7 +191,7 @@ const Slug = ({ pg }) => {
                 Property Location
               </p>
               <p className="text-gray-800 text-sm font-semibold tracking-wider">
-                15D, Sector 15, Chandigarh
+                {location.address}, {location.city}
               </p>
               <p className="text-blue-500 text-xs font-medium tracking-wider cursor-pointer">
                 View On Map
@@ -379,54 +379,30 @@ const Slug = ({ pg }) => {
               </h2>
             </div>
             <div className="house-rules px-4 xs:px-8 py-4">
-              <div className="rule my-2">
-                <span>
-                  <UilArrowRight className="h-6 w-6 text-green-500 inline-block" />
-                </span>
-                <span className="mx-2 text-gray-700 text-sm font-semibold leading-tight">
-                  Non veg food is allowed
-                </span>
-              </div>
-              <div className="rule my-2">
-                <span>
-                  <UilArrowRight className="h-6 w-6 text-green-500 inline-block" />
-                </span>
-                <span className="mx-2 text-gray-700 text-sm font-semibold leading-tight">
-                  Visitors are allowed
-                </span>
-              </div>
-              <div className="rule my-2">
-                <span>
-                  <UilArrowRight className="h-6 w-6 text-green-500 inline-block" />
-                </span>
-                <span className="mx-2 text-gray-700 text-sm font-semibold leading-tight">
-                  Cooking Allowed
-                </span>
-              </div>
-              <div className="rule my-2">
-                <span>
-                  <UilArrowRight className="h-6 w-6 text-red-500 inline-block" />
-                </span>
-                <span className="mx-2 text-gray-700 text-sm font-semibold leading-tight">
-                  Guests of opposite gender are not allowed
-                </span>
-              </div>
-              <div className="rule my-2">
-                <span>
-                  <UilArrowRight className="h-6 w-6 text-red-500 inline-block" />
-                </span>
-                <span className="mx-2 text-gray-700 text-sm font-semibold leading-tight">
-                  Drinking Not Allowed
-                </span>
-              </div>
-              <div className="rule my-2">
-                <span>
-                  <UilArrowRight className="h-6 w-6 text-red-500 inline-block" />
-                </span>
-                <span className="mx-2 text-gray-700 text-sm font-semibold leading-tight">
-                  Smoking is not allowed
-                </span>
-              </div>
+              {rules.allowed.map((rule, index) => {
+                return (
+                  <div className="rule my-2" key={index}>
+                    <span>
+                      <UilArrowRight className="h-6 w-6 text-green-500 inline-block" />
+                    </span>
+                    <span className="mx-2 text-gray-700 text-sm font-semibold leading-tight">
+                      {rule}
+                    </span>
+                  </div>
+                );
+              })}
+              {rules.notAllowed.map((rule, index) => {
+                return (
+                  <div className="rule my-2" key={index}>
+                    <span>
+                      <UilArrowRight className="h-6 w-6 text-red-500 inline-block" />
+                    </span>
+                    <span className="mx-2 text-gray-700 text-sm font-semibold leading-tight">
+                      {rule}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -442,7 +418,7 @@ const Slug = ({ pg }) => {
             </div>
             <div className="map-div px-4 py-4">
               <div className="map">
-                <Map className="h-full" coords={[[30.7521, 76.7757]]} />
+                <Map className="h-full" coords={[location.coordinates]} />
               </div>
               <div className="explore my-4 pt-2 px-4 flex items-center flex-wrap justify-between">
                 <div className="explore-item">
