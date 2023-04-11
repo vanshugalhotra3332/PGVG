@@ -76,7 +76,7 @@ const Explore = () => {
       <div
         className={`${
           toggleFilterMenu ? "!inline-block" : "hidden"
-        } hidden lg:!inline-block sidebar w-full lg:w-1/4 border-2 border-gray-200 border-opacity-60 rounded-lg border-t-0 transition-all transform duration-300 ease-in-out`}
+        } hidden lg:!inline-block sidebar w-full lg:w-1/4 border-2 border-gray-200 border-opacity-60 rounded-lg border-t-0 transition-all transform duration-300 ease-in-out z-[2000]`}
       >
         <div className="sidebar-elements px-10 py-5">
           {/* filter & reset */}
