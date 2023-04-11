@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { UilBars, UilTimes } from "@iconscout/react-unicons";
 import Link from "next/link";
-import SideBar from "./SideBar";
+import Sidebar_Nav from "./Sidebars/Sidebar_Nav";
 
 const Navbar = () => {
   const [toggleNav, setToggleNav] = useState(false);
@@ -186,7 +186,7 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
-      <SideBar toggleNav={toggleNav} setToggleNav={setToggleNav} />
+      <Sidebar_Nav toggleNav={toggleNav} setToggleNav={setToggleNav} />
     </>
   );
 };

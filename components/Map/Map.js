@@ -14,6 +14,7 @@ function Map({ coords }) {
         center={coords[0]}
         zoom={20}
         scrollWheelZoom={true}
+        zoomControl={false}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import {
   UilAngleLeft,
@@ -6,12 +6,13 @@ import {
   UilCompass,
   UilAt,
   UilGraphBar,
-  UilUsersAlt
+  UilUsersAlt,
 } from "@iconscout/react-unicons";
-import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-const SideBar = ({ toggleNav, setToggleNav }) => {
+const Sidebar_Nav = ({ toggleNav, setToggleNav }) => {
+  const Router = useRouter();
   const Sidebar_animation = {
     // system view
     open: {
@@ -28,28 +29,18 @@ const SideBar = ({ toggleNav, setToggleNav }) => {
     },
   };
 
+  const linkClick = (event) => {
+    setToggleNav(false);
+    Router.push(event.href);
+  };
+
   return (
     <div className="sidebar md:hidden">
       <motion.div
         variants={Sidebar_animation}
         animate={toggleNav ? "open" : "closed"}
-        className="bg-white text-gray shadow-xl z-[999] w-screen max-w-[100vw] h-[91vh] overflow-hidden md:relative fixed"
+        className="bg-white text-gray shadow-xl z-[10000] w-screen max-w-[100vw] h-[91vh] overflow-hidden md:relative fixed"
       >
-        {/* sidebar img */}
-        {/* <div className="sidebar-img flex items-center gap-2.5 font-medium border-b border-slate-300 py-3 mx-3">
-          <div className="relative h-24 w-32">
-            <Image
-              src={"/assets/img/others/appre.svg"}
-              alt={"PGVG"}
-              layout="fill"
-              className="inline-block"
-              style={{
-                objectFit: "cover",
-              }}
-            />
-          </div>
-        </div> */}
-
         {/* Menus */}
         <div className="flex flex-col h-full">
           {/* first */}
@@ -57,7 +48,8 @@ const SideBar = ({ toggleNav, setToggleNav }) => {
             <li>
               <Link
                 href={"/"}
-                className="p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-300 font-medium bg-blue-100 text-blue-600"
+                className="sidebar-nav-link sidebar-nav-link-active"
+                onClick={linkClick}
               >
                 <UilEstate className="h-6 w-6 min-w-max" />
                 Home
@@ -66,7 +58,8 @@ const SideBar = ({ toggleNav, setToggleNav }) => {
             <li>
               <Link
                 href={"/explore"}
-                className="p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-300 font-medium"
+                className="sidebar-nav-link"
+                onClick={linkClick}
               >
                 <UilCompass className="h-6 w-6 min-w-max" />
                 Explore
@@ -75,7 +68,8 @@ const SideBar = ({ toggleNav, setToggleNav }) => {
             <li>
               <Link
                 href={"/explore"}
-                className="p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-300 font-medium"
+                className="sidebar-nav-link"
+                onClick={linkClick}
               >
                 <UilGraphBar className="h-6 w-6 min-w-max" />
                 Services
@@ -84,7 +78,8 @@ const SideBar = ({ toggleNav, setToggleNav }) => {
             <li>
               <Link
                 href={"/explore"}
-                className="p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-300 font-medium"
+                className="sidebar-nav-link"
+                onClick={linkClick}
               >
                 <UilUsersAlt className="h-6 w-6 min-w-max" />
                 About
@@ -93,7 +88,8 @@ const SideBar = ({ toggleNav, setToggleNav }) => {
             <li>
               <Link
                 href={"/explore"}
-                className="p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-300 font-medium"
+                className="sidebar-nav-link"
+                onClick={linkClick}
               >
                 <UilAt className="h-6 w-6 min-w-max" />
                 Contact
@@ -117,4 +113,4 @@ const SideBar = ({ toggleNav, setToggleNav }) => {
   );
 };
 
-export default SideBar;
+export default Sidebar_Nav;
