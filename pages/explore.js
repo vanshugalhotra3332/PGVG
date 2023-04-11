@@ -377,18 +377,19 @@ const Explore = () => {
           <Map className="h-full" coords={coordinates} />
         </div>
         <div className="listing mt-16 grid md:grid-cols-2 grid-cols-1">
-          {pgs.length && pgs.map(({ slug, name, image, location, rentPerMonth }) => {
-            return (
-              <PGcard
-                key={slug}
-                name={name}
-                image={image}
-                location={location}
-                rentPerMonth={rentPerMonth}
-                slug={slug}
-              />
-            );
-          })}
+          {pgs.length &&
+            pgs.map(({ slug, name, image, location, rentPerMonth }) => {
+              return (
+                <PGcard
+                  key={slug}
+                  name={name}
+                  image={image}
+                  location={location}
+                  rentPerMonth={rentPerMonth}
+                  slug={slug}
+                />
+              );
+            })}
         </div>
       </div>
     </section>

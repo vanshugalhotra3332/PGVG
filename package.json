@@ -17,6 +17,7 @@
     "cryptojs": "^2.5.3",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
+    "framer-motion": "^10.11.5",
     "jsonwebtoken": "^9.0.0",
     "leaflet": "^1.9.3",
     "leaflet-defaulticon-compatibility": "^0.1.1",
@@ -26,7 +27,8 @@
     "nuka-carousel": "^5.5.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-leaflet": "^4.2.1"
+    "react-leaflet": "^4.2.1",
+    "tailwind-scrollbar": "^3.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
