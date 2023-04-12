@@ -25,7 +25,7 @@ const Login = () => {
 
   return (
     <section className="login h-screen bg-blue-50/70 flex justify-center">
-      <div className="login-card bg-white my-2 w-full md:w-auto border border-gray-200 border-opacity-60 shadow-md">
+      <div className="login-card bg-white my-2 w-full md:w-[370px] border border-gray-200 border-opacity-60 shadow-md">
         {/* top image */}
         <div className="top-image border-b border-gray-100 relative h-[30%]">
           <Image

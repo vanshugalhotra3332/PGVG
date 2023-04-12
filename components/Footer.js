@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 const Footer = () => {
   const Router = useRouter();
-  const showComponent = Router.pathname !== "/login_signup";
+  const showComponent = Router.pathname !== "/login" && Router.pathname !== "/signup";
   return (
     showComponent && (
       <footer className="text-gray-600 body-font border-t-2 border-gray-200 border-opacity-60">
