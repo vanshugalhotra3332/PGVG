@@ -114,8 +114,8 @@ const Navbar = () => {
         {/* user menu */}
         <div
           className={`${
-            toggleUserMenu ? "inline-block" : "hidden"
-          } absolute right-16 z-50 text-base list-none bg-white divide-y divide-gray-100 rounded-sm shadow-sm dark:bg-gray-700 dark:divide-gray-600 w-[20vw] my-1`}
+            toggleUserMenu ? "inline-block" : "!hidden"
+          } hidden md:inline-block absolute right-16 z-50 text-base list-none bg-white divide-y divide-gray-100 rounded-sm shadow-sm dark:bg-gray-700 dark:divide-gray-600 w-[20vw] my-1`}
           id="user-dropdown"
           onMouseOver={() => {
             setToggleUserMenu(true);
@@ -151,10 +151,18 @@ const Navbar = () => {
               <button
                 className="uppercase tracking-tight text-blue-600 text-xs font-medium my-2 py-2 px-4 border-2 border-gray-200 hover:border-blue-500 transition-all duration-100 ease-out"
                 onClick={() => {
-                  Router.push("/login_signup");
+                  Router.push("/login");
                 }}
               >
-                Login / Signup
+                Login
+              </button>
+              <button
+                className="uppercase tracking-tight text-blue-600 text-xs font-medium my-2 py-2 px-4 border-2 border-gray-200 hover:border-blue-500 transition-all duration-100 ease-out"
+                onClick={() => {
+                  Router.push("/signup");
+                }}
+              >
+                Signup
               </button>
             </div>
           </div>
