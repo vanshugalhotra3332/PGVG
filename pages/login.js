@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { signIn, useSession, getSession } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 const Login = () => {
@@ -15,13 +15,39 @@ const Login = () => {
   };
 
   const { data: session } = useSession();
-  if (session) {
-    console.log(session);
-  }
 
-  const handleSignInWithGoogle = async () => {
+  const LoginWithGoogle = async () => {
     await signIn("google");
   };
+
+  const sendLoginRequest = async (options) => {
+    try {
+      const response = await fetch("http://localhost:3000/api/login", options);
+      const data = await response.json();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  if (session) {
+    const userData = {
+      email: session.user.email,
+      verifiedByGoogle: true,
+    };
+
+    const options = {
+      method: "POST",
+      body: JSON.stringify(userData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    sendLoginRequest(options);
+    // raise a toast
+    // after finally logging in,
+    router.replace("/"); // redirecting to home page
+  }
 
   return (
     <section className="login h-screen bg-blue-50/70 flex justify-center">
@@ -113,7 +139,7 @@ const Login = () => {
             {/* continue with google */}
             <div
               className="continue-with-card py-2 my-2 flex items-center cursor-pointer border-2 border-gray-200 hover:border-gray-700"
-              onClick={handleSignInWithGoogle}
+              onClick={LoginWithGoogle}
             >
               <div className="continue-with-icon relative w-8 h-8 inline-block mx-4">
                 <Image

@@ -15,12 +15,15 @@ const handler = async (req, res) => {
 
     if (user) {
       const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET);
-
       const decPass = bytes.toString(CryptoJS.enc.Utf8);
+
+      const recievedPassword = req.body.verifiedByGoogle
+        ? decPass
+        : req.body.password;
 
       if (
         (identifier == user.phone || identifier == user.email) &&
-        req.body.password == decPass
+        recievedPassword == decPass
       ) {
         var token = jwt.sign(
           { identifier: identifier, name: user.name },
