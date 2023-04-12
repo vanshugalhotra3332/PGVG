@@ -3,11 +3,14 @@ import Image from "next/image";
 import { UilBars, UilTimes } from "@iconscout/react-unicons";
 import Link from "next/link";
 import Sidebar_Nav from "./Sidebars/Sidebar_Nav";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
   const [toggleNav, setToggleNav] = useState(false);
   const [toggleUserMenu, setToggleUserMenu] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const Router = useRouter();
 
   return (
     <>
@@ -145,7 +148,12 @@ const Navbar = () => {
               <span className="block text-sm  text-gray-500 truncate tracking-tight font-normal dark:text-gray-400">
                 To access account and dashboard
               </span>
-              <button className="uppercase tracking-tight text-blue-600 text-xs font-medium my-2 py-2 px-4 border-2 border-gray-200 hover:border-blue-500 transition-all duration-100 ease-out">
+              <button
+                className="uppercase tracking-tight text-blue-600 text-xs font-medium my-2 py-2 px-4 border-2 border-gray-200 hover:border-blue-500 transition-all duration-100 ease-out"
+                onClick={() => {
+                  Router.push("/login_signup");
+                }}
+              >
                 Login / Signup
               </button>
             </div>
