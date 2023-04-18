@@ -1,19 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { signIn, useSession, getSession, signOut } from "next-auth/react";
+import { signIn, useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
-import { UilEye, UilEyeSlash } from "@iconscout/react-unicons";
+import { UilEye, UilEyeSlash, UilArrowLeft } from "@iconscout/react-unicons";
 import { useDispatch, useSelector } from "react-redux";
 import { logIn, setUserData } from "@/slices/userSlice";
 
 const Signup = () => {
   const dispatch = useDispatch();
   const loggedIn = useSelector((state) => state.user.loggedIn);
+  const [openSetPasswordWindow, setOpenSetPasswordWindow] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+  var { data: session } = useSession();
+
+  useEffect(() => {
+    if (session) {
+      setOpenSetPasswordWindow(true);
+    } else {
+      setOpenSetPasswordWindow(false);
+    }
+  }, [session]);
 
   const handlePasswordChange = (e) => {
     const password = e.target.value;
@@ -31,8 +41,6 @@ const Signup = () => {
       setPhoneNumber(inputPhoneNumber);
     }
   };
-
-  const { data: session } = useSession();
 
   const handleSignInWithGoogle = async () => {
     await signIn("google");
@@ -95,10 +103,20 @@ const Signup = () => {
             }}
             src={"/assets/img/others/eazy.jpg"}
           />
+          {openSetPasswordWindow && (
+            <div
+              className="back-button relative top-3 left-2 cursor-pointer"
+              onClick={() => {
+                signOut("google");
+              }}
+            >
+              <UilArrowLeft className="h-7 w-7 font-semibold" />
+            </div>
+          )}
         </div>
 
         {/* buttons and labels */}
-        {!session && (
+        {!openSetPasswordWindow && (
           <div className="signup-content py-8 px-8">
             {/* labels */}
             <div className="signup-labels my-2">
@@ -187,7 +205,7 @@ const Signup = () => {
                   />
                 </div>
                 <span className="inline-block mx-4 text-gray-600 text-sm font-medium">
-                  Sign up With Google
+                  Sign up with Google
                 </span>
               </div>
               <div className="continue-with-card py-2 my-2 flex items-center cursor-pointer border-2 border-gray-200 hover:border-gray-700">
@@ -210,7 +228,7 @@ const Signup = () => {
         )}
 
         {/* set password */}
-        {session && (
+        {openSetPasswordWindow && (
           <div className="signup-content py-8 px-8">
             {/* labels */}
             <div className="signup-labels my-2">
