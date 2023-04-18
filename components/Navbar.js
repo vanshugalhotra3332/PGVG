@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { UilBars, UilTimes } from "@iconscout/react-unicons";
+import { UilBars } from "@iconscout/react-unicons";
 import Link from "next/link";
 import Sidebar_Nav from "./Sidebars/Sidebar_Nav";
 import { useRouter } from "next/router";
+import {useDispatch } from "react-redux";
+import { toggle } from "@/slices/navSlice";
 
 const Navbar = () => {
-  const [toggleNav, setToggleNav] = useState(false);
   const [toggleUserMenu, setToggleUserMenu] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const dispatch = useDispatch();
 
   const Router = useRouter();
 
@@ -23,7 +25,7 @@ const Navbar = () => {
           <div
             className="menu-icon md:hidden"
             onClick={() => {
-              setToggleNav(!toggleNav);
+              dispatch(toggle());
             }}
           >
             <UilBars className="h-8 w-8" />
@@ -191,18 +193,20 @@ const Navbar = () => {
                 Earnings
               </a>
             </li>
-            <li>
-              <a
-                href="#"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-              >
-                Sign out
-              </a>
-            </li>
+            {loggedIn && (
+              <li>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                >
+                  Sign out
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </nav>
-      <Sidebar_Nav toggleNav={toggleNav} setToggleNav={setToggleNav} />
+      <Sidebar_Nav/>
     </>
   );
 };

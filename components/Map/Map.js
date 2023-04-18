@@ -6,7 +6,6 @@ import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 function Map({ coords }) {
-  console.log(coords);
   return (
     coords.length && (
       <MapContainer

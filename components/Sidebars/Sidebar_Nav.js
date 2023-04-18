@@ -10,9 +10,14 @@ import {
 } from "@iconscout/react-unicons";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSelector, useDispatch } from "react-redux";
+import { close } from "@/slices/navSlice";
 
-const Sidebar_Nav = ({ toggleNav, setToggleNav }) => {
+const Sidebar_Nav = () => {
   const Router = useRouter();
+  const dispatch = useDispatch();
+  const isOpen = useSelector((state) => state.nav.isOpen);
+
   const Sidebar_animation = {
     // system view
     open: {
@@ -30,7 +35,7 @@ const Sidebar_Nav = ({ toggleNav, setToggleNav }) => {
   };
 
   const linkClick = (event) => {
-    setToggleNav(false);
+    dispatch(close());
     Router.push(event.href);
   };
 
@@ -38,7 +43,7 @@ const Sidebar_Nav = ({ toggleNav, setToggleNav }) => {
     <div className="sidebar md:hidden">
       <motion.div
         variants={Sidebar_animation}
-        animate={toggleNav ? "open" : "closed"}
+        animate={isOpen ? "open" : "closed"}
         className="bg-white text-gray shadow-xl z-[10000] w-screen max-w-[100vw] h-[91vh] overflow-hidden md:relative fixed"
       >
         {/* Menus */}
@@ -102,7 +107,7 @@ const Sidebar_Nav = ({ toggleNav, setToggleNav }) => {
         {/* back button */}
         <motion.div
           onClick={() => {
-            setToggleNav(false);
+            dispatch(close());
           }}
           className="back-icon absolute w-fit h-fit z-[10000] right-2 bottom-5 cursor-pointer"
         >
