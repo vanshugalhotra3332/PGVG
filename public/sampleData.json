@@ -6,6 +6,8 @@
     "image": "/assets/img/pgs/pg1.avif",
     "gender": "boys",
     "type": "PG",
+    "sharingsOffered": ["double", "single"],
+    "amenities": ["wifi", "balcony", "attached-washrooms","24x7"],
     "sharings": {
       "Double": {
         "rentPerMonth": 8900,
@@ -53,6 +55,8 @@
     "image": "/assets/img/pgs/pg1.webp",
     "gender": "girls",
     "type": "PG",
+    "amenities": ["wifi", "balcony", "attached-washrooms","24x7", "with-food", "laundry"],
+    "sharingsOffered": ["double", "single"],
     "sharings": {
       "Double": {
         "rentPerMonth": 9999,
@@ -100,11 +104,19 @@
     "image": "/assets/img/pgs/pg.webp",
     "gender": "boys",
     "type": "PG",
+    "amenities": ["with-food", "balcony", "attached-washrooms","24x7"],
+    "sharingsOffered": ["double", "single", "triple"],
     "sharings": {
       "Double": {
         "rentPerMonth": 8999,
         "beds": 19,
         "security": 4500,
+        "includes": ["TV", "Table-Chair", "Cupboard", "Wifi"]
+      },
+      "Triple": {
+        "rentPerMonth": 5999,
+        "beds": 19,
+        "security": 2500,
         "includes": ["TV", "Table-Chair", "Cupboard", "Wifi"]
       },
       "Single": {
@@ -150,13 +162,9 @@
     "image": "/assets/img/pgs/1.jpg",
     "gender": "boys",
     "type": "Flat",
+    "amenities": ["wifi", "balcony", "attached-washrooms","with-food"],
+    "sharingsOffered": ["single"],
     "sharings": {
-      "Double": {
-        "rentPerMonth": 18999,
-        "beds": 20,
-        "security": 11500,
-        "includes": ["TV", "Table-Chair", "Cupboard", "Wifi", "Mic", "Records"]
-      },
       "Single": {
         "rentPerMonth": 19900,
         "beds": 23,
@@ -202,6 +210,8 @@
     "image": "/assets/img/pgs/2.jpg",
     "gender": "girls",
     "type": "Flat",
+    "amenities": ["wifi", "attached-washrooms","24x7", "laundry"],
+    "sharingsOffered": ["double", "triple"],
     "sharings": {
       "Double": {
         "rentPerMonth": 12900,
@@ -209,7 +219,7 @@
         "security": 11500,
         "includes": ["TV", "Table-Chair", "Cupboard", "Wifi", "Mic", "Records"]
       },
-      "Single": {
+      "Triple": {
         "rentPerMonth": 19900,
         "beds": 23,
         "security": 19500,

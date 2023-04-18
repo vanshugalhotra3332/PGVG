@@ -135,7 +135,7 @@ const Sidebar_Filters = ({ toggleFilterMenu, setToggleFilterMenu }) => {
         <div className="filter-elements space-y-5">
           {/* price filter */}
           <div className="mt-4 price-filter">
-            <h2 className="filter-heading">Price (₹) </h2>
+            <h2 className="filter-heading">Rent Per Month (₹) </h2>
             <RangeSlider
               className="filter-element"
               initialMin={2500}

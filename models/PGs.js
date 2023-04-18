@@ -30,6 +30,9 @@ const PgSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    sharingsOffered: {
+      type: [String],
+    },
     sharings: {
       type: Map,
       of: new mongoose.Schema(
