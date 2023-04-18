@@ -1,26 +1,25 @@
+import { setMinPrice, setMaxPrice } from "@/slices/filterSlice";
 import React, { useState, useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-const RangeSlider = ({
-  initialMin,
-  initialMax,
-  minVal,
-  maxVal,
-  step,
-  priceCap,
-}) => {
+const RangeSlider = ({ step, priceCap }) => {
   const progressRef = useRef(null);
-  const [min, setMin] = useState(initialMin);
-  const [max, setMax] = useState(initialMax);
+  const dispatch = useDispatch();
+  const min = useSelector((state) => state.filter.minPrice);
+  const max = useSelector((state) => state.filter.maxPrice);
+
+  var minVal = 0;
+  var maxVal = 20000;
 
   const handleMin = (e) => {
     if (max - min >= priceCap && max <= maxVal) {
       if (parseInt(e.target.value) > parseInt(max)) {
       } else {
-        setMin(parseInt(e.target.value));
+        dispatch(setMinPrice(parseInt(e.target.value)));
       }
     } else {
       if (parseInt(e.target.value) < min) {
-        setMin(parseInt(e.target.value));
+        dispatch(setMinPrice(parseInt(e.target.value)));
       }
     }
   };
@@ -29,11 +28,11 @@ const RangeSlider = ({
     if (max - min >= priceCap && max <= maxVal) {
       if (parseInt(e.target.value) < parseInt(min)) {
       } else {
-        setMax(parseInt(e.target.value));
+        dispatch(setMaxPrice(parseInt(e.target.value)));
       }
     } else {
       if (parseInt(e.target.value) > max) {
-        setMax(parseInt(e.target.value));
+        dispatch(setMaxPrice(parseInt(e.target.value)));
       }
     }
   };

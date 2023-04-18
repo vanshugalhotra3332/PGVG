@@ -5,38 +5,39 @@ import { UilFilter, UilArrowsVAlt } from "@iconscout/react-unicons";
 import PGcard from "@/components/Cards/PGcard";
 import Sidebar_Filters from "@/components/Sidebars/Sidebar_Filters";
 
+import { useSelector, useDispatch } from "react-redux";
+import { setPGs } from "@/slices/pgSlice";
+import { toggleSideBar } from "@/slices/filterSlice";
+
 const Explore = () => {
-  const [pgs, setPgs] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     async function getPGs() {
       try {
         const response = await fetch("http://localhost:3000/api/getpgs");
         const pgs = await response.json();
-        setPgs(pgs.pgs);
+        dispatch(setPGs(pgs.pgs));
       } catch (error) {
         console.log(error);
       }
     }
     getPGs();
-    return () => {};
   }, []);
 
-  const [toggleFilterMenu, setToggleFilterMenu] = useState(false);
+  const pgs = useSelector((state) => state.pgs.pgs);
+  const showSideBar = useSelector((state) => state.filter.showSideBar);
 
   const coordinates = [];
   pgs.map((pg) => coordinates.push(pg.location.coordinates));
 
   return (
     <section className="flex">
-      <Sidebar_Filters
-        toggleFilterMenu={toggleFilterMenu}
-        setToggleFilterMenu={setToggleFilterMenu}
-      />
+      <Sidebar_Filters />
       <div
         className={`content w-full ${
-          toggleFilterMenu ? "hidden" : "inline-block"
-        } lg:w-3/4 lg:px-16 px-6 py-4`}
+          showSideBar ? "hidden" : "inline-block"
+        } lg:w-3/4 lg:px-12 px-6 py-4 overflow-y-auto flex-grow lg:ml-[25vw]`}
       >
         {/* mobile view tabs */}
         <div className="lg:hidden mobile-view-tabs w-full">
@@ -50,7 +51,7 @@ const Explore = () => {
             <div
               className="tab"
               onClick={() => {
-                setToggleFilterMenu(!toggleFilterMenu);
+                dispatch(toggleSideBar());
               }}
             >
               <UilFilter className="w-5 h-5 text-gray-700" />
@@ -63,12 +64,19 @@ const Explore = () => {
 
         {/* real content - map & pgs */}
         <div className="content-text py-3 xs:py-6">
-          <h1 className="text-3xl font-semibold leading-normal align-middle">
-            {pgs.length} Results
-          </h1>
+          {pgs.length && (
+            <h1 className="text-3xl font-semibold leading-normal">
+              {pgs.length} Results
+            </h1>
+          )}
+          {!pgs.length && (
+            <h1 className="text-3xl font-semibold leading-normal">
+              No Results Found
+            </h1>
+          )}
         </div>
         <div className="map">
-          <Map className="h-full" coords={coordinates} />
+          {pgs.length && <Map className="h-full" coords={coordinates} />}
         </div>
         <div className="listing mt-16 grid md:grid-cols-2 grid-cols-1">
           {pgs.length &&

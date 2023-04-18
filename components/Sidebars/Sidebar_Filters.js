@@ -1,5 +1,18 @@
 import React, { useState } from "react";
 import RangeSlider from "@/components/RangeSlider";
+import { useSelector, useDispatch } from "react-redux";
+import { setPGs } from "@/slices/pgSlice";
+import {
+  setPropertyType,
+  setLocation,
+  setAmenities,
+  setSortBy,
+  toggleShowPropertyType,
+  toggleShowSortType,
+  addSelectedSharing,
+  removeSelectedSharing,
+  toggleSideBar,
+} from "@/slices/filterSlice";
 import {
   UilMapMarker,
   UilCheckCircle,
@@ -15,13 +28,28 @@ import {
   UilTimes,
 } from "@iconscout/react-unicons";
 
-const Sidebar_Filters = ({ toggleFilterMenu, setToggleFilterMenu }) => {
-  const [togglePopDD, setTogglePopDD] = useState(false);
-  const [toggleSortDD, setToggleSortDD] = useState(false);
-  const [propertyType, setPropertyType] = useState("All");
-  const [location, setLocation] = useState("");
-  const [convenienceSearch, setConvenienceSearch] = useState("");
-  const [sortby, setSortby] = useState("Popularity");
+const Sidebar_Filters = () => {
+  const dispatch = useDispatch();
+  const propertyType = useSelector((state) => state.filter.propertyType);
+  const location = useSelector((state) => state.filter.location);
+  const amenities = useSelector((state) => state.filter.amenities);
+  const sortBy = useSelector((state) => state.filter.sortBy);
+  const sharings = useSelector((state) => state.filter.sharings);
+  const showSideBar = useSelector((state) => state.filter.showSideBar);
+  const selectedSharings = useSelector(
+    (state) => state.filter.selectedSharings
+  );
+  const showPropertyType = useSelector(
+    (state) => state.filter.showPropertyType
+  );
+  const showSortType = useSelector((state) => state.filter.showSortType);
+
+  const minRentPerMonth = parseInt(
+    useSelector((state) => state.filter.minPrice)
+  );
+  const maxRentPerMonth = parseInt(
+    useSelector((state) => state.filter.maxPrice)
+  );
 
   const properties = ["All", "PG", "Flat"];
   const sortByOptions = [
@@ -33,26 +61,62 @@ const Sidebar_Filters = ({ toggleFilterMenu, setToggleFilterMenu }) => {
   ];
 
   const propertyClick = (event) => {
-    setPropertyType(event.target.value);
-    setTogglePopDD(false);
+    dispatch(setPropertyType(event.target.value));
+    dispatch(toggleShowPropertyType());
   };
 
   const sortByClick = (event) => {
-    setSortby(event.target.value);
-    setToggleSortDD(false);
+    dispatch(setSortBy(event.target.value));
+    dispatch(toggleShowSortType());
   };
 
   const badgeClick = (event) => {
     event.target.classList.toggle("badge-select");
   };
 
+  const sharingBadgeClick = (event) => {
+    event.target.classList.toggle("badge-select");
+
+    let badgeText = event.target.childNodes[1].innerText.toLowerCase();
+    if (badgeText != "Any") {
+      if (selectedSharings.includes(badgeText)) {
+        dispatch(removeSelectedSharing(badgeText));
+      } else {
+        dispatch(addSelectedSharing(badgeText));
+      }
+    }
+  };
+
+  const applyFilters = () => {
+    var query = "?";
+    if (propertyType != "All") {
+      query += `&type=${propertyType}`;
+    }
+    query += `&minRentPerMonth=${minRentPerMonth}&maxRentPerMonth=${maxRentPerMonth}`;
+
+    query += `&sharings=${selectedSharings.join(",")}`;
+
+    async function getPGs() {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/getpgs${query}`
+        );
+        const pgs = await response.json();
+        dispatch(setPGs(pgs.pgs));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getPGs();
+  };
+
   return (
     <div
       className={`${
-        toggleFilterMenu ? "!inline-block" : "hidden"
-      } hidden lg:!inline-block sidebar w-full lg:w-1/4 border-2 border-gray-200 border-opacity-60 rounded-lg border-t-0 transition-all transform duration-300 ease-in-out z-[2000]`}
+        showSideBar ? "!inline-block" : "hidden"
+      } hidden lg:!inline-block h-screen overflow-y-auto scrollbar-none sidebar w-full lg:w-1/4 border-2 border-gray-200 border-opacity-60 rounded-lg border-t-0 transition-all transform duration-300 ease-in-out z-[2000] flex-none fixed left-0`}
     >
-      <div className="sidebar-elements px-10 py-5">
+      <div className="sidebar-elements px-10 pt-10 pb-20 ">
         {/* filter & reset */}
         <div className="heading flex justify-between items-center">
           <div>
@@ -65,7 +129,7 @@ const Sidebar_Filters = ({ toggleFilterMenu, setToggleFilterMenu }) => {
           <UilTimes
             className="h-6 w-6 cursor-pointer text-sm lg:!hidden"
             onClick={() => {
-              setToggleFilterMenu(false);
+              dispatch(toggleSideBar());
             }}
           />
         </div>
@@ -83,10 +147,10 @@ const Sidebar_Filters = ({ toggleFilterMenu, setToggleFilterMenu }) => {
                 aria-expanded="true"
                 aria-haspopup="true"
                 onClick={() => {
-                  setToggleSortDD(!toggleSortDD);
+                  dispatch(toggleShowSortType());
                 }}
               >
-                <span className="ml-4">{sortby}</span>
+                <span className="ml-4">{sortBy}</span>
                 <svg
                   className="mr-4 h-5 w-5 text-gray-400"
                   viewBox="0 0 20 20"
@@ -104,7 +168,7 @@ const Sidebar_Filters = ({ toggleFilterMenu, setToggleFilterMenu }) => {
 
             <div
               className={`${
-                toggleSortDD ? "block" : "hidden"
+                showSortType ? "block" : "hidden"
               } transition-all duration-150 ease-out absolute right-0 z-10 w-full origin-top-right rounded-md bg-gray-100 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
               role="menu"
               aria-orientation="vertical"
@@ -138,10 +202,6 @@ const Sidebar_Filters = ({ toggleFilterMenu, setToggleFilterMenu }) => {
             <h2 className="filter-heading">Rent Per Month (₹) </h2>
             <RangeSlider
               className="filter-element"
-              initialMin={2500}
-              initialMax={7500}
-              minVal={0}
-              maxVal={10000}
               step={100}
               priceCap={1000}
             />
@@ -160,7 +220,7 @@ const Sidebar_Filters = ({ toggleFilterMenu, setToggleFilterMenu }) => {
                   aria-expanded="true"
                   aria-haspopup="true"
                   onClick={() => {
-                    setTogglePopDD(!togglePopDD);
+                    dispatch(toggleShowPropertyType());
                   }}
                 >
                   <span className="ml-4">{propertyType}</span>
@@ -181,7 +241,7 @@ const Sidebar_Filters = ({ toggleFilterMenu, setToggleFilterMenu }) => {
 
               <div
                 className={`${
-                  togglePopDD ? "block" : "hidden"
+                  showPropertyType ? "block" : "hidden"
                 } transition-all duration-150 ease-out absolute right-0 z-10 w-full origin-top-right rounded-md bg-gray-100 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
                 role="menu"
                 aria-orientation="vertical"
@@ -216,7 +276,7 @@ const Sidebar_Filters = ({ toggleFilterMenu, setToggleFilterMenu }) => {
               <input
                 value={location}
                 onChange={(e) => {
-                  setLocation(e.target.value);
+                  dispatch(setLocation(e.target.value));
                 }}
                 type="text"
                 placeholder="Search Location"
@@ -227,17 +287,17 @@ const Sidebar_Filters = ({ toggleFilterMenu, setToggleFilterMenu }) => {
 
           {/* conveniences */}
           <div className="conveniences-filter">
-            <h2 className="filter-heading">Conveniences</h2>
+            <h2 className="filter-heading">Amenities</h2>
             {/* search bar */}
             <div className="flex items-center md:border-2 rounded-full py-2  md:shadow-sm filter-element">
               <UilCheckCircle className="inline-flex text-blue-700 rounded-full cursor-pointer mx-2 transition-all duration-200 ease-out hover:-translate-y-[.5px]" />
               <input
-                value={convenienceSearch}
+                value={amenities}
                 onChange={(e) => {
-                  setConvenienceSearch(e.target.value);
+                  dispatch(setAmenities(e.target.value));
                 }}
                 type="text"
-                placeholder="Search Convenience"
+                placeholder="Search Amenities"
                 className="pl-5 pr-16 bg-transparent outline-none flex-grow text-sm text-gray-600 placeholder-gray-400"
               />
             </div>
@@ -281,18 +341,18 @@ const Sidebar_Filters = ({ toggleFilterMenu, setToggleFilterMenu }) => {
             <h2 className="filter-heading">Bed Sharing</h2>
             {/* badges */}
             <div className="badges filter-element w-full">
-              <div className={`convenience-badge`} onClick={badgeClick}>
-                <UilBed className="convenience-badge-icon" />
-                <span className="convenience-badge-text">Single</span>
-              </div>
-              <div className={`convenience-badge`} onClick={badgeClick}>
-                <UilBed className="convenience-badge-icon" />
-                <span className="convenience-badge-text">Double</span>
-              </div>
-              <div className={`convenience-badge`} onClick={badgeClick}>
-                <UilBed className="convenience-badge-icon" />
-                <span className="convenience-badge-text">Triple</span>
-              </div>
+              {sharings.map((sharing) => {
+                return (
+                  <div
+                    key={sharing}
+                    className={`convenience-badge`}
+                    onClick={sharingBadgeClick}
+                  >
+                    <UilBed className="convenience-badge-icon" />
+                    <span className="convenience-badge-text">{sharing}</span>
+                  </div>
+                );
+              })}
               <div
                 className={`convenience-badge badge-select`}
                 onClick={badgeClick}
@@ -305,7 +365,7 @@ const Sidebar_Filters = ({ toggleFilterMenu, setToggleFilterMenu }) => {
         </div>
 
         {/* apply button */}
-        <div className="p-2 w-full mt-6">
+        <div className="p-2 w-full mt-6" onClick={applyFilters}>
           <button className="font-semibold bg-gray-700 w-full py-3 rounded-xl text-gray-100 transition-all duration-150 ease-out hover:bg-gray-800 active:bg-gray-800 hover:shadow-sm active:shadow-sm">
             Apply
           </button>

@@ -14,7 +14,7 @@ export default function App({
         <Provider store={store}>
           <Navbar />
           <Component {...pageProps} />
-          <Footer />
+          {/* <Footer /> */}
         </Provider>
       </SessionProvider>
     </>
