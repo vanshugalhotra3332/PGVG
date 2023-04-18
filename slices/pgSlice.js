@@ -10,7 +10,7 @@ export const pgSlice = createSlice({
   reducers: {
     setPGs: (state, action) => {
       state.pgs = action.payload;
-    },
+    }
   },
 });
 

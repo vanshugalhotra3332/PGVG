@@ -12,7 +12,7 @@ const PGcard = ({ slug, name, image, location, rentPerMonth}) => {
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-2xl overflow-hidden ">
         <div className="relative h-[28vh] overflow-hidden">
           <Image
-            className="lg:h-48 md:h-36 w-full object-cover object-center hover:scale-105 transition-all duration-300 ease-out"
+            className="lg:h-48 md:h-36 w-full object-cover object-center hover:scale-105 transition-all duration-300 ease-out -z-10"
             src={image}
             alt=""
             layout="fill"

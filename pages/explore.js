@@ -24,16 +24,14 @@ const Explore = () => {
     }
     getPGs();
   }, []);
-
   const pgs = useSelector((state) => state.pgs.pgs);
-  const showSideBar = useSelector((state) => state.filter.showSideBar);
 
-  const coordinates = [];
-  pgs.map((pg) => coordinates.push(pg.location.coordinates));
+  const showSideBar = useSelector((state) => state.filter.showSideBar);
 
   return (
     <section className="flex">
       <Sidebar_Filters />
+      {/* main content */}
       <div
         className={`content w-full ${
           showSideBar ? "hidden" : "inline-block"
@@ -64,7 +62,7 @@ const Explore = () => {
 
         {/* real content - map & pgs */}
         <div className="content-text py-3 xs:py-6">
-          {pgs.length && (
+          {pgs.length > 0 && (
             <h1 className="text-3xl font-semibold leading-normal">
               {pgs.length} Results
             </h1>
@@ -75,11 +73,9 @@ const Explore = () => {
             </h1>
           )}
         </div>
-        <div className="map">
-          {pgs.length && <Map className="h-full" coords={coordinates} />}
-        </div>
+        <div className="map">{pgs.length > 0 && <Map className="h-full" />}</div>
         <div className="listing mt-16 grid md:grid-cols-2 grid-cols-1">
-          {pgs.length &&
+          {pgs.length > 0 &&
             pgs.map(({ slug, name, image, location, rentPerMonth }) => {
               return (
                 <PGcard

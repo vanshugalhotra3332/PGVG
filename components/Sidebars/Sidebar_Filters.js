@@ -94,8 +94,9 @@ const Sidebar_Filters = () => {
     }
     query += `&minRentPerMonth=${minRentPerMonth}&maxRentPerMonth=${maxRentPerMonth}`;
 
-    query += `&sharings=${selectedSharings.join(",")}`;
-
+    if (selectedSharings.length) {
+      query += `&sharings=${selectedSharings.join(",")}`;
+    }
     async function getPGs() {
       try {
         const response = await fetch(
@@ -108,6 +109,9 @@ const Sidebar_Filters = () => {
       }
     }
     getPGs();
+    if (window.innerWidth <= 1024) {
+      dispatch(toggleSideBar());
+    }
   };
 
   return (

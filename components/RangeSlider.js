@@ -50,7 +50,7 @@ const RangeSlider = ({ step, priceCap }) => {
           type="number"
           value={min}
           onChange={(e) => {
-            setMin(e.target.value);
+            dispatch(setMinPrice(e.target.value));
           }}
           className="outline-none bg-gray-100 py-3 px-3 rounded-lg w-1/2"
           placeholder="From"
@@ -59,7 +59,7 @@ const RangeSlider = ({ step, priceCap }) => {
           type="number"
           value={max}
           onChange={(e) => {
-            setMax(e.target.value);
+            dispatch(setMaxPrice(e.target.value));
           }}
           className="outline-none bg-gray-100 py-3 px-3 rounded-lg w-1/2"
           placeholder="To"
