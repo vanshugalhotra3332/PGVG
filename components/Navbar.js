@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { UilBars } from "@iconscout/react-unicons";
 import Link from "next/link";
 import Sidebar_Nav from "./Sidebars/Sidebar_Nav";
 import { useRouter } from "next/router";
-import {useDispatch } from "react-redux";
-import { toggle } from "@/slices/navSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "next-auth/react";
+import {
+  closeUserMenu,
+  openUserMenu,
+  toggleSideBar,
+  toggleUserMenu,
+} from "@/slices/navSlice";
+import { logOut } from "@/slices/userSlice";
 
 const Navbar = () => {
-  const [toggleUserMenu, setToggleUserMenu] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
   const dispatch = useDispatch();
+  const isUserMenuOpen = useSelector((state) => state.nav.isUserMenuOpen);
+  const loggedIn = useSelector((state) => state.user.loggedIn);
+  const userData = useSelector((state) => state.user.userData);
 
   const Router = useRouter();
 
@@ -25,7 +33,7 @@ const Navbar = () => {
           <div
             className="menu-icon md:hidden"
             onClick={() => {
-              dispatch(toggle());
+              dispatch(toggleSideBar());
             }}
           >
             <UilBars className="h-8 w-8" />
@@ -98,13 +106,13 @@ const Navbar = () => {
           <div
             className="flex items-center md:order-2"
             onClick={() => {
-              setToggleUserMenu(!toggleUserMenu);
+              dispatch(toggleUserMenu());
             }}
           >
-            <div className="img relative w-10 h-10 cursor-pointer rounded-full">
+            <div className="img relative w-10 h-10 bg-white cursor-pointer rounded-full">
               <Image
                 className="rounded-full"
-                src="/assets/img/others/user.jpg"
+                src={userData.image}
                 layout="fill"
                 alt="User Photo"
                 style={{ objectFit: "cover" }}
@@ -116,15 +124,15 @@ const Navbar = () => {
         {/* user menu */}
         <div
           className={`${
-            toggleUserMenu ? "inline-block" : "!hidden"
+            isUserMenuOpen ? "inline-block" : "!hidden"
           } hidden md:inline-block absolute right-16 z-50 text-base list-none bg-white divide-y divide-gray-100 rounded-sm shadow-sm dark:bg-gray-700 dark:divide-gray-600 w-[20vw] my-1`}
           id="user-dropdown"
           onMouseOver={() => {
-            setToggleUserMenu(true);
+            dispatch(openUserMenu());
           }}
           onMouseLeave={() => {
             setTimeout(() => {
-              setToggleUserMenu(false);
+              dispatch(closeUserMenu());
             }, 300);
           }}
         >
@@ -133,10 +141,10 @@ const Navbar = () => {
               className={`user-details ${loggedIn ? "inline-block" : "hidden"}`}
             >
               <span className="block text-sm text-gray-900 font-semibold dark:text-white">
-                Hey, Vanshu Galhotra!
+                Hey, {userData.name}
               </span>
               <span className="block text-sm  text-blue-400 truncate dark:text-gray-400">
-                vanshugalhotra3332@gmail.com
+                {userData.email}
               </span>
             </div>
             <div
@@ -194,7 +202,12 @@ const Navbar = () => {
               </a>
             </li>
             {loggedIn && (
-              <li>
+              <li
+                onClick={() => {
+                  signOut("google");
+                  dispatch(logOut());
+                }}
+              >
                 <a
                   href="#"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
@@ -206,7 +219,7 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
-      <Sidebar_Nav/>
+      <Sidebar_Nav />
     </>
   );
 };

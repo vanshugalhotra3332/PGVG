@@ -3,8 +3,12 @@ import Image from "next/image";
 import { signIn, useSession, getSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import { UilEye, UilEyeSlash } from "@iconscout/react-unicons";
+import { useDispatch, useSelector } from "react-redux";
+import { logIn, setUserData } from "@/slices/userSlice";
 
 const Signup = () => {
+  const dispatch = useDispatch();
+  const loggedIn = useSelector((state) => state.user.loggedIn);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -33,7 +37,6 @@ const Signup = () => {
   const handleSignInWithGoogle = async () => {
     await signIn("google");
   };
-  // signOut("google");
 
   const SignUp = async () => {
     if (password === confirmPassword) {
@@ -59,19 +62,21 @@ const Signup = () => {
           options
         );
         const data = await response.json();
-        console.log(data);
+        if (data.success) {
+          // after finally signing up
+          dispatch(logIn());
+          dispatch(setUserData(session.user));
+          router.replace("/"); // redirecting to home page
+          // raise toast
+        } else {
+          // raise toast
+        }
       } catch (error) {
         console.error(error);
       }
 
       setPassword("");
       setConfirmPassword("");
-
-      // raise a toast
-
-      // after finally signing up,
-
-      router.replace("/"); // redirecting to home page
     } else {
       setConfirmPassword("");
     }

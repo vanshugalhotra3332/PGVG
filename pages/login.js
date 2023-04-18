@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { getSession, signIn, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { logIn, setUserData } from "@/slices/userSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const loggedIn = useSelector((state) => state.user.loggedIn);
   const [phoneNumber, setPhoneNumber] = useState("");
   const router = useRouter();
 
@@ -24,6 +28,14 @@ const Login = () => {
     try {
       const response = await fetch("http://localhost:3000/api/login", options);
       const data = await response.json();
+      // after finally logging in,
+      if (data.success) {
+        dispatch(logIn());
+        dispatch(setUserData(session.user));
+        router.replace("/"); // redirecting to home page
+      }else{
+        // raise toast
+      }
     } catch (error) {
       console.error(error);
     }
@@ -45,8 +57,6 @@ const Login = () => {
 
     sendLoginRequest(options);
     // raise a toast
-    // after finally logging in,
-    router.replace("/"); // redirecting to home page
   }
 
   return (
