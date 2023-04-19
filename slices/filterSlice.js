@@ -10,9 +10,18 @@ const initialState = {
   showPropertyType: false,
   showSortType: false,
   sharings: ["Single", "Double", "Triple", "Four"],
-  amenities: [],
+  amenities: [
+    "wi-fi",
+    "balcony",
+    "with food",
+    "ac",
+    "laundry",
+    "24/7",
+    "attached washrooms",
+  ],
+  amenitiesSearch: "",
   selectedAmenities: [],
-  selectedSharings: [],
+  selectedSharings: ["any"],
 };
 
 export const filterSlice = createSlice({
@@ -34,8 +43,8 @@ export const filterSlice = createSlice({
     setLocation: (state, action) => {
       state.location = action.payload;
     },
-    setAmenities: (state, action) => {
-      state.amenities = action.payload;
+    setAmenitiesSearch: (state, action) => {
+      state.amenitiesSearch = action.payload;
     },
     setSortBy: (state, action) => {
       state.sortBy = action.payload;
@@ -61,7 +70,7 @@ export const {
   setMaxPrice,
   setPropertyType,
   setLocation,
-  setAmenities,
+  setAmenitiesSearch,
   setSortBy,
   toggleShowPropertyType,
   toggleShowSortType,

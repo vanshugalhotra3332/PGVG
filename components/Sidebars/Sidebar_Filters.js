@@ -5,7 +5,7 @@ import { setPGs } from "@/slices/pgSlice";
 import {
   setPropertyType,
   setLocation,
-  setAmenities,
+  setAmenitiesSearch,
   setSortBy,
   toggleShowPropertyType,
   toggleShowSortType,
@@ -28,11 +28,23 @@ import {
   UilTimes,
 } from "@iconscout/react-unicons";
 
+import {
+  AcBadge,
+  AttachedWashroomBadge,
+  BalconyBadge,
+  BedBadge,
+  LaundryBadge,
+  TwentyFourSevenBadge,
+  WifiBadge,
+  WithFoodBadge,
+} from "../Badges";
+
 const Sidebar_Filters = () => {
   const dispatch = useDispatch();
   const propertyType = useSelector((state) => state.filter.propertyType);
   const location = useSelector((state) => state.filter.location);
   const amenities = useSelector((state) => state.filter.amenities);
+  const amenitiesSearch = useSelector((state) => state.filter.amenitiesSearch);
   const sortBy = useSelector((state) => state.filter.sortBy);
   const sharings = useSelector((state) => state.filter.sharings);
   const showSideBar = useSelector((state) => state.filter.showSideBar);
@@ -70,20 +82,15 @@ const Sidebar_Filters = () => {
     dispatch(toggleShowSortType());
   };
 
-  const badgeClick = (event) => {
-    event.target.classList.toggle("badge-select");
-  };
-
   const sharingBadgeClick = (event) => {
     event.target.classList.toggle("badge-select");
 
     let badgeText = event.target.childNodes[1].innerText.toLowerCase();
-    if (badgeText != "Any") {
-      if (selectedSharings.includes(badgeText)) {
-        dispatch(removeSelectedSharing(badgeText));
-      } else {
-        dispatch(addSelectedSharing(badgeText));
-      }
+
+    if (selectedSharings.includes(badgeText)) {
+      dispatch(removeSelectedSharing(badgeText));
+    } else {
+      dispatch(addSelectedSharing(badgeText));
     }
   };
 
@@ -94,7 +101,8 @@ const Sidebar_Filters = () => {
     }
     query += `&minRentPerMonth=${minRentPerMonth}&maxRentPerMonth=${maxRentPerMonth}`;
 
-    if (selectedSharings.length) {
+    console.log(selectedSharings);
+    if (selectedSharings.length && !selectedSharings.includes("any")) {
       query += `&sharings=${selectedSharings.join(",")}`;
     }
     async function getPGs() {
@@ -296,9 +304,9 @@ const Sidebar_Filters = () => {
             <div className="flex items-center md:border-2 rounded-full py-2  md:shadow-sm filter-element">
               <UilCheckCircle className="inline-flex text-blue-700 rounded-full cursor-pointer mx-2 transition-all duration-200 ease-out hover:-translate-y-[.5px]" />
               <input
-                value={amenities}
+                value={amenitiesSearch}
                 onChange={(e) => {
-                  dispatch(setAmenities(e.target.value));
+                  dispatch(setAmenitiesSearch(e.target.value));
                 }}
                 type="text"
                 placeholder="Search Amenities"
@@ -307,36 +315,15 @@ const Sidebar_Filters = () => {
             </div>
             {/* badges */}
             <div className="badges filter-element w-full">
-              <div className={`convenience-badge`} onClick={badgeClick}>
-                <UilWifi className="convenience-badge-icon" />
-                <span className="convenience-badge-text">Wi-Fi</span>
-              </div>
-              <div className={`convenience-badge`} onClick={badgeClick}>
-                <UilHouseUser className="convenience-badge-icon" />
-                <span className="convenience-badge-text">Balcony</span>
-              </div>
-              <div className={`convenience-badge`} onClick={badgeClick}>
-                <UilRestaurant className="convenience-badge-icon" />
-                <span className="convenience-badge-text">With Food</span>
-              </div>
-              <div className={`convenience-badge`} onClick={badgeClick}>
-                <UilWind className="convenience-badge-icon" />
-                <span className="convenience-badge-text">AC</span>
-              </div>
-              <div className={`convenience-badge`} onClick={badgeClick}>
-                <UilWater className="convenience-badge-icon" />
-                <span className="convenience-badge-text">Laundry</span>
-              </div>
-              <div className={`convenience-badge`} onClick={badgeClick}>
-                <UilCloudMoon className="convenience-badge-icon" />
-                <span className="convenience-badge-text">24/7</span>
-              </div>
-              <div className={`convenience-badge `} onClick={badgeClick}>
-                <UilToiletPaper className="convenience-badge-icon" />
-                <span className="convenience-badge-text">
-                  Attached Washroom
-                </span>
-              </div>
+              {amenities.includes("wi-fi") && <WifiBadge />}
+              {amenities.includes("balcony") && <BalconyBadge />}
+              {amenities.includes("ac") && <AcBadge />}
+              {amenities.includes("with food") && <WithFoodBadge />}
+              {amenities.includes("24/7") && <TwentyFourSevenBadge />}
+              {amenities.includes("laundry") && <LaundryBadge />}
+              {amenities.includes("attached washrooms") && (
+                <AttachedWashroomBadge />
+              )}
             </div>
           </div>
 
@@ -347,19 +334,16 @@ const Sidebar_Filters = () => {
             <div className="badges filter-element w-full">
               {sharings.map((sharing) => {
                 return (
-                  <div
+                  <BedBadge
                     key={sharing}
-                    className={`convenience-badge`}
-                    onClick={sharingBadgeClick}
-                  >
-                    <UilBed className="convenience-badge-icon" />
-                    <span className="convenience-badge-text">{sharing}</span>
-                  </div>
+                    sharing={sharing}
+                    sharingBadgeClick={sharingBadgeClick}
+                  />
                 );
               })}
               <div
                 className={`convenience-badge badge-select`}
-                onClick={badgeClick}
+                onClick={sharingBadgeClick}
               >
                 <UilBed className="convenience-badge-icon" />
                 <span className="convenience-badge-text">Any</span>
