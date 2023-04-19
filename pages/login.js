@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { logIn, setUserData } from "@/slices/userSlice";
-import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -40,9 +42,40 @@ const Login = () => {
       if (data.success) {
         dispatch(logIn());
         dispatch(setUserData(session.user));
-        router.replace("/"); // redirecting to home page
+
+        toast.success("Logged In Successfully!!🫡", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          style: {
+            top: "65px",
+          },
+        });
+        setTimeout(() => {
+          router.replace("/"); // redirecting to home page
+        }, 1500);
       } else {
-        // raise toast
+        toast.info("User not found !! Kindly Sign up", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          style: {
+            top: "65px",
+          },
+        });
+        setTimeout(() => {
+          signOut("google");
+        }, 1500);
       }
     } catch (error) {
       console.error(error);
@@ -69,6 +102,18 @@ const Login = () => {
 
   return (
     <section className="login h-screen bg-blue-50/70 flex justify-center">
+      <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="login-card bg-white my-2 w-full md:w-[370px] border border-gray-200 border-opacity-60 shadow-md">
         {/* top image */}
         <div className="top-image border-b border-gray-100 relative h-[30%]">

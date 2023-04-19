@@ -6,6 +6,9 @@ import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { useDispatch, useSelector } from "react-redux";
 import { logIn, setUserData } from "@/slices/userSlice";
 
@@ -77,10 +80,23 @@ const Signup = () => {
           // after finally signing up
           dispatch(logIn());
           dispatch(setUserData(session.user));
-          router.replace("/"); // redirecting to home page
-          // raise toast
-        } else {
-          // raise toast
+
+          toast.success("User Registered Successfully!!🫡", {
+            position: "top-center",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            style: {
+              top: "65px",
+            },
+          });
+          setTimeout(() => {
+            router.replace("/"); // redirecting to home page
+          }, 1500);
         }
       } catch (error) {
         console.error(error);
@@ -89,12 +105,37 @@ const Signup = () => {
       setPassword("");
       setConfirmPassword("");
     } else {
+      toast.error("Password Didn't matched !!", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        style: {
+          top: "65px",
+        },
+      });
       setConfirmPassword("");
     }
   };
 
   return (
     <section className="Signup h-screen bg-blue-50/70 flex justify-center">
+      <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="signup-card bg-white my-2 w-full md:w-[370px] border border-gray-200 border-opacity-60 shadow-md">
         {/* top image */}
         <div className="top-image border-b border-gray-100 relative h-[30%]">
@@ -113,7 +154,7 @@ const Signup = () => {
                 signOut("google");
               }}
             >
-              <ArrowBackOutlinedIcon className="h-7 w-7 font-semibold" />
+              <ArrowBackOutlinedIcon className="h-5 w-5 font-semibold" />
             </div>
           )}
         </div>
