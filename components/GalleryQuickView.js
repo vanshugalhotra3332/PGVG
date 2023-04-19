@@ -1,11 +1,9 @@
 import React from "react";
-import {
-  UilTimes,
-  UilAngleLeftB,
-  UilAngleRightB,
-} from "@iconscout/react-unicons";
 import Carousel from "nuka-carousel/lib/carousel";
 import GalleryImage from "./Cards/GalleryImage";
+import CloseIcon from '@mui/icons-material/Close';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 const GalleryQuickView = ({ setShowQuickView }) => {
   return (
@@ -17,7 +15,7 @@ const GalleryQuickView = ({ setShowQuickView }) => {
             setShowQuickView(false);
           }}
         >
-          <UilTimes className="h-6 w-6 inline-block text-gray-700 font-semibold" />
+          <CloseIcon className="h-6 w-6 inline-block text-gray-700 font-semibold" />
         </div>
         {/* image carousel */}
         <div className="image-carousel">
@@ -40,7 +38,7 @@ const GalleryQuickView = ({ setShowQuickView }) => {
                 disabled={previousDisabled}
                 className="w-10 bg-white rounded-full"
               >
-                <UilAngleLeftB className="h-10 w-10 text-gray-800 font-semibold" />
+                <KeyboardArrowLeftIcon className="h-10 w-10 text-gray-800 font-semibold" />
               </button>
             )}
             renderCenterRightControls={({ nextDisabled, nextSlide }) => (
@@ -49,7 +47,7 @@ const GalleryQuickView = ({ setShowQuickView }) => {
                 disabled={nextDisabled}
                 className="w-10 bg-white rounded-full"
               >
-                <UilAngleRightB className="h-10 w-10 text-gray-800" />
+                <KeyboardArrowRightIcon className="h-10 w-10 text-gray-800" />
               </button>
             )}
           >

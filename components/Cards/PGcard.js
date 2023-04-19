@@ -1,8 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import { UisStar } from "@iconscout/react-unicons-solid";
-import { UilMapMarker } from "@iconscout/react-unicons";
 import { useRouter } from "next/router";
+
+import StarIcon from '@mui/icons-material/Star';
+import RoomIcon from '@mui/icons-material/Room';
 
 const PGcard = ({ slug, name, image, location, rentPerMonth}) => {
   const router = useRouter();
@@ -22,7 +23,7 @@ const PGcard = ({ slug, name, image, location, rentPerMonth}) => {
         <div className="details pt-8">
           <div className="rating-title">
             <div className="ml-5 rating-box bg-orange-50 px-3 py-2 rounded-lg inline-flex items-center">
-              <UisStar className="h-5 w-5 text-orange-400 inline-block" />
+              <StarIcon className="h-6 w-6 text-orange-400 inline-block" />
               <span className="inline-block ml-2 text-orange-400 text-lg">
                 4.5 (380)
               </span>
@@ -32,7 +33,7 @@ const PGcard = ({ slug, name, image, location, rentPerMonth}) => {
                 {name}
               </h2>
               <span className="py-2 inline-flex items-center">
-                <UilMapMarker className="h-6 w-6 text-gray-400 inline-block" />
+                <RoomIcon className="h-6 w-6 text-gray-400 inline-block" />
                 <span className="inline-block text-gray-400 pl-2">
                   {location.address}, {location.city}
                 </span>

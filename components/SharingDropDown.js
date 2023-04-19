@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-
-import {
-  UilBed,
-  UilAngleRight,
-  UilAngleDown,
-  UilCheck,
-} from "@iconscout/react-unicons";
+import HotelOutlinedIcon from "@mui/icons-material/HotelOutlined";
+import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
+import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+import DoneOutlinedIcon from "@mui/icons-material/DoneOutlined";
 
 const SharingDropDown = ({ sharing, sharingDetails }) => {
   const [showIncludedItem, setShowIncludedItem] = useState(true);
@@ -13,14 +10,14 @@ const SharingDropDown = ({ sharing, sharingDetails }) => {
     <div className="sharing py-4">
       <div className="text-gray-600 inline-flex items-center justify-center">
         <span>
-          <UilBed className="h-6 w-6" />
+          <HotelOutlinedIcon className="h-6 w-6" />
         </span>
         <span className="font-semibold tracking-wide text-xs xs:text-sm ml-2">
           {sharing} Sharing
         </span>
         <span className="ml-3 mt-1">
           {showIncludedItem && (
-            <UilAngleDown
+            <KeyboardArrowDownOutlinedIcon
               className="h-6 w-6 cursor-pointer"
               onClick={() => {
                 setShowIncludedItem(false);
@@ -28,7 +25,7 @@ const SharingDropDown = ({ sharing, sharingDetails }) => {
             />
           )}
           {!showIncludedItem && (
-            <UilAngleRight
+            <KeyboardArrowRightOutlinedIcon
               className="h-6 w-6 cursor-pointer"
               onClick={() => {
                 setShowIncludedItem(true);
@@ -67,7 +64,7 @@ const SharingDropDown = ({ sharing, sharingDetails }) => {
                 className="included-item inline-flex items-center py-2 gap-2"
               >
                 <span>
-                  <UilCheck className="h-4 w-4 text-gray-500" />
+                  <DoneOutlinedIcon className="h-4 w-4 text-gray-500" />
                 </span>
                 <span className="text-gray-500 text-xs font-normal">
                   {item}

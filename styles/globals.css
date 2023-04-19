@@ -41,9 +41,9 @@ input[type="range"]::-webkit-slider-thumb {
     @apply border-gray-900 scale-[1.02];
   }
   .convenience-badge-icon {
-    @apply inline-flex text-gray-400 rounded-full 
+    @apply inline-flex text-gray-600 rounded-full 
     cursor-pointer mx-2 transition-all duration-200 ease-out 
-    hover:-translate-y-[.5px] pointer-events-none;
+    hover:-translate-y-[.5px] pointer-events-none w-6 h-6;
   }
   .convenience-badge-text {
     @apply text-base text-gray-800 align-middle whitespace-nowrap mx-2 pointer-events-none;
@@ -94,7 +94,7 @@ input[type="range"]::-webkit-slider-thumb {
     @apply bg-white shadow-lg py-3 px-3 rounded-full border-2 border-gray-200 border-opacity-60 up-icon;
   }
   .explore-item div svg {
-    @apply text-blue-600 h-5 w-5;
+    @apply text-blue-600 h-6 w-6;
   }
   .explore-item span {
     @apply text-gray-700 text-xs tracking-widest font-semibold pt-2 capitalize;

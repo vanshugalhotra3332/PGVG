@@ -1,14 +1,12 @@
 import React from "react";
-import {
-  UilWifi,
-  UilRestaurant,
-  UilHouseUser,
-  UilToiletPaper,
-  UilWind,
-  UilWater,
-  UilCloudMoon,
-  UilBed,
-} from "@iconscout/react-unicons";
+import { UilToiletPaper } from "@iconscout/react-unicons";
+import WifiOutlinedIcon from "@mui/icons-material/WifiOutlined";
+import BrunchDiningOutlinedIcon from "@mui/icons-material/BrunchDiningOutlined";
+import BalconyOutlinedIcon from "@mui/icons-material/BalconyOutlined";
+import AirOutlinedIcon from "@mui/icons-material/AirOutlined";
+import DryCleaningOutlinedIcon from "@mui/icons-material/DryCleaningOutlined";
+import NightlifeOutlinedIcon from "@mui/icons-material/NightlifeOutlined";
+import HotelOutlinedIcon from "@mui/icons-material/HotelOutlined";
 
 export const WifiBadge = ({ amenitiesBadgeClick }) => {
   return (
@@ -17,7 +15,7 @@ export const WifiBadge = ({ amenitiesBadgeClick }) => {
       id="wi-fi"
       onClick={amenitiesBadgeClick}
     >
-      <UilWifi className="convenience-badge-icon" />
+      <WifiOutlinedIcon className="convenience-badge-icon" />
       <span className="convenience-badge-text">Wi-Fi</span>
     </div>
   );
@@ -29,7 +27,7 @@ export const BalconyBadge = ({ amenitiesBadgeClick }) => {
       id="balcony"
       onClick={amenitiesBadgeClick}
     >
-      <UilHouseUser className="convenience-badge-icon" />
+      <BalconyOutlinedIcon className="convenience-badge-icon" />
       <span className="convenience-badge-text">Balcony</span>
     </div>
   );
@@ -41,7 +39,7 @@ export const WithFoodBadge = ({ amenitiesBadgeClick }) => {
       id="with-food"
       onClick={amenitiesBadgeClick}
     >
-      <UilRestaurant className="convenience-badge-icon" />
+      <BrunchDiningOutlinedIcon className="convenience-badge-icon" />
       <span className="convenience-badge-text">With Food</span>
     </div>
   );
@@ -49,7 +47,7 @@ export const WithFoodBadge = ({ amenitiesBadgeClick }) => {
 export const AcBadge = ({ amenitiesBadgeClick }) => {
   return (
     <div className={`convenience-badge`} id="ac" onClick={amenitiesBadgeClick}>
-      <UilWind className="convenience-badge-icon" />
+      <AirOutlinedIcon className="convenience-badge-icon" />
       <span className="convenience-badge-text">AC</span>
     </div>
   );
@@ -61,7 +59,7 @@ export const LaundryBadge = ({ amenitiesBadgeClick }) => {
       id="laundry"
       onClick={amenitiesBadgeClick}
     >
-      <UilWater className="convenience-badge-icon" />
+      <DryCleaningOutlinedIcon className="convenience-badge-icon" />
       <span className="convenience-badge-text">Laundry</span>
     </div>
   );
@@ -73,7 +71,7 @@ export const TwentyFourSevenBadge = ({ amenitiesBadgeClick }) => {
       id="24/7"
       onClick={amenitiesBadgeClick}
     >
-      <UilCloudMoon className="convenience-badge-icon" />
+      <NightlifeOutlinedIcon className="convenience-badge-icon" />
       <span className="convenience-badge-text">24/7</span>
     </div>
   );
@@ -94,7 +92,7 @@ export const AttachedWashroomBadge = ({ amenitiesBadgeClick }) => {
 export const BedBadge = ({ sharingBadgeClick, sharing }) => {
   return (
     <div className={`convenience-badge`} onClick={sharingBadgeClick}>
-      <UilBed className="convenience-badge-icon" />
+      <HotelOutlinedIcon className="convenience-badge-icon" />
       <span className="convenience-badge-text">{sharing}</span>
     </div>
   );

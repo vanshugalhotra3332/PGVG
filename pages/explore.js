@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Map from "@/components/Map";
 
-import { UilFilter, UilArrowsVAlt } from "@iconscout/react-unicons";
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
+import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
+
 import PGcard from "@/components/Cards/PGcard";
 import Sidebar_Filters from "@/components/Sidebars/Sidebar_Filters";
 
@@ -24,7 +26,10 @@ const Explore = () => {
     }
     getPGs();
   }, []);
+
+  let coords = [];
   const pgs = useSelector((state) => state.pgs.pgs);
+  pgs.map((pg) => coords.push(pg.location.coordinates));
 
   const showSideBar = useSelector((state) => state.filter.showSideBar);
 
@@ -41,7 +46,7 @@ const Explore = () => {
         <div className="lg:hidden mobile-view-tabs w-full">
           <div className="tabs w-full h-[6vh] fixed bottom-0 left-0 flex items-center justify-between">
             <div className="tab">
-              <UilArrowsVAlt className="w-5 h-5 text-gray-700" />
+              <ImportExportOutlinedIcon className="w-7 h-7 text-gray-700" />
               <span className="capitalize text-lg text-gray-700 font-semibold ml-3">
                 SORT
               </span>
@@ -52,7 +57,7 @@ const Explore = () => {
                 dispatch(toggleSideBar());
               }}
             >
-              <UilFilter className="w-5 h-5 text-gray-700" />
+              <FilterAltOutlinedIcon className="w-7 h-7 text-gray-700" />
               <span className="capitalize text-lg text-gray-700 font-semibold ml-3">
                 FILTER
               </span>
@@ -73,7 +78,9 @@ const Explore = () => {
             </h1>
           )}
         </div>
-        <div className="map">{pgs.length > 0 && <Map className="h-full" />}</div>
+        <div className="map">
+          {pgs.length > 0 && <Map className="h-full" coords={coords} />}
+        </div>
         <div className="listing mt-16 grid md:grid-cols-2 grid-cols-1">
           {pgs.length > 0 &&
             pgs.map(({ slug, name, image, location, rentPerMonth }) => {

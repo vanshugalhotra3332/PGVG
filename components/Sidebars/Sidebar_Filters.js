@@ -15,20 +15,12 @@ import {
   addSelectedAmenity,
   removeSelectedAmenity,
 } from "@/slices/filterSlice";
-import {
-  UilMapMarker,
-  UilCheckCircle,
-  UilWifi,
-  UilRestaurant,
-  UilHouseUser,
-  UilToiletPaper,
-  UilWind,
-  UilWater,
-  UilCloudMoon,
-  UilBed,
-  UilFilter,
-  UilTimes,
-} from "@iconscout/react-unicons";
+
+import RoomIcon from "@mui/icons-material/Room";
+import HotelOutlinedIcon from '@mui/icons-material/HotelOutlined';
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
+import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 
 import {
   AcBadge,
@@ -153,12 +145,12 @@ const Sidebar_Filters = () => {
         <div className="heading flex justify-between items-center">
           <div>
             <h1 className="text-3xl font-semibold inline-flex">Filter</h1>
-            <UilFilter className="mb-[0.7rem] hidden md:inline-flex text-gray-800 mx-2 transition-all duration-200 ease-out hover:-translate-y-[.5px] pointer-events-none" />
+            <FilterAltOutlinedIcon className="mb-[0.7rem] hidden md:inline-flex text-gray-800 mx-2 transition-all duration-200 ease-out hover:-translate-y-[.5px] pointer-events-none w-7 h-7" />
           </div>
           <span className="text-lg text-blue-600 cursor-pointer mt-3 transition-all duration-150 ease-out hover:text-blue-500 ">
             Reset
           </span>
-          <UilTimes
+          <CloseOutlinedIcon
             className="h-6 w-6 cursor-pointer text-sm lg:!hidden"
             onClick={() => {
               dispatch(toggleSideBar());
@@ -304,7 +296,7 @@ const Sidebar_Filters = () => {
           <div className="location-filter mt-4">
             <h2 className="filter-heading">Nearby Location</h2>
             <div className="flex items-center md:border-2 rounded-full py-2  md:shadow-sm filter-element">
-              <UilMapMarker className="inline-flex text-blue-700 rounded-full cursor-pointer mx-2 transition-all duration-200 ease-out hover:-translate-y-[.5px]" />
+              <RoomIcon className="inline-flex text-blue-700 rounded-full cursor-pointer mx-2 transition-all duration-200 ease-out hover:-translate-y-[.5px]" />
               <input
                 value={location}
                 onChange={(e) => {
@@ -322,7 +314,7 @@ const Sidebar_Filters = () => {
             <h2 className="filter-heading">Amenities</h2>
             {/* search bar */}
             <div className="flex items-center md:border-2 rounded-full py-2  md:shadow-sm filter-element">
-              <UilCheckCircle className="inline-flex text-blue-700 rounded-full cursor-pointer mx-2 transition-all duration-200 ease-out hover:-translate-y-[.5px]" />
+              <CheckCircleOutlinedIcon className="inline-flex text-blue-700 rounded-full cursor-pointer mx-2 transition-all duration-200 ease-out hover:-translate-y-[.5px]" />
               <input
                 value={amenitiesSearch}
                 onChange={(e) => {
@@ -381,7 +373,7 @@ const Sidebar_Filters = () => {
                 className={`convenience-badge badge-select`}
                 onClick={sharingBadgeClick}
               >
-                <UilBed className="convenience-badge-icon" />
+                <HotelOutlinedIcon className="convenience-badge-icon" />
                 <span className="convenience-badge-text">Any</span>
               </div>
             </div>

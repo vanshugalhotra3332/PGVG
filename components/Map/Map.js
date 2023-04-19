@@ -1,14 +1,9 @@
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
-import { useSelector } from "react-redux";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 
-function Map() {
-  let coords = [];
-  const pgs = useSelector((state) => state.pgs.pgs);
-  pgs.map((pg) => coords.push(pg.location.coordinates));
-
+function Map({ coords }) {
   return (
     <MapContainer
       className="w-full lg:h-[60vh] md:h-[40vh] h-[25vh]"

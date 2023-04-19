@@ -4,7 +4,7 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { logIn, setUserData } from "@/slices/userSlice";
-import { UilArrowLeft } from "@iconscout/react-unicons";
+import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -87,7 +87,7 @@ const Login = () => {
                 setOpenOTPwindow(false);
               }}
             >
-              <UilArrowLeft className="h-7 w-7 font-semibold" />
+              <ArrowBackOutlinedIcon className="h-7 w-7 font-semibold" />
             </div>
           )}
         </div>

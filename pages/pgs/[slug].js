@@ -1,27 +1,16 @@
 import React, { useState } from "react";
-import {
-  UilMapMarker,
-  UilPlus,
-  UilShareAlt,
-  UilHeartAlt,
-  UilBed,
-  UilAngleRight,
-  UilAngleDown,
-  UilCheck,
-  UilWifi,
-  UilRestaurant,
-  UilToiletPaper,
-  UilWind,
-  UilWater,
-  UilCloudMoon,
-  UilArrowRight,
-  UilBusAlt,
-  UilUniversity,
-  UilFilm,
-  UilMedkit,
-  UilTrees,
-  UilShoppingCartAlt,
-} from "@iconscout/react-unicons";
+import RoomIcon from "@mui/icons-material/Room";
+import AddIcon from "@mui/icons-material/Add";
+import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import RestaurantMenuOutlinedIcon from "@mui/icons-material/RestaurantMenuOutlined";
+import EastOutlinedIcon from "@mui/icons-material/EastOutlined";
+import DirectionsBusFilledOutlinedIcon from "@mui/icons-material/DirectionsBusFilledOutlined";
+import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlined";
+import MovieFilterOutlinedIcon from "@mui/icons-material/MovieFilterOutlined";
+import MedicationLiquidOutlinedIcon from "@mui/icons-material/MedicationLiquidOutlined";
+import ForestOutlinedIcon from "@mui/icons-material/ForestOutlined";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 import Map from "@/components/Map";
 import Image from "next/image";
@@ -36,7 +25,6 @@ import {
   AcBadge,
   AttachedWashroomBadge,
   BalconyBadge,
-  BedBadge,
   LaundryBadge,
   TwentyFourSevenBadge,
   WifiBadge,
@@ -71,7 +59,7 @@ const Slug = ({ pg }) => {
             {/* location & last updated details */}
             <div className="basic-details flex flex-col sm:flex-row justify-between">
               <span className="py-2 location inline-flex items-center m-auto sm:m-0">
-                <UilMapMarker className="h-6 w-6 text-gray-400 inline-block" />
+                <RoomIcon className="h-6 w-6 text-gray-400 inline-block" />
                 <span className="inline-block text-gray-400 pl-2">
                   {location.address}, {location.city}
                 </span>
@@ -132,7 +120,7 @@ const Slug = ({ pg }) => {
                   />
                   <div className="see-more relative flex flex-col justify-center items-center bg-gray-800/40 w-full h-full">
                     <div className="mr-2 up-icon">
-                      <UilPlus className="h-8 w-8 font-semibold text-gray-100 " />
+                      <AddIcon className="h-8 w-8 font-semibold text-gray-100 " />
                     </div>
                     <span className="text-white text-2xl">3 more</span>
                   </div>
@@ -150,10 +138,10 @@ const Slug = ({ pg }) => {
               </span>
               <span className="mt-2">
                 <span className="inline-block ml-4 up-icon">
-                  <UilShareAlt className="h-4 w-4 xs:h-6 xs:w-6 text-gray-500" />
+                  <ShareOutlinedIcon className="h-4 w-4 xs:h-6 xs:w-6 text-gray-500" />
                 </span>
                 <span className="inline-block ml-3 up-icon">
-                  <UilHeartAlt className="h-4 w-4 xs:h-6 xs:w-6 text-red-500" />
+                  <FavoriteBorderOutlinedIcon className="h-4 w-4 xs:h-6 xs:w-6 text-red-500" />
                 </span>
               </span>
             </div>
@@ -364,7 +352,7 @@ const Slug = ({ pg }) => {
                 return (
                   <div className="rule my-2" key={index}>
                     <span>
-                      <UilArrowRight className="h-6 w-6 text-green-500 inline-block" />
+                      <EastOutlinedIcon className="h-5 w-5 text-green-500 inline-block" />
                     </span>
                     <span className="mx-2 text-gray-700 text-sm font-semibold leading-tight">
                       {rule}
@@ -376,7 +364,7 @@ const Slug = ({ pg }) => {
                 return (
                   <div className="rule my-2" key={index}>
                     <span>
-                      <UilArrowRight className="h-6 w-6 text-red-500 inline-block" />
+                      <EastOutlinedIcon className="h-5 w-5 text-red-500 inline-block" />
                     </span>
                     <span className="mx-2 text-gray-700 text-sm font-semibold leading-tight">
                       {rule}
@@ -404,43 +392,43 @@ const Slug = ({ pg }) => {
               <div className="explore my-4 pt-2 px-4 flex items-center flex-wrap justify-between">
                 <div className="explore-item">
                   <div>
-                    <UilBusAlt />
+                    <DirectionsBusFilledOutlinedIcon />
                   </div>
                   <span>Bus Stops</span>
                 </div>
                 <div className="explore-item">
                   <div>
-                    <UilUniversity />
+                    <AccountBalanceOutlinedIcon />
                   </div>
                   <span>Banks</span>
                 </div>
                 <div className="explore-item">
                   <div>
-                    <UilFilm />
+                    <MovieFilterOutlinedIcon />
                   </div>
                   <span>Cinema</span>
                 </div>
                 <div className="explore-item">
                   <div>
-                    <UilRestaurant />
+                    <RestaurantMenuOutlinedIcon />
                   </div>
                   <span>Food</span>
                 </div>
                 <div className="explore-item">
                   <div>
-                    <UilMedkit />
+                    <MedicationLiquidOutlinedIcon />
                   </div>
                   <span>Medcare</span>
                 </div>
                 <div className="explore-item">
                   <div>
-                    <UilTrees />
+                    <ForestOutlinedIcon />
                   </div>
                   <span>Parks</span>
                 </div>
                 <div className="explore-item">
                   <div>
-                    <UilShoppingCartAlt />
+                    <ShoppingCartOutlinedIcon />
                   </div>
                   <span>Shopping</span>
                 </div>

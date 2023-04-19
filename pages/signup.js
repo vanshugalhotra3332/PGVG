@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { signIn, useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
-import { UilEye, UilEyeSlash, UilArrowLeft } from "@iconscout/react-unicons";
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
+
 import { useDispatch, useSelector } from "react-redux";
 import { logIn, setUserData } from "@/slices/userSlice";
 
@@ -110,7 +113,7 @@ const Signup = () => {
                 signOut("google");
               }}
             >
-              <UilArrowLeft className="h-7 w-7 font-semibold" />
+              <ArrowBackOutlinedIcon className="h-7 w-7 font-semibold" />
             </div>
           )}
         </div>
@@ -261,10 +264,10 @@ const Signup = () => {
                     }}
                   >
                     {!showPassword && (
-                      <UilEye className="h-6 w-6 font-semibold" />
+                      <RemoveRedEyeOutlinedIcon className="h-6 w-6 font-semibold" />
                     )}
                     {showPassword && (
-                      <UilEyeSlash className="h-6 w-6 font-semibold" />
+                      <VisibilityOffOutlinedIcon className="h-6 w-6 font-semibold" />
                     )}
                   </span>
                 </div>
@@ -294,10 +297,10 @@ const Signup = () => {
                     }}
                   >
                     {!showPassword && (
-                      <UilEye className="h-6 w-6 font-semibold" />
+                      <RemoveRedEyeOutlinedIcon className="h-6 w-6 font-semibold" />
                     )}
                     {showPassword && (
-                      <UilEyeSlash className="h-6 w-6 font-semibold" />
+                      <VisibilityOffOutlinedIcon className="h-6 w-6 font-semibold" />
                     )}
                   </span>
                 </div>

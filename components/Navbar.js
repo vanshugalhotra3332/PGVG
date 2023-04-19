@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
-import { UilBars } from "@iconscout/react-unicons";
+import MenuIcon from '@mui/icons-material/Menu';
 import Link from "next/link";
 import Sidebar_Nav from "./Sidebars/Sidebar_Nav";
 import { useRouter } from "next/router";
@@ -36,7 +36,7 @@ const Navbar = () => {
               dispatch(toggleSideBar());
             }}
           >
-            <UilBars className="h-8 w-8" />
+            <MenuIcon className="h-8 w-8" />
           </div>
 
           {/* logo section */}
