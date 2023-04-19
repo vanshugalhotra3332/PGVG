@@ -7,13 +7,13 @@
     "gender": "boys",
     "type": "PG",
     "sharingsOffered": ["double", "single"],
-    "amenities": ["wifi", "balcony", "attached-washrooms","24x7"],
+    "amenities": ["wi-fi", "balcony", "attached washrooms", "24/7"],
     "sharings": {
       "Double": {
         "rentPerMonth": 8900,
         "beds": 19,
         "security": 4500,
-        "includes": ["TV", "Table-Chair", "Cupboard", "Wifi"]
+        "includes": ["TV", "Table-Chair", "Cupboard", "wi-fi"]
       },
       "Single": {
         "rentPerMonth": 11900,
@@ -23,7 +23,7 @@
           "TV",
           "Table-Chair",
           "Cupboard",
-          "Wifi",
+          "wi-fi",
           "Attached Washrooms"
         ]
       }
@@ -55,14 +55,21 @@
     "image": "/assets/img/pgs/pg1.webp",
     "gender": "girls",
     "type": "PG",
-    "amenities": ["wifi", "balcony", "attached-washrooms","24x7", "with-food", "laundry"],
+    "amenities": [
+      "wi-fi",
+      "balcony",
+      "attached washrooms",
+      "24/7",
+      "with-food",
+      "laundry"
+    ],
     "sharingsOffered": ["double", "single"],
     "sharings": {
       "Double": {
         "rentPerMonth": 9999,
         "beds": 19,
         "security": 4500,
-        "includes": ["TV", "Table-Chair", "Cupboard", "Wifi"]
+        "includes": ["TV", "Table-Chair", "Cupboard", "wi-fi"]
       },
       "Single": {
         "rentPerMonth": 13900,
@@ -72,7 +79,7 @@
           "TV",
           "Table-Chair",
           "Cupboard",
-          "Wifi",
+          "wi-fi",
           "Attached Washrooms"
         ]
       }
@@ -104,20 +111,20 @@
     "image": "/assets/img/pgs/pg.webp",
     "gender": "boys",
     "type": "PG",
-    "amenities": ["with-food", "balcony", "attached-washrooms","24x7"],
+    "amenities": ["with-food", "balcony", "attached washrooms", "24/7"],
     "sharingsOffered": ["double", "single", "triple"],
     "sharings": {
       "Double": {
         "rentPerMonth": 8999,
         "beds": 19,
         "security": 4500,
-        "includes": ["TV", "Table-Chair", "Cupboard", "Wifi"]
+        "includes": ["TV", "Table-Chair", "Cupboard", "wi-fi"]
       },
       "Triple": {
         "rentPerMonth": 5999,
         "beds": 19,
         "security": 2500,
-        "includes": ["TV", "Table-Chair", "Cupboard", "Wifi"]
+        "includes": ["TV", "Table-Chair", "Cupboard", "wi-fi"]
       },
       "Single": {
         "rentPerMonth": 11900,
@@ -127,7 +134,7 @@
           "TV",
           "Table-Chair",
           "Cupboard",
-          "Wifi",
+          "wi-fi",
           "Attached Washrooms",
           "Almirah"
         ]
@@ -162,7 +169,7 @@
     "image": "/assets/img/pgs/1.jpg",
     "gender": "boys",
     "type": "Flat",
-    "amenities": ["wifi", "balcony", "attached-washrooms","with-food"],
+    "amenities": ["wi-fi", "balcony", "attached washrooms", "with-food"],
     "sharingsOffered": ["single"],
     "sharings": {
       "Single": {
@@ -173,7 +180,7 @@
           "TV",
           "Table-Chair",
           "Cupboard",
-          "Wifi",
+          "wi-fi",
           "Attached Washrooms",
           "Almirah",
           "Mic",
@@ -210,14 +217,14 @@
     "image": "/assets/img/pgs/2.jpg",
     "gender": "girls",
     "type": "Flat",
-    "amenities": ["wifi", "attached-washrooms","24x7", "laundry"],
+    "amenities": ["wi-fi", "attached washrooms", "24/7", "laundry"],
     "sharingsOffered": ["double", "triple"],
     "sharings": {
       "Double": {
         "rentPerMonth": 12900,
         "beds": 20,
         "security": 11500,
-        "includes": ["TV", "Table-Chair", "Cupboard", "Wifi", "Mic", "Records"]
+        "includes": ["TV", "Table-Chair", "Cupboard", "wi-fi", "Mic", "Records"]
       },
       "Triple": {
         "rentPerMonth": 19900,
@@ -227,7 +234,7 @@
           "TV",
           "Table-Chair",
           "Cupboard",
-          "Wifi",
+          "wi-fi",
           "Attached Washrooms",
           "Almirah",
           "Mic",
@@ -250,6 +257,274 @@
     },
     "location": {
       "coordinates": [30.43642, 76.28602],
+      "address": "D512, Sector 15C",
+      "city": "Chandigarh",
+      "state": "Chandigarh",
+      "country": "India",
+      "postalCode": "160015"
+    }
+  },
+  {
+    "name": "Tuco Salamanca ☠️☠️",
+    "slug": "tucosalamanca",
+    "rentPerMonth": 19999,
+    "image": "/assets/img/pgs/pg1.avif",
+    "gender": "boys",
+    "type": "Flat",
+    "sharingsOffered": ["double", "four"],
+    "amenities": ["wi-fi", "balcony", "attached washrooms", "24/7", "with-food"],
+    "sharings": {
+      "Four": {
+        "rentPerMonth": 18900,
+        "beds": 19,
+        "security": 4500,
+        "includes": ["TV", "Table-Chair", "Cupboard", "wi-fi"]
+      },
+      "Double": {
+        "rentPerMonth": 19999,
+        "beds": 19,
+        "security": 7500,
+        "includes": [
+          "TV",
+          "Table-Chair",
+          "Cupboard",
+          "wi-fi",
+          "Attached Washrooms"
+        ]
+      }
+    },
+    "rules": {
+      "allowed": [
+        "non veg food is allowed",
+        "cooking is allowed",
+        "24/7 entry is allowed",
+        "blue meth is allowed"
+      ],
+      "notAllowed": [
+        "drinking & smoking is not allowed",
+        "guests of opposite genders are not allowed",
+        "Speaking on my behalf is not allowed"
+      ]
+    },
+    "location": {
+      "coordinates": [32.76242, 56.77102],
+      "address": "B56, Sector 15D",
+      "city": "Chandigarh",
+      "state": "Chandigarh",
+      "country": "India",
+      "postalCode": "160015"
+    }
+  },
+  {
+    "name": "Saul Goodman Motel",
+    "slug": "saulgoodman",
+    "rentPerMonth": 4999,
+    "image": "/assets/img/pgs/pg1.webp",
+    "gender": "girls",
+    "type": "PG",
+    "amenities": [
+      "wi-fi",
+      "balcony",
+      "attached washrooms",
+      "24/7",
+      "with-food",
+      "laundry"
+    ],
+    "sharingsOffered": ["triple", "four"],
+    "sharings": {
+      "Triple": {
+        "rentPerMonth": 4999,
+        "beds": 19,
+        "security": 4500,
+        "includes": ["TV", "Table-Chair", "Cupboard", "wi-fi"]
+      },
+      "Four": {
+        "rentPerMonth": 3900,
+        "beds": 19,
+        "security": 3500,
+        "includes": [
+          "TV",
+          "Table-Chair",
+          "Cupboard",
+          "wi-fi",
+          "Attached Washrooms"
+        ]
+      }
+    },
+    "rules": {
+      "allowed": [
+        "non veg food is allowed",
+        "cooking is allowed",
+        "24/7 entry is allowed"
+      ],
+      "notAllowed": [
+        "drinking & smoking is not allowed",
+        "guests of opposite genders are not allowed"
+      ]
+    },
+    "location": {
+      "coordinates": [36.76642, 45.77602],
+      "address": "D52, Sector 13D",
+      "city": "Chandigarh",
+      "state": "Chandigarh",
+      "country": "India",
+      "postalCode": "160015"
+    }
+  },
+  {
+    "name": "Jonas Cottage",
+    "slug": "jonascottage",
+    "rentPerMonth": 18999,
+    "image": "/assets/img/pgs/pg.webp",
+    "gender": "boys",
+    "type": "PG",
+    "amenities": ["with-food", "balcony", "attached washrooms", "24/7"],
+    "sharingsOffered": ["double", "single", "triple"],
+    "sharings": {
+      "Double": {
+        "rentPerMonth": 18999,
+        "beds": 19,
+        "security": 4500,
+        "includes": ["TV", "Table-Chair", "Cupboard", "wi-fi"]
+      },
+      "Triple": {
+        "rentPerMonth": 5999,
+        "beds": 19,
+        "security": 2500,
+        "includes": ["TV", "Table-Chair", "Cupboard", "wi-fi"]
+      },
+      "Single": {
+        "rentPerMonth": 11900,
+        "beds": 19,
+        "security": 9500,
+        "includes": [
+          "TV",
+          "Table-Chair",
+          "Cupboard",
+          "wi-fi",
+          "Attached Washrooms",
+          "Almirah"
+        ]
+      }
+    },
+    "rules": {
+      "allowed": [
+        "non veg food is allowed",
+        "cooking is allowed",
+        "24/7 entry is allowed",
+        "Cooking Crystal Meth is allowed",
+        "Time travel is allowed"
+      ],
+      "notAllowed": [
+        "drinking & smoking is not allowed",
+        "guests of opposite genders are not allowed",
+        "disposing dead bodies in bathtub is not allowed"
+      ]
+    },
+    "location": {
+      "coordinates": [30.26642, 76.57602],
+      "address": "B512, Sector 15C",
+      "city": "Chandigarh",
+      "state": "Chandigarh",
+      "country": "India",
+      "postalCode": "160015"
+    }
+  },
+  {
+    "name": "Bangin On Wax Projects",
+    "slug": "banginonwax",
+    "rentPerMonth": 5999,
+    "image": "/assets/img/pgs/1.jpg",
+    "gender": "boys",
+    "type": "Flat",
+    "amenities": ["wi-fi", "balcony", "attached washrooms", "with-food"],
+    "sharingsOffered": ["four"],
+    "sharings": {
+      "Four": {
+        "rentPerMonth": 5999,
+        "beds": 23,
+        "security": 19500,
+        "includes": [
+          "TV",
+          "Table-Chair",
+          "Cupboard",
+          "wi-fi",
+          "Attached Washrooms",
+          "Almirah",
+          "Mic",
+          "Records"
+        ]
+      }
+    },
+    "rules": {
+      "allowed": [
+        "non veg food is allowed",
+        "cooking is allowed",
+        "24/7 entry is allowed",
+        "Killing people is allowed (If they try to B walk)"
+      ],
+      "notAllowed": [
+        "drinking & smoking is not allowed",
+        "guests of opposite genders are not allowed",
+        "hoovers not allowed"
+      ]
+    },
+    "location": {
+      "coordinates": [32.46642, 46.27202],
+      "address": "D512, Sector 15C",
+      "city": "Chandigarh",
+      "state": "Chandigarh",
+      "country": "India",
+      "postalCode": "160015"
+    }
+  },
+  {
+    "name": "Nationwide Rip Ridaz",
+    "slug": "natiowideripridaz",
+    "rentPerMonth": 9900,
+    "image": "/assets/img/pgs/2.jpg",
+    "gender": "girls",
+    "type": "PG",
+    "amenities": ["wi-fi", "attached washrooms", "24/7", "laundry"],
+    "sharingsOffered": ["double", "triple"],
+    "sharings": {
+      "Double": {
+        "rentPerMonth": 12900,
+        "beds": 20,
+        "security": 11500,
+        "includes": ["TV", "Table-Chair", "Cupboard", "wi-fi", "Mic", "Records"]
+      },
+      "Triple": {
+        "rentPerMonth": 19900,
+        "beds": 23,
+        "security": 19500,
+        "includes": [
+          "TV",
+          "Table-Chair",
+          "Cupboard",
+          "wi-fi",
+          "Attached Washrooms",
+          "Almirah",
+          "Mic",
+          "Records"
+        ]
+      }
+    },
+    "rules": {
+      "allowed": [
+        "non veg food is allowed",
+        "cooking is allowed",
+        "24/7 entry is allowed",
+        "Killing people is allowed (If they are not from Hood)"
+      ],
+      "notAllowed": [
+        "drinking & smoking is not allowed",
+        "guests of opposite genders are not allowed",
+        "bloods not allowed"
+      ]
+    },
+    "location": {
+      "coordinates": [40.43642, 71.38602],
       "address": "D512, Sector 15C",
       "city": "Chandigarh",
       "state": "Chandigarh",

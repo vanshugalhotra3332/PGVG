@@ -46,7 +46,7 @@ const Navbar = () => {
           >
             <Image
               src={"/logo.jpg"}
-              layout="fill"
+              fill
               alt="PGVG"
               style={{ objectFit: "cover" }}
             />
@@ -113,7 +113,7 @@ const Navbar = () => {
               <Image
                 className="rounded-full"
                 src={userData.image}
-                layout="fill"
+                fill
                 alt="User Photo"
                 style={{ objectFit: "cover" }}
               />

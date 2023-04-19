@@ -12,6 +12,8 @@ import {
   addSelectedSharing,
   removeSelectedSharing,
   toggleSideBar,
+  addSelectedAmenity,
+  removeSelectedAmenity,
 } from "@/slices/filterSlice";
 import {
   UilMapMarker,
@@ -51,6 +53,9 @@ const Sidebar_Filters = () => {
   const selectedSharings = useSelector(
     (state) => state.filter.selectedSharings
   );
+  const selectedAmenities = useSelector(
+    (state) => state.filter.selectedAmenities
+  );
   const showPropertyType = useSelector(
     (state) => state.filter.showPropertyType
   );
@@ -82,6 +87,17 @@ const Sidebar_Filters = () => {
     dispatch(toggleShowSortType());
   };
 
+  const amenitiesBadgeClick = (event) => {
+    event.target.classList.toggle("badge-select");
+    let badgeText = event.target.id.toLowerCase();
+
+    if (selectedAmenities.includes(badgeText)) {
+      dispatch(removeSelectedAmenity(badgeText));
+    } else {
+      dispatch(addSelectedAmenity(badgeText));
+    }
+  };
+
   const sharingBadgeClick = (event) => {
     event.target.classList.toggle("badge-select");
 
@@ -101,10 +117,14 @@ const Sidebar_Filters = () => {
     }
     query += `&minRentPerMonth=${minRentPerMonth}&maxRentPerMonth=${maxRentPerMonth}`;
 
-    console.log(selectedSharings);
     if (selectedSharings.length && !selectedSharings.includes("any")) {
       query += `&sharings=${selectedSharings.join(",")}`;
     }
+
+    if (selectedAmenities.length) {
+      query += `&amenities=${selectedAmenities.join(",")}`;
+    }
+
     async function getPGs() {
       try {
         const response = await fetch(
@@ -297,7 +317,7 @@ const Sidebar_Filters = () => {
             </div>
           </div>
 
-          {/* conveniences */}
+          {/* amenities */}
           <div className="conveniences-filter">
             <h2 className="filter-heading">Amenities</h2>
             {/* search bar */}
@@ -315,14 +335,30 @@ const Sidebar_Filters = () => {
             </div>
             {/* badges */}
             <div className="badges filter-element w-full">
-              {amenities.includes("wi-fi") && <WifiBadge />}
-              {amenities.includes("balcony") && <BalconyBadge />}
-              {amenities.includes("ac") && <AcBadge />}
-              {amenities.includes("with food") && <WithFoodBadge />}
-              {amenities.includes("24/7") && <TwentyFourSevenBadge />}
-              {amenities.includes("laundry") && <LaundryBadge />}
+              {amenities.includes("wi-fi") && (
+                <WifiBadge amenitiesBadgeClick={amenitiesBadgeClick} />
+              )}
+              {amenities.includes("balcony") && (
+                <BalconyBadge amenitiesBadgeClick={amenitiesBadgeClick} />
+              )}
+              {amenities.includes("ac") && (
+                <AcBadge amenitiesBadgeClick={amenitiesBadgeClick} />
+              )}
+              {amenities.includes("with-food") && (
+                <WithFoodBadge amenitiesBadgeClick={amenitiesBadgeClick} />
+              )}
+              {amenities.includes("24/7") && (
+                <TwentyFourSevenBadge
+                  amenitiesBadgeClick={amenitiesBadgeClick}
+                />
+              )}
+              {amenities.includes("laundry") && (
+                <LaundryBadge amenitiesBadgeClick={amenitiesBadgeClick} />
+              )}
               {amenities.includes("attached washrooms") && (
-                <AttachedWashroomBadge />
+                <AttachedWashroomBadge
+                  amenitiesBadgeClick={amenitiesBadgeClick}
+                />
               )}
             </div>
           </div>

@@ -74,7 +74,7 @@ const Login = () => {
         <div className="top-image border-b border-gray-100 relative h-[30%]">
           <Image
             alt="Login"
-            layout="fill"
+            fill
             style={{
               objectFit: "cover",
             }}
@@ -173,7 +173,7 @@ const Login = () => {
                 <div className="continue-with-icon relative w-8 h-8 inline-block mx-4">
                   <Image
                     alt="Google"
-                    layout="fill"
+                    fill
                     style={{
                       objectFit: "cover",
                     }}
@@ -188,7 +188,7 @@ const Login = () => {
                 <div className="continue-with-icon relative w-8 h-8 inline-block mx-4">
                   <Image
                     alt="Apple"
-                    layout="fill"
+                    fill
                     style={{
                       objectFit: "cover",
                     }}

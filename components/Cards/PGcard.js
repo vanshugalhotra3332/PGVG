@@ -15,7 +15,7 @@ const PGcard = ({ slug, name, image, location, rentPerMonth}) => {
             className="lg:h-48 md:h-36 w-full object-cover object-center hover:scale-105 transition-all duration-300 ease-out -z-10"
             src={image}
             alt=""
-            layout="fill"
+            fill
             style={{ objectFit: "cover" }}
           />
         </div>

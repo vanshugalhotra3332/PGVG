@@ -32,6 +32,17 @@ import PGs from "@/models/PGs";
 import mongoose from "mongoose";
 import SharingDropDown from "@/components/SharingDropDown";
 
+import {
+  AcBadge,
+  AttachedWashroomBadge,
+  BalconyBadge,
+  BedBadge,
+  LaundryBadge,
+  TwentyFourSevenBadge,
+  WifiBadge,
+  WithFoodBadge,
+} from "../../components/Badges";
+
 const Slug = ({ pg }) => {
   const {
     rules,
@@ -76,7 +87,7 @@ const Slug = ({ pg }) => {
                 <Image
                   src={image}
                   alt={""}
-                  layout="fill"
+                  fill
                   className="transition-all duration-300 ease-in-out hover:scale-105"
                   style={{ objectFit: "cover" }}
                 />
@@ -99,7 +110,7 @@ const Slug = ({ pg }) => {
                   <Image
                     src={"/assets/img/pgs/pg1.avif"}
                     alt={""}
-                    layout="fill"
+                    fill
                     style={{ objectFit: "cover" }}
                     className="transition-all duration-300 ease-in-out hover:scale-[1.02]"
                   />
@@ -115,7 +126,7 @@ const Slug = ({ pg }) => {
                   <Image
                     src={"/assets/img/pgs/pg2.avif"}
                     alt={""}
-                    layout="fill"
+                    fill
                     style={{ objectFit: "cover" }}
                     className="transition-all duration-300 ease-in-out hover:scale-[1.02]"
                   />
@@ -182,7 +193,7 @@ const Slug = ({ pg }) => {
               <Image
                 src={"/assets/img/icons/loc.webp"}
                 alt={"Map"}
-                layout="fill"
+                fill
                 style={{ objectFit: "cover" }}
               />
             </div>
@@ -268,7 +279,7 @@ const Slug = ({ pg }) => {
                   <Image
                     src={"/assets/img/others/user.jpg"}
                     alt={""}
-                    layout="fill"
+                    fill
                     className="rounded-[50%]"
                     style={{ objectFit: "cover" }}
                   />
@@ -316,55 +327,25 @@ const Slug = ({ pg }) => {
                 Top Amenities
               </h2>
             </div>
-            <div className="amen bg-gray-100/60 py-4 px-4 xs:px-8 lg:px-0 flex items-center flex-wrap">
-              <div className="amen-item ">
+            <div className="amenities-items bg-gray-100/60 py-4 px-4 xs:px-8 lg:px-0 flex items-center flex-wrap">
+              {/* <div className="amen-item convenience-badge">
                 <div className="icon my-1">
                   <UilWifi className="h-6 w-6 text-gray-500" />
                 </div>
                 <span className="text-sm text-gray-500 font-normal capitalize">
                   Wi-fi
                 </span>
-              </div>
-              <div className="amen-item ">
-                <div className="icon my-1">
-                  <UilWater className="h-6 w-6 text-gray-500" />
-                </div>
-                <span className="text-sm text-gray-500 font-normal capitalize">
-                  Laundry
-                </span>
-              </div>
-              <div className="amen-item ">
-                <div className="icon my-1">
-                  <UilRestaurant className="h-6 w-6 text-gray-500" />
-                </div>
-                <span className="text-sm text-gray-500 font-normal capitalize">
-                  Food
-                </span>
-              </div>
-              <div className="amen-item ">
-                <div className="icon my-1">
-                  <UilWind className="h-6 w-6 text-gray-500" />
-                </div>
-                <span className="text-sm text-gray-500 font-normal capitalize">
-                  Air Conditioner
-                </span>
-              </div>
-              <div className="amen-item ">
-                <div className="icon my-1">
-                  <UilCloudMoon className="h-6 w-6 text-gray-500" />
-                </div>
-                <span className="text-sm text-gray-500 font-normal capitalize">
-                  24/7
-                </span>
-              </div>{" "}
-              <div className="amen-item ">
-                <div className="icon my-1">
-                  <UilToiletPaper className="h-6 w-6 text-gray-500" />
-                </div>
-                <span className="text-sm text-gray-500 font-normal capitalize">
-                  Attached Washrooms
-                </span>
-              </div>
+              </div> */}
+
+              {amenities.includes("wi-fi") && <WifiBadge />}
+              {amenities.includes("balcony") && <BalconyBadge />}
+              {amenities.includes("ac") && <AcBadge />}
+              {amenities.includes("with-food") && <WithFoodBadge />}
+              {amenities.includes("24/7") && <TwentyFourSevenBadge />}
+              {amenities.includes("laundry") && <LaundryBadge />}
+              {amenities.includes("attached washrooms") && (
+                <AttachedWashroomBadge />
+              )}
             </div>
           </div>
 

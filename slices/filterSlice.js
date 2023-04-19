@@ -13,7 +13,7 @@ const initialState = {
   amenities: [
     "wi-fi",
     "balcony",
-    "with food",
+    "with-food",
     "ac",
     "laundry",
     "24/7",
@@ -62,6 +62,13 @@ export const filterSlice = createSlice({
       let index = state.selectedSharings.indexOf(action.payload);
       state.selectedSharings.splice(index, 1);
     },
+    addSelectedAmenity: (state, action) => {
+      state.selectedAmenities.push(action.payload);
+    },
+    removeSelectedAmenity: (state, action) => {
+      let index = state.selectedAmenities.indexOf(action.payload);
+      state.selectedAmenities.splice(index, 1);
+    },
   },
 });
 
@@ -77,5 +84,7 @@ export const {
   addSelectedSharing,
   removeSelectedSharing,
   toggleSideBar,
+  addSelectedAmenity,
+  removeSelectedAmenity,
 } = filterSlice.actions;
 export default filterSlice.reducer;

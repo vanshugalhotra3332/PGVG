@@ -82,10 +82,11 @@ input[type="range"]::-webkit-slider-thumb {
     @apply text-gray-800 lg:text-base text-xs font-semibold tracking-widest;
   }
 
-  .amen-item {
-    @apply my-2 mx-4 inline-flex flex-col items-center justify-center px-2 py-1 w-full xs:w-auto;
+  .amenities-items > * {
+    @apply my-2 mx-4 inline-flex flex-col items-center justify-center px-2 py-1 w-full xs:w-auto
+    !border-none !rounded-none !bg-transparent !shadow-none hover:!scale-100;
   }
-
+  
   .explore-item {
     @apply inline-flex items-center flex-col justify-center px-2 cursor-pointer basis-auto my-2;
   }

@@ -38,7 +38,7 @@ const LandingPage = () => {
             className="rounded-lg !relative"
             src={"/assets/img/background/home.webp"}
             alt={"Home"}
-            layout="fill"
+            fill
             style={{ objectFit: "cover" }}
           />
         </div>

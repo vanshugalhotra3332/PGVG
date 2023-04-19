@@ -10,7 +10,7 @@ const Testimonial = ({ img }) => {
             alt="testimonial"
             src={img}
             className="!w-14 !h-14 !relative rounded-[50%] flex-shrink-0 object-cover object-center"
-            layout="fill"
+            fill
             style={{ objectFit: "cover" }}
           />
           <span className="flex-grow flex flex-col pl-4">

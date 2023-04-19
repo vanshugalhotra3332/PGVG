@@ -10,81 +10,88 @@ import {
   UilBed,
 } from "@iconscout/react-unicons";
 
-const amenitiesBadgeClick = (event) => {
-  event.target.classList.toggle("badge-select");
-};
-
-const sharingBadgeClick = (event) => {
-  event.target.classList.toggle("badge-select");
-
-  let badgeText = event.target.childNodes[1].innerText.toLowerCase();
-  if (badgeText != "Any") {
-    if (selectedSharings.includes(badgeText)) {
-      dispatch(removeSelectedSharing(badgeText));
-    } else {
-      dispatch(addSelectedSharing(badgeText));
-    }
-  }
-};
-
-export const WifiBadge = () => {
+export const WifiBadge = ({ amenitiesBadgeClick }) => {
   return (
-    <div className={`convenience-badge`} onClick={amenitiesBadgeClick}>
+    <div
+      className={`convenience-badge`}
+      id="wi-fi"
+      onClick={amenitiesBadgeClick}
+    >
       <UilWifi className="convenience-badge-icon" />
       <span className="convenience-badge-text">Wi-Fi</span>
     </div>
   );
 };
-export const BalconyBadge = () => {
+export const BalconyBadge = ({ amenitiesBadgeClick }) => {
   return (
-    <div className={`convenience-badge`} onClick={amenitiesBadgeClick}>
+    <div
+      className={`convenience-badge`}
+      id="balcony"
+      onClick={amenitiesBadgeClick}
+    >
       <UilHouseUser className="convenience-badge-icon" />
       <span className="convenience-badge-text">Balcony</span>
     </div>
   );
 };
-export const WithFoodBadge = () => {
+export const WithFoodBadge = ({ amenitiesBadgeClick }) => {
   return (
-    <div className={`convenience-badge`} onClick={amenitiesBadgeClick}>
+    <div
+      className={`convenience-badge`}
+      id="with-food"
+      onClick={amenitiesBadgeClick}
+    >
       <UilRestaurant className="convenience-badge-icon" />
       <span className="convenience-badge-text">With Food</span>
     </div>
   );
 };
-export const AcBadge = () => {
+export const AcBadge = ({ amenitiesBadgeClick }) => {
   return (
-    <div className={`convenience-badge`} onClick={amenitiesBadgeClick}>
+    <div className={`convenience-badge`} id="ac" onClick={amenitiesBadgeClick}>
       <UilWind className="convenience-badge-icon" />
       <span className="convenience-badge-text">AC</span>
     </div>
   );
 };
-export const LaundryBadge = () => {
+export const LaundryBadge = ({ amenitiesBadgeClick }) => {
   return (
-    <div className={`convenience-badge`} onClick={amenitiesBadgeClick}>
+    <div
+      className={`convenience-badge`}
+      id="laundry"
+      onClick={amenitiesBadgeClick}
+    >
       <UilWater className="convenience-badge-icon" />
       <span className="convenience-badge-text">Laundry</span>
     </div>
   );
 };
-export const TwentyFourSevenBadge = () => {
+export const TwentyFourSevenBadge = ({ amenitiesBadgeClick }) => {
   return (
-    <div className={`convenience-badge`} onClick={amenitiesBadgeClick}>
+    <div
+      className={`convenience-badge`}
+      id="24/7"
+      onClick={amenitiesBadgeClick}
+    >
       <UilCloudMoon className="convenience-badge-icon" />
       <span className="convenience-badge-text">24/7</span>
     </div>
   );
 };
-export const AttachedWashroomBadge = () => {
+export const AttachedWashroomBadge = ({ amenitiesBadgeClick }) => {
   return (
-    <div className={`convenience-badge `}>
+    <div
+      className={`convenience-badge `}
+      id="attached washrooms"
+      onClick={amenitiesBadgeClick}
+    >
       <UilToiletPaper className="convenience-badge-icon" />
       <span className="convenience-badge-text">Attached Washroom</span>
     </div>
   );
 };
 
-export const BedBadge = ({sharingBadgeClick, sharing}) => {
+export const BedBadge = ({ sharingBadgeClick, sharing }) => {
   return (
     <div className={`convenience-badge`} onClick={sharingBadgeClick}>
       <UilBed className="convenience-badge-icon" />

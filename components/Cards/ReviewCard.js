@@ -13,7 +13,7 @@ const ReviewCard = () => {
                   <Image
                     src={"/assets/img/others/eazy.jpg"}
                     alt={""}
-                    layout="fill"
+                    fill
                     style={{ objectFit: "cover" }}
                     className="rounded-full"
                   />
