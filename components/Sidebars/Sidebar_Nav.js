@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { closeSideBar, toggleSideBar } from "@/slices/navSlice";
+import { toggleFilterSideBar } from "@/slices/filterSlice";
 import Image from "next/image";
 
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -17,6 +18,7 @@ import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
+import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 
 const Sidebar_Nav = () => {
   const Router = useRouter();
@@ -25,6 +27,7 @@ const Sidebar_Nav = () => {
   const sideBarOpenWidth = useSelector((state) => state.nav.sideBarOpenWidth);
   const sideBarCloseWidth = useSelector((state) => state.nav.sideBarCloseWidth);
 
+  const [subMenuOpen, setSubMenuOpen] = useState(false);
   const { image, name, email } = useSelector((state) => state.user.userData);
   const loggedIn = useSelector((state) => state.user.loggedIn);
 
@@ -67,7 +70,7 @@ const Sidebar_Nav = () => {
   return (
     <div
       className={`sidebar 
-      } inline-block overflow-y-auto fixed flex-1 left-0 top-0 shadow-lg z-[100000]`}
+      } inline-block overflow-y-auto fixed flex-1 left-0 top-0 shadow-lg z-[10000]`}
     >
       <motion.div
         variants={Sidebar_animation}
@@ -138,19 +141,52 @@ const Sidebar_Nav = () => {
                   onClick={linkClick}
                 >
                   <HomeOutlinedIcon className="h-6 w-6 min-w-max" />
-                  Home
+                  <p className="sidebar-nav-link-p">Home</p>
                 </Link>
               </li>
+              {/* explore */}
               <li>
                 <Link
+                  className={`sidebar-nav-link`}
+                  onClick={() => setSubMenuOpen(!subMenuOpen)}
                   href={"/explore"}
-                  className="sidebar-nav-link"
-                  onClick={linkClick}
                 >
                   <ExploreOutlinedIcon className="h-6 w-6 min-w-max" />
-                  Explore
+                  <p className="sidebar-nav-link-p">Explore</p>
+                  <KeyboardArrowDownOutlinedIcon
+                    className={` ${
+                      subMenuOpen && "rotate-180"
+                    } duration-200 ml-auto`}
+                  />
                 </Link>
               </li>
+              <motion.ul
+                animate={
+                  subMenuOpen
+                    ? {
+                        height: "fit-content",
+                      }
+                    : {
+                        height: 0,
+                      }
+                }
+                className="flex h-0 flex-col pl-14 text-[0.8rem] font-normal overflow-hidden"
+              >
+                <li>
+                  <Link
+                    href={"/explore"}
+                    className="sidebar-nav-link !bg-transparent capitalize"
+                    onClick={() => {
+                      dispatch(toggleFilterSideBar());
+                      dispatch(closeSideBar());
+                    }}
+                  >
+                    Filters
+                  </Link>
+                </li>
+              </motion.ul>
+
+              {/* services */}
               <li>
                 <Link
                   href={"/explore"}
@@ -158,7 +194,7 @@ const Sidebar_Nav = () => {
                   onClick={linkClick}
                 >
                   <DesignServicesOutlinedIcon className="h-6 w-6 min-w-max" />
-                  Services
+                  <p className="sidebar-nav-link-p">Services</p>
                 </Link>
               </li>
               <li>
@@ -168,7 +204,7 @@ const Sidebar_Nav = () => {
                   onClick={linkClick}
                 >
                   <InfoOutlinedIcon className="h-6 w-6 min-w-max" />
-                  About
+                  <p className="sidebar-nav-link-p">About</p>
                 </Link>
               </li>
               <li>
@@ -178,7 +214,7 @@ const Sidebar_Nav = () => {
                   onClick={linkClick}
                 >
                   <AddIcCallOutlinedIcon className="h-6 w-6 min-w-max" />
-                  Contact
+                  <p className="sidebar-nav-link-p">Contact</p>
                 </Link>
               </li>
             </ul>

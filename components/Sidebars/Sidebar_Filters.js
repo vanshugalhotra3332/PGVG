@@ -11,16 +11,16 @@ import {
   toggleShowSortType,
   addSelectedSharing,
   removeSelectedSharing,
-  toggleSideBar,
+  toggleFilterSideBar,
   addSelectedAmenity,
   removeSelectedAmenity,
 } from "@/slices/filterSlice";
 
 import RoomIcon from "@mui/icons-material/Room";
-import HotelOutlinedIcon from '@mui/icons-material/HotelOutlined';
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
-import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
+import HotelOutlinedIcon from "@mui/icons-material/HotelOutlined";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
+import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 
 import {
   AcBadge,
@@ -32,6 +32,8 @@ import {
   WifiBadge,
   WithFoodBadge,
 } from "../Badges";
+
+import { motion } from "framer-motion";
 
 const Sidebar_Filters = () => {
   const dispatch = useDispatch();
@@ -59,6 +61,8 @@ const Sidebar_Filters = () => {
   const maxRentPerMonth = parseInt(
     useSelector((state) => state.filter.maxPrice)
   );
+
+  const sideBarCloseWidth = useSelector((state) => state.nav.sideBarCloseWidth);
 
   const properties = ["All", "PG", "Flat"];
   const sortByOptions = [
@@ -130,15 +134,30 @@ const Sidebar_Filters = () => {
     }
     getPGs();
     if (window.innerWidth <= 1024) {
-      dispatch(toggleSideBar());
+      dispatch(toggleFilterSideBar());
     }
+  };
+  const sidebarAnimation = {
+    // animation variants
+    open: {
+      y: 0, // animate to position 0 (top of viewport)
+      transition: {
+        duration: 0.2, // animation duration
+      },
+    },
+    closed: {
+      y: "-105%", // animate exit to position outside of viewport (top)
+      transition: {
+        duration: 0.2, // animation duration
+      },
+    },
   };
 
   return (
-    <div
-      className={`${
-        showSideBar ? "!inline-block" : "hidden"
-      } hidden lg:!inline-block h-screen overflow-y-auto scrollbar-none sidebar w-full lg:w-1/4 border-2 border-gray-200 border-opacity-60 rounded-lg border-t-0 transition-all transform duration-300 ease-in-out z-[2000] flex-none fixed left-0`}
+    <motion.div
+      variants={sidebarAnimation}
+      animate={showSideBar ? "open" : "closed"}
+      className={`lg:!inline-block h-screen overflow-y-auto scrollbar-none sidebar w-full lg:w-1/4 border-2 border-gray-200 border-opacity-60 rounded-lg border-t-0 transition-all transform duration-300 ease-in-out z-[10000] flex-none fixed left-0 ml-[${sideBarCloseWidth}] bg-white`}
     >
       <div className="sidebar-elements px-10 pt-10 pb-20 ">
         {/* filter & reset */}
@@ -151,9 +170,9 @@ const Sidebar_Filters = () => {
             Reset
           </span>
           <CloseOutlinedIcon
-            className="h-6 w-6 cursor-pointer text-sm lg:!hidden"
+            className="h-6 w-6 cursor-pointer text-sm"
             onClick={() => {
-              dispatch(toggleSideBar());
+              dispatch(toggleFilterSideBar());
             }}
           />
         </div>
@@ -387,7 +406,7 @@ const Sidebar_Filters = () => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

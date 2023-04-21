@@ -14,13 +14,13 @@ const LandingPage = () => {
   const sideBarOpenWidth = useSelector((state) => state.nav.sideBarOpenWidth);
   const sideBarCloseWidth = useSelector((state) => state.nav.sideBarCloseWidth);
 
+  let marginLeft = isSideBarOpen ? sideBarOpenWidth : sideBarCloseWidth;
+
   return (
     <div className="flex">
       <Sidebar_Nav />
       <div
-        className={`landing  overflow-y-auto overflow-x-hidden ml-[${
-          isSideBarOpen ? sideBarOpenWidth : sideBarCloseWidth
-        }]`}
+        className={`landing overflow-y-auto overflow-x-hidden ml-[${marginLeft}]`}
       >
         {/* image & text section */}
         <section className="flex-col justify-around items-center flex lg:flex-row">

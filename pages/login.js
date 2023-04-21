@@ -7,6 +7,7 @@ import { logIn, setUserData } from "@/slices/userSlice";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Sidebar_Nav from "@/components/Sidebars/Sidebar_Nav";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -102,6 +103,7 @@ const Login = () => {
 
   return (
     <section className="login h-screen bg-blue-50/70 flex justify-center">
+      <Sidebar_Nav />
       <ToastContainer
         position="top-center"
         autoClose={1000}

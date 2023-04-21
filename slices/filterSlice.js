@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   showSideBar: false,
+  openFilterSideBarWidth: "25vw",
+  closeFilterSideBarWidth: "0vw",
   minPrice: 0,
   maxPrice: 20000,
   propertyType: "All",
@@ -28,7 +30,7 @@ export const filterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
-    toggleSideBar: (state) => {
+    toggleFilterSideBar: (state) => {
       state.showSideBar = !state.showSideBar;
     },
     setMinPrice: (state, action) => {
@@ -83,7 +85,7 @@ export const {
   toggleShowSortType,
   addSelectedSharing,
   removeSelectedSharing,
-  toggleSideBar,
+  toggleFilterSideBar,
   addSelectedAmenity,
   removeSelectedAmenity,
 } = filterSlice.actions;

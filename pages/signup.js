@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { logIn, setUserData } from "@/slices/userSlice";
+import Sidebar_Nav from "@/components/Sidebars/Sidebar_Nav";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -124,6 +125,7 @@ const Signup = () => {
 
   return (
     <section className="Signup h-screen bg-blue-50/70 flex justify-center">
+      <Sidebar_Nav />
       <ToastContainer
         position="top-center"
         autoClose={1000}

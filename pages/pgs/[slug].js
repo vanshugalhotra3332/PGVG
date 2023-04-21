@@ -50,13 +50,13 @@ const Slug = ({ pg }) => {
   const isSideBarOpen = useSelector((state) => state.nav.isSideBarOpen);
   const sideBarOpenWidth = useSelector((state) => state.nav.sideBarOpenWidth);
   const sideBarCloseWidth = useSelector((state) => state.nav.sideBarCloseWidth);
+  let marginLeft = isSideBarOpen ? sideBarOpenWidth : sideBarCloseWidth;
+
   return (
     <div className="flex">
       <Sidebar_Nav />
       <div
-        className={`pg-details overflow-y-auto overflow-x-hidden ml-[${
-          isSideBarOpen ? sideBarOpenWidth : sideBarCloseWidth
-        }] py-10 mr-[4vw]`}
+        className={`pg-details overflow-y-auto overflow-x-hidden ml-[${marginLeft}] py-10 mr-[${sideBarCloseWidth}]`}
       >
         {/* image gallery quick view */}
         {showQuickView && (
