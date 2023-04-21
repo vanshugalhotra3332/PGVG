@@ -5,7 +5,7 @@ import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
-import { closeSideBar } from "@/slices/navSlice";
+import { closeSideBar, toggleSideBar } from "@/slices/navSlice";
 import Image from "next/image";
 
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -22,6 +22,9 @@ const Sidebar_Nav = () => {
   const Router = useRouter();
   const dispatch = useDispatch();
   const isSideBarOpen = useSelector((state) => state.nav.isSideBarOpen);
+  const sideBarOpenWidth = useSelector((state) => state.nav.sideBarOpenWidth);
+  const sideBarCloseWidth = useSelector((state) => state.nav.sideBarCloseWidth);
+
   const { image, name, email } = useSelector((state) => state.user.userData);
   const loggedIn = useSelector((state) => state.user.loggedIn);
 
@@ -30,13 +33,13 @@ const Sidebar_Nav = () => {
   const Sidebar_animation = {
     // system view
     open: {
-      width: "100vw",
+      width: sideBarOpenWidth,
       transition: {
         damping: 40,
       },
     },
     closed: {
-      width: "0rem",
+      width: sideBarCloseWidth,
       transition: {
         damping: 40,
       },
@@ -49,18 +52,21 @@ const Sidebar_Nav = () => {
   };
 
   return (
-    <div className="sidebar md:hidden">
+    <div
+      className={`sidebar 
+      } inline-block overflow-y-auto fixed left-0 top-0 shadow-lg z-[100000]`}
+    >
       <motion.div
         variants={Sidebar_animation}
         animate={isSideBarOpen ? "open" : "closed"}
-        className="bg-white text-gray shadow-xl z-[10000] w-screen max-w-[100vw] h-[91vh] overflow-hidden md:relative fixed"
+        className="bg-white text-gray shadow-xl z-[10000] h-screen w-full"
       >
         {/* Menus */}
         <div className="flex flex-col h-full">
           {/* user details */}
 
           <div className="user-details inline-flex justify-center flex-col items-center mt-4 border-b-2 border-gray-200 border-opacity-60">
-            <div className="user-icon relative w-16 h-16">
+            <div className="user-icon relative w-16 h-16 md:w-12 md:h-12 lg:w-16 lg:h-16 min-w-max">
               <Image
                 alt="User"
                 className="rounded-full"
@@ -69,7 +75,8 @@ const Sidebar_Nav = () => {
                 src={image}
               />
             </div>
-            {loggedIn && (
+
+            {isSideBarOpen && loggedIn && (
               <div className="user-details py-4 flex items-center justify-center flex-col">
                 <span className="inline-block text-center text-xl text-gray-700 ">
                   Hi,{" "}
@@ -78,14 +85,14 @@ const Sidebar_Nav = () => {
                 <p className="text-blue-600">{email}</p>
               </div>
             )}
-            {!loggedIn && (
+            {isSideBarOpen && !loggedIn && (
               <div
                 className={`login-signup flex flex-col items-center justify-center py-2`}
               >
-                <h1 className="block text-base  text-gray-500 truncate tracking-tight font-normal dark:text-gray-400">
+                <h1 className="block text-base md:text-xs lg:text-base text-gray-500 truncate tracking-tight font-normal dark:text-gray-400">
                   To access account and dashboard
                 </h1>
-                <div className="btns">
+                <div className="btns flex items-center justify-center">
                   <button
                     className="uppercase tracking-tight text-blue-600 text-sm font-medium my-2 py-2 px-5 border-2 border-gray-200 hover:border-blue-500 transition-all duration-100 ease-out"
                     onClick={() => {
@@ -205,11 +212,25 @@ const Sidebar_Nav = () => {
         </div>
 
         {/* back button */}
+
         <motion.div
           onClick={() => {
-            dispatch(closeSideBar());
+            dispatch(toggleSideBar());
           }}
-          className="back-icon absolute w-fit h-fit z-[10000] right-2 bottom-5 cursor-pointer"
+          animate={
+            isSideBarOpen
+              ? {
+                  x: 0,
+                  y: 0,
+                  rotate: 0,
+                }
+              : {
+                  x: -10,
+                  rotate: 180,
+                }
+          }
+          transition={{ duration: 0 }}
+          className="absolute w-fit h-fit  z-50 right-2 bottom-3 cursor-pointer"
         >
           <ArrowBackIosOutlinedIcon className="h-6 w-6 mr-2" />
         </motion.div>

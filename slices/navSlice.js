@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isSideBarOpen: false,
   isUserMenuOpen: false,
+  sideBarOpenWidth: "20vw",
+  sideBarCloseWidth: "4vw",
 };
 
 export const navSlice = createSlice({
@@ -19,6 +21,13 @@ export const navSlice = createSlice({
 
     toggleSideBar: (state) => {
       state.isSideBarOpen = !state.isSideBarOpen;
+    },
+
+    setSideBarOpenWidth: (state, action) => {
+      state.sideBarOpenWidth = action.payload;
+    },
+    setSideBarCloseWidth: (state, action) => {
+      state.sideBarCloseWidth = action.payload;
     },
 
     openUserMenu: (state) => {
@@ -42,5 +51,7 @@ export const {
   openUserMenu,
   closeUserMenu,
   toggleUserMenu,
+  setSideBarCloseWidth,
+  setSideBarOpenWidth,
 } = navSlice.actions;
 export default navSlice.reducer;

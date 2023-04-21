@@ -86,7 +86,7 @@ input[type="range"]::-webkit-slider-thumb {
     @apply my-2 mx-4 inline-flex flex-col items-center justify-center px-2 py-1 w-full xs:w-auto
     !border-none !rounded-none !bg-transparent !shadow-none hover:!scale-100;
   }
-  
+
   .explore-item {
     @apply inline-flex items-center flex-col justify-center px-2 cursor-pointer basis-auto my-2;
   }
@@ -100,8 +100,13 @@ input[type="range"]::-webkit-slider-thumb {
     @apply text-gray-700 text-xs tracking-widest font-semibold pt-2 capitalize;
   }
   .sidebar-nav-link {
-    @apply p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-300 font-medium;
+    @apply p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-300 font-medium text-lg text-center;
   }
+
+  .sidebar-nav-link:hover {
+    @apply bg-blue-100 text-blue-600;
+  }
+
   .sidebar-nav-link-active {
     @apply bg-blue-100 text-blue-600;
   }
