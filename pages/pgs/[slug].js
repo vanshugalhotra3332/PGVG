@@ -56,7 +56,11 @@ const Slug = ({ pg }) => {
     <div className="flex">
       <Sidebar_Nav />
       <div
-        className={`pg-details overflow-y-auto overflow-x-hidden ml-[${marginLeft}] py-10 mr-[${sideBarCloseWidth}]`}
+        className={`pg-details overflow-y-auto overflow-x-hidden py-10`}
+        style={{
+          marginLeft: marginLeft,
+          marginRight: sideBarCloseWidth,
+        }}
       >
         {/* image gallery quick view */}
         {showQuickView && (

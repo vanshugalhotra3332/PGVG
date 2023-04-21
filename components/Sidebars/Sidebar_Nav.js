@@ -63,8 +63,8 @@ const Sidebar_Nav = () => {
   };
 
   const linkClick = (event) => {
-    dispatch(closeSideBar());
     Router.push(event.href);
+    dispatch(closeSideBar());
   };
 
   return (

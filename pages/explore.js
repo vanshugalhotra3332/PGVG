@@ -52,13 +52,19 @@ const Explore = () => {
   let marginLeft =
     parseFloat(marginForSideBar) + parseFloat(marginForFilterBar);
 
+  marginLeft += "vw";
+
   return (
     <section className="flex">
       <Sidebar_Filters />
       <Sidebar_Nav />
       {/* main content */}
       <div
-        className={`content w-full overflow-y-auto overflow-x-hidden xl:px-12 mr-[${sideBarCloseWidth}] py-10 ml-[${marginLeft}vw]`}
+        className={`content w-full overflow-y-auto overflow-x-hidden md:px-12 py-10`}
+        style={{
+          marginLeft: marginLeft,
+          marginRight: sideBarCloseWidth,
+        }}
       >
         {/* mobile view tabs */}
         <div className="lg:hidden mobile-view-tabs w-full">

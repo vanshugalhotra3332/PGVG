@@ -20,7 +20,10 @@ const LandingPage = () => {
     <div className="flex">
       <Sidebar_Nav />
       <div
-        className={`landing overflow-y-auto overflow-x-hidden ml-[${marginLeft}]`}
+        className={`landing overflow-y-auto overflow-x-hidden`}
+        style={{
+          marginLeft: marginLeft,
+        }}
       >
         {/* image & text section */}
         <section className="flex-col justify-around items-center flex lg:flex-row">
