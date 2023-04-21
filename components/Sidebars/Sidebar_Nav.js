@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import { signOut } from "next-auth/react";
@@ -30,16 +30,29 @@ const Sidebar_Nav = () => {
 
   const [selected, setSelected] = useState("dashboard");
 
+  const [windowWidth, setWindowWidth] = useState(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const Sidebar_animation = {
     // system view
     open: {
-      width: sideBarOpenWidth,
+      width: windowWidth >= "768" ? sideBarOpenWidth : "100vw",
       transition: {
         damping: 40,
       },
     },
     closed: {
-      width: sideBarCloseWidth,
+      width: windowWidth >= "768" ? sideBarCloseWidth : "0vw",
       transition: {
         damping: 40,
       },
@@ -54,7 +67,7 @@ const Sidebar_Nav = () => {
   return (
     <div
       className={`sidebar 
-      } inline-block overflow-y-auto fixed left-0 top-0 shadow-lg z-[100000]`}
+      } inline-block overflow-y-auto fixed flex-1 left-0 top-0 shadow-lg z-[100000]`}
     >
       <motion.div
         variants={Sidebar_animation}

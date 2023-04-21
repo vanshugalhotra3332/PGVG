@@ -18,11 +18,9 @@ const LandingPage = () => {
     <div className="flex">
       <Sidebar_Nav />
       <div
-        className={`landing md:${
-          isSideBarOpen
-            ? `!ml-[${sideBarOpenWidth}]`
-            : `!ml-[${sideBarCloseWidth}]`
-        } overflow-y-auto overflow-x-hidden md:ml-[20vw]`}
+        className={`landing ml-[${
+          isSideBarOpen ? sideBarOpenWidth : sideBarCloseWidth
+        }] overflow-y-auto overflow-x-hidden`}
       >
         {/* image & text section */}
         <section className="flex-col justify-around items-center flex lg:flex-row">
@@ -107,7 +105,7 @@ const LandingPage = () => {
               Nearby <span className="text-blue-500">PG</span> Locations
             </h1>
           </div>
-          <div className="nearby-pg-cards py-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 grid-cols-1 items-center justify-center lg:px-20 px-8 md:px-8">
+          <div className="nearby-pg-cards py-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 xs:grid-cols-2 grid-cols-1 items-center justify-center lg:px-20 px-8 md:px-8">
             <PGcard
               slug={"eazyrooms"}
               image={"/assets/img/locations/sec15.jpg"}
