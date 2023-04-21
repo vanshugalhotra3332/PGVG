@@ -10,6 +10,7 @@ import Sidebar_Filters from "@/components/Sidebars/Sidebar_Filters";
 import { useSelector, useDispatch } from "react-redux";
 import { setPGs } from "@/slices/pgSlice";
 import { toggleSideBar } from "@/slices/filterSlice";
+import Sidebar_Nav from "@/components/Sidebars/Sidebar_Nav";
 
 const Explore = () => {
   const dispatch = useDispatch();
@@ -32,15 +33,23 @@ const Explore = () => {
   pgs.map((pg) => coords.push(pg.location.coordinates));
 
   const showSideBar = useSelector((state) => state.filter.showSideBar);
+  // lg:w-3/4 lg:px-12 px-6 py-4 overflow-y-auto flex-grow lg:ml-[25vw]
+
+  const isSideBarOpen = useSelector((state) => state.nav.isSideBarOpen);
+  const sideBarOpenWidth = useSelector((state) => state.nav.sideBarOpenWidth);
+  const sideBarCloseWidth = useSelector((state) => state.nav.sideBarCloseWidth);
 
   return (
     <section className="flex">
-      <Sidebar_Filters />
+      {/* <Sidebar_Filters /> */}
+      <Sidebar_Nav />
       {/* main content */}
       <div
         className={`content w-full ${
           showSideBar ? "hidden" : "inline-block"
-        } lg:w-3/4 lg:px-12 px-6 py-4 overflow-y-auto flex-grow lg:ml-[25vw]`}
+        } overflow-y-auto overflow-x-hidden ml-[${
+          isSideBarOpen ? sideBarOpenWidth : sideBarCloseWidth
+        }]  xl:px-12 mr-[4vw] py-10`}
       >
         {/* mobile view tabs */}
         <div className="lg:hidden mobile-view-tabs w-full">

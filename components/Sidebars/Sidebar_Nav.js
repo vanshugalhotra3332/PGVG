@@ -28,7 +28,7 @@ const Sidebar_Nav = () => {
   const { image, name, email } = useSelector((state) => state.user.userData);
   const loggedIn = useSelector((state) => state.user.loggedIn);
 
-  const [selected, setSelected] = useState("dashboard");
+  const [selected, setSelected] = useState("home");
 
   const [windowWidth, setWindowWidth] = useState(null);
 
@@ -130,7 +130,7 @@ const Sidebar_Nav = () => {
           </div>
 
           <div className="list-content py-2">
-            <ul className="whitespace-pre px-2.5 text-[0.9rem] pt-5 pb-2 flex flex-col gap-1 font-medium overflow-x-hidden">
+            <ul className="whitespace-pre xl:px-2.5 text-[0.9rem] pt-5 pb-2 flex flex-col gap-1 font-medium overflow-x-hidden">
               <li>
                 <Link
                   href={"/"}
