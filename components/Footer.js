@@ -3,6 +3,9 @@ import { useRouter } from "next/router";
 
 const Footer = () => {
   const Router = useRouter();
+
+  // local variables
+
   const showComponent =
     Router.pathname !== "/login" && Router.pathname !== "/signup";
   return (

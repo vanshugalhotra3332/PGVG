@@ -1,20 +1,24 @@
-import React, { useState, useEffect } from "react";
-import Map from "@/components/Map";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
+// components import
+import Map from "@/components/Map";
+import PGcard from "@/components/Cards/PGcard";
+import Sidebar_Filters from "@/components/Sidebars/Sidebar_Filters";
+import Sidebar_Nav from "@/components/Sidebars/Sidebar_Nav";
+
+// icons import
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
 
-import PGcard from "@/components/Cards/PGcard";
-import Sidebar_Filters from "@/components/Sidebars/Sidebar_Filters";
-
-import { useSelector, useDispatch } from "react-redux";
+// slices import
 import { setPGs } from "@/slices/pgSlice";
 import { toggleFilterSideBar } from "@/slices/filterSlice";
-import Sidebar_Nav from "@/components/Sidebars/Sidebar_Nav";
 
 const Explore = () => {
   const dispatch = useDispatch();
 
+  // REACT STUFF
   useEffect(() => {
     async function getPGs() {
       try {
@@ -28,7 +32,10 @@ const Explore = () => {
     getPGs();
   }, [dispatch]);
 
+  // local variables
   let coords = [];
+
+  // redux state
   const pgs = useSelector((state) => state.pgs.pgs);
   pgs.map((pg) => coords.push(pg.location.coordinates));
 
@@ -43,6 +50,8 @@ const Explore = () => {
   const closeFilterSideBarWidth = useSelector(
     (state) => state.filter.closeFilterSideBarWidth
   );
+
+  // local variables
 
   let marginForSideBar = isSideBarOpen ? sideBarOpenWidth : sideBarCloseWidth;
   let marginForFilterBar = showSideBar

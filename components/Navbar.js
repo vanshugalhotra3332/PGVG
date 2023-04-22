@@ -1,7 +1,11 @@
 import React from "react";
-import MenuIcon from "@mui/icons-material/Menu";
 import { useDispatch } from "react-redux";
+
+// slices import
 import { toggleSideBar } from "@/slices/navSlice";
+
+// icons import
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Navbar = () => {
   const dispatch = useDispatch();

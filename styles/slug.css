@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .big-tab-button {
+    @apply text-base tracking-wider leading-snug text-gray-800 uppercase font-bold py-6;
+  }
+
+  .big-active-tab {
+    @apply border-blue-500 border-b-2 text-blue-500;
+  }
+
+  .overview-info {
+    @apply my-3;
+  }
+
+  .overview-info span {
+    @apply lg:text-sm text-xs tracking-widest font-semibold text-gray-500 leading-relaxed;
+  }
+  .overview-info p {
+    @apply text-gray-800 lg:text-base text-xs font-semibold tracking-widest;
+  }
+
+  .amenities-items > * {
+    @apply my-2 mx-4 inline-flex flex-col items-center justify-center px-2 py-1 w-full xs:w-auto
+    !border-none !rounded-none !bg-transparent !shadow-none hover:!scale-100;
+  }
+}

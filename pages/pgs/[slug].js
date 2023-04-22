@@ -1,4 +1,29 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import Image from "next/image";
+import Link from "next/link";
+
+// mongoose stuff
+import mongoose from "mongoose";
+import PGs from "@/models/PGs";
+
+// components import
+import ReviewCard from "@/components/Cards/ReviewCard";
+import GalleryQuickView from "@/components/GalleryQuickView";
+import Map from "@/components/Map";
+import SharingDropDown from "@/components/SharingDropDown";
+import Sidebar_Nav from "@/components/Sidebars/Sidebar_Nav";
+import {
+  AcBadge,
+  AttachedWashroomBadge,
+  BalconyBadge,
+  LaundryBadge,
+  TwentyFourSevenBadge,
+  WifiBadge,
+  WithFoodBadge,
+} from "../../components/Badges";
+
+// icons import
 import RoomIcon from "@mui/icons-material/Room";
 import AddIcon from "@mui/icons-material/Add";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
@@ -11,27 +36,6 @@ import MovieFilterOutlinedIcon from "@mui/icons-material/MovieFilterOutlined";
 import MedicationLiquidOutlinedIcon from "@mui/icons-material/MedicationLiquidOutlined";
 import ForestOutlinedIcon from "@mui/icons-material/ForestOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-
-import Map from "@/components/Map";
-import Image from "next/image";
-import GalleryQuickView from "@/components/GalleryQuickView";
-import ReviewCard from "@/components/Cards/ReviewCard";
-import Link from "next/link";
-import PGs from "@/models/PGs";
-import mongoose from "mongoose";
-import SharingDropDown from "@/components/SharingDropDown";
-import { useSelector } from "react-redux";
-
-import {
-  AcBadge,
-  AttachedWashroomBadge,
-  BalconyBadge,
-  LaundryBadge,
-  TwentyFourSevenBadge,
-  WifiBadge,
-  WithFoodBadge,
-} from "../../components/Badges";
-import Sidebar_Nav from "@/components/Sidebars/Sidebar_Nav";
 
 const Slug = ({ pg }) => {
   const {
@@ -46,10 +50,15 @@ const Slug = ({ pg }) => {
     amenities,
     gender,
   } = pg;
+  // local states
   const [showQuickView, setShowQuickView] = useState(false);
+
+  // redux states
   const isSideBarOpen = useSelector((state) => state.nav.isSideBarOpen);
   const sideBarOpenWidth = useSelector((state) => state.nav.sideBarOpenWidth);
   const sideBarCloseWidth = useSelector((state) => state.nav.sideBarCloseWidth);
+
+  // local variables
   let marginLeft = isSideBarOpen ? sideBarOpenWidth : sideBarCloseWidth;
 
   return (
@@ -486,6 +495,7 @@ const Slug = ({ pg }) => {
   );
 };
 
+// server side rendering
 export async function getServerSideProps(context) {
   if (!mongoose.connections[0].readyState) {
     await mongoose.connect(process.env.MONGO_URI);

@@ -1,16 +1,22 @@
 import { setMinPrice, setMaxPrice } from "@/slices/filterSlice";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 const RangeSlider = ({ step, priceCap }) => {
   const progressRef = useRef(null);
   const dispatch = useDispatch();
+
+  // redux state
+
   const min = useSelector((state) => state.filter.minPrice);
   const max = useSelector((state) => state.filter.maxPrice);
 
+  // local variables
   var minVal = 0;
   var maxVal = 20000;
 
+
+  // local functions
   const handleMin = (e) => {
     if (max - min >= priceCap && max <= maxVal) {
       if (parseInt(e.target.value) > parseInt(max)) {
@@ -36,6 +42,8 @@ const RangeSlider = ({ step, priceCap }) => {
       }
     }
   };
+
+  // REACT STUFF
 
   useEffect(() => {
     progressRef.current.style.left = (min / maxVal) * step + "%";

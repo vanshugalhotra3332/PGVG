@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  closeSideBar,
-  toggleSideBar,
-  toggleFilterSubMenu,
-} from "@/slices/navSlice";
-import { toggleFilterSideBar } from "@/slices/filterSlice";
 import Image from "next/image";
+
+// component imports
+
+// icons import
 
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
@@ -25,9 +22,22 @@ import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 
+// slices imports
+
+import {
+  closeSideBar,
+  toggleSideBar,
+  toggleFilterSubMenu,
+  setSelectedLink,
+} from "@/slices/navSlice";
+import { toggleFilterSideBar } from "@/slices/filterSlice";
+
 const Sidebar_Nav = () => {
   const Router = useRouter();
   const dispatch = useDispatch();
+
+  // redux states
+
   const isSideBarOpen = useSelector((state) => state.nav.isSideBarOpen);
   const sideBarOpenWidth = useSelector((state) => state.nav.sideBarOpenWidth);
   const sideBarCloseWidth = useSelector((state) => state.nav.sideBarCloseWidth);
@@ -36,9 +46,10 @@ const Sidebar_Nav = () => {
   const { image, name, email } = useSelector((state) => state.user.userData);
   const loggedIn = useSelector((state) => state.user.loggedIn);
 
-  const [selected, setSelected] = useState("home");
-
   const windowWidth = useSelector((state) => state.global.windowWidth);
+  const selectedLink = useSelector((state) => state.nav.selectedLink);
+
+  // Animation
 
   const Sidebar_animation = {
     // system view
@@ -56,8 +67,10 @@ const Sidebar_Nav = () => {
     },
   };
 
+  // Local functions
+
   const linkClick = (event) => {
-    Router.push(event.href);
+    dispatch(setSelectedLink(event.target.id));
     dispatch(closeSideBar());
   };
 
@@ -131,8 +144,9 @@ const Sidebar_Nav = () => {
               <li>
                 <Link
                   href={"/"}
-                  className="sidebar-nav-link sidebar-nav-link-active"
+                  className="sidebar-nav-link"
                   onClick={linkClick}
+                  id="home"
                 >
                   <HomeOutlinedIcon className="h-6 w-6 min-w-max" />
                   <p className="sidebar-nav-link-p">Home</p>
@@ -142,8 +156,12 @@ const Sidebar_Nav = () => {
               <li>
                 <Link
                   className={`sidebar-nav-link`}
-                  onClick={() => dispatch(toggleFilterSubMenu())}
+                  onClick={(event) => {
+                    linkClick(event);
+                    dispatch(toggleFilterSubMenu());
+                  }}
                   href={"/explore"}
+                  id="explore"
                 >
                   <ExploreOutlinedIcon className="h-6 w-6 min-w-max" />
                   <p className="sidebar-nav-link-p">Explore</p>
@@ -192,6 +210,7 @@ const Sidebar_Nav = () => {
                   href={"/explore"}
                   className="sidebar-nav-link"
                   onClick={linkClick}
+                  id="services"
                 >
                   <DesignServicesOutlinedIcon className="h-6 w-6 min-w-max" />
                   <p className="sidebar-nav-link-p">Services</p>
@@ -202,6 +221,7 @@ const Sidebar_Nav = () => {
                   href={"/explore"}
                   className="sidebar-nav-link"
                   onClick={linkClick}
+                  id="about"
                 >
                   <InfoOutlinedIcon className="h-6 w-6 min-w-max" />
                   <p className="sidebar-nav-link-p">About</p>
@@ -212,6 +232,7 @@ const Sidebar_Nav = () => {
                   href={"/explore"}
                   className="sidebar-nav-link"
                   onClick={linkClick}
+                  id="contact"
                 >
                   <AddIcCallOutlinedIcon className="h-6 w-6 min-w-max" />
                   <p className="sidebar-nav-link-p">Contact</p>

@@ -1,6 +1,8 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+//css imports
 import "@/styles/globals.css";
+import "@/styles/slug.css";
 import { SessionProvider } from "next-auth/react";
 import { store } from "../store/store";
 import { Provider } from "react-redux";

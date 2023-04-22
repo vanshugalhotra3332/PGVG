@@ -2,28 +2,34 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { signIn, useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+
+// component imports
+import Sidebar_Nav from "@/components/Sidebars/Sidebar_Nav";
+
+// icons import
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-import { useDispatch, useSelector } from "react-redux";
+// slices import
 import { logIn, setUserData } from "@/slices/userSlice";
-import Sidebar_Nav from "@/components/Sidebars/Sidebar_Nav";
 
 const Signup = () => {
   const dispatch = useDispatch();
-  const loggedIn = useSelector((state) => state.user.loggedIn);
+  const router = useRouter();
+  var { data: session } = useSession();
+
+  // local states
   const [openSetPasswordWindow, setOpenSetPasswordWindow] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const router = useRouter();
-  var { data: session } = useSession();
 
+  // REACT STUFF
   useEffect(() => {
     if (session) {
       setOpenSetPasswordWindow(true);
@@ -31,6 +37,8 @@ const Signup = () => {
       setOpenSetPasswordWindow(false);
     }
   }, [session]);
+
+  // local functions
 
   const handlePasswordChange = (e) => {
     const password = e.target.value;

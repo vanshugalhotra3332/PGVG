@@ -3,27 +3,34 @@ import Image from "next/image";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import { logIn, setUserData } from "@/slices/userSlice";
-import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+// components import
 import Sidebar_Nav from "@/components/Sidebars/Sidebar_Nav";
+
+// slices import
+import { logIn, setUserData } from "@/slices/userSlice";
+
+// icons import
+import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const loggedIn = useSelector((state) => state.user.loggedIn);
+  const router = useRouter();
+  const { data: session } = useSession();
+
+  // local states
   const [openOTPwindow, setOpenOTPwindow] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
-  const router = useRouter();
 
+  // local functions
   const handlePhoneNumberChange = (e) => {
     const inputPhoneNumber = e.target.value;
     if (/^\d{0,10}$/.test(inputPhoneNumber)) {
       setPhoneNumber(inputPhoneNumber);
     }
   };
-
-  const { data: session } = useSession();
 
   const LoginWithGoogle = async () => {
     await signIn("google");

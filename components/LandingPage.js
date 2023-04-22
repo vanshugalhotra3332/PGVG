@@ -1,15 +1,20 @@
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+
+// component imports
+
 import WhyChoose from "./Cards/WhyChoose";
 import Testimonial from "./Cards/Testimonial";
 import Carousel from "nuka-carousel/lib/carousel";
-import { useRouter } from "next/router";
 import Sidebar_Nav from "./Sidebars/Sidebar_Nav";
-import { useSelector } from "react-redux";
 import PGcard from "./Cards/PGcard";
 
 const LandingPage = () => {
   const router = useRouter();
+
+  // redux
   const isSideBarOpen = useSelector((state) => state.nav.isSideBarOpen);
   const sideBarOpenWidth = useSelector((state) => state.nav.sideBarOpenWidth);
   const sideBarCloseWidth = useSelector((state) => state.nav.sideBarCloseWidth);
@@ -37,7 +42,7 @@ const LandingPage = () => {
             </p>
             <div className="p-2 w-full mt-6 m-auto">
               <button
-                className="outline-none flex mx-auto text-blue-500 border-blue-500 border-[1px] py-2 px-12 focus:outline-none rounded-md full text-lg transition-all duration-200 ease-out active:shadow-md active:scale-105 hover:text-white hover:bg-blue-500 active:bg-blue-500 active:text-white font-semibold"
+                className="btn-primary"
                 onClick={() => {
                   router.push({
                     pathname: "/explore",

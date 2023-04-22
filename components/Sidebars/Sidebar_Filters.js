@@ -1,6 +1,31 @@
-import React, { useState } from "react";
-import RangeSlider from "@/components/RangeSlider";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { motion } from "framer-motion";
+
+// Components Import
+import RangeSlider from "@/components/RangeSlider";
+
+import {
+  AcBadge,
+  AttachedWashroomBadge,
+  BalconyBadge,
+  BedBadge,
+  LaundryBadge,
+  TwentyFourSevenBadge,
+  WifiBadge,
+  WithFoodBadge,
+} from "../Badges";
+
+// Icons Import
+
+import RoomIcon from "@mui/icons-material/Room";
+import HotelOutlinedIcon from "@mui/icons-material/HotelOutlined";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
+import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
+
+// Slices Import
+
 import { setPGs } from "@/slices/pgSlice";
 import {
   setPropertyType,
@@ -16,27 +41,11 @@ import {
   removeSelectedAmenity,
 } from "@/slices/filterSlice";
 
-import RoomIcon from "@mui/icons-material/Room";
-import HotelOutlinedIcon from "@mui/icons-material/HotelOutlined";
-import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
-import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
-
-import {
-  AcBadge,
-  AttachedWashroomBadge,
-  BalconyBadge,
-  BedBadge,
-  LaundryBadge,
-  TwentyFourSevenBadge,
-  WifiBadge,
-  WithFoodBadge,
-} from "../Badges";
-
-import { motion } from "framer-motion";
-
 const Sidebar_Filters = () => {
   const dispatch = useDispatch();
+
+  // Redux States
+
   const propertyType = useSelector((state) => state.filter.propertyType);
   const location = useSelector((state) => state.filter.location);
   const amenities = useSelector((state) => state.filter.amenities);
@@ -68,6 +77,8 @@ const Sidebar_Filters = () => {
   const sideBarOpenWidth = useSelector((state) => state.nav.sideBarOpenWidth);
   const sideBarCloseWidth = useSelector((state) => state.nav.sideBarCloseWidth);
 
+  // Local Variables
+
   const properties = ["All", "PG", "Flat"];
   const sortByOptions = [
     "Popularity",
@@ -76,6 +87,9 @@ const Sidebar_Filters = () => {
     "Price - low to high",
     "Rating",
   ];
+  let marginLeft = isSideBarOpen ? sideBarOpenWidth : sideBarCloseWidth;
+
+  // Local Functions
 
   const propertyClick = (event) => {
     dispatch(setPropertyType(event.target.value));
@@ -141,6 +155,8 @@ const Sidebar_Filters = () => {
       dispatch(toggleFilterSideBar());
     }
   };
+
+  // Animation
   const sidebarAnimation = {
     // animation variants
     open: {
@@ -156,7 +172,6 @@ const Sidebar_Filters = () => {
       },
     },
   };
-  let marginLeft = isSideBarOpen ? sideBarOpenWidth : sideBarCloseWidth;
 
   return (
     <motion.div

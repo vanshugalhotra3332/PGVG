@@ -1,12 +1,17 @@
 import React from "react";
 import Carousel from "nuka-carousel/lib/carousel";
+import { useSelector } from "react-redux";
+
+// component imports
 import GalleryImage from "./Cards/GalleryImage";
+
+// Icons import
 import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import { useSelector } from "react-redux";
 
 const GalleryQuickView = ({ setShowQuickView }) => {
+  // redux this.state.first
   const windowWidth = useSelector((state) => state.global.windowWidth);
 
   return (

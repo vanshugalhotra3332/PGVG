@@ -2,10 +2,12 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-import StarIcon from '@mui/icons-material/Star';
-import RoomIcon from '@mui/icons-material/Room';
+// Icons import
 
-const PGcard = ({ slug, name, image, location, rentPerMonth}) => {
+import StarIcon from "@mui/icons-material/Star";
+import RoomIcon from "@mui/icons-material/Room";
+
+const PGcard = ({ slug, name, image, location, rentPerMonth }) => {
   const router = useRouter();
 
   return (
@@ -29,9 +31,7 @@ const PGcard = ({ slug, name, image, location, rentPerMonth}) => {
               </span>
             </div>
             <div className="pg-title py-2 px-6">
-              <h2 className="text-2xl font-medium text-gray-800">
-                {name}
-              </h2>
+              <h2 className="text-2xl font-medium text-gray-800">{name}</h2>
               <span className="py-2 inline-flex items-center">
                 <RoomIcon className="h-6 w-6 text-gray-400 inline-block" />
                 <span className="inline-block text-gray-400 pl-2">
