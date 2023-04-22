@@ -26,7 +26,7 @@ const Explore = () => {
       }
     }
     getPGs();
-  }, []);
+  }, [dispatch]);
 
   let coords = [];
   const pgs = useSelector((state) => state.pgs.pgs);
@@ -105,7 +105,10 @@ const Explore = () => {
         <div className="map">
           {pgs.length > 0 && <Map className="h-full" coords={coords} />}
         </div>
-        <div className="listing mt-16 grid md:grid-cols-2 grid-cols-1">
+        <div
+          className="listing mt-16 grid md:grid-cols-2 grid-cols-1"
+          id="listings"
+        >
           {pgs.length > 0 &&
             pgs.map(({ slug, name, image, location, rentPerMonth }) => {
               return (

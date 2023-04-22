@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  showSideBar: false,
+  showSideBar: true,
   openFilterSideBarWidth: "25vw",
   closeFilterSideBarWidth: "0vw",
   minPrice: 0,

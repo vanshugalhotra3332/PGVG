@@ -5,7 +5,11 @@ import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
-import { closeSideBar, toggleSideBar } from "@/slices/navSlice";
+import {
+  closeSideBar,
+  toggleSideBar,
+  toggleFilterSubMenu,
+} from "@/slices/navSlice";
 import { toggleFilterSideBar } from "@/slices/filterSlice";
 import Image from "next/image";
 
@@ -19,6 +23,7 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 
 const Sidebar_Nav = () => {
   const Router = useRouter();
@@ -27,24 +32,13 @@ const Sidebar_Nav = () => {
   const sideBarOpenWidth = useSelector((state) => state.nav.sideBarOpenWidth);
   const sideBarCloseWidth = useSelector((state) => state.nav.sideBarCloseWidth);
 
-  const [subMenuOpen, setSubMenuOpen] = useState(false);
+  const showFilterSubMenu = useSelector((state) => state.nav.showFilterSubMenu);
   const { image, name, email } = useSelector((state) => state.user.userData);
   const loggedIn = useSelector((state) => state.user.loggedIn);
 
   const [selected, setSelected] = useState("home");
 
-  const [windowWidth, setWindowWidth] = useState(null);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const windowWidth = useSelector((state) => state.global.windowWidth);
 
   const Sidebar_animation = {
     // system view
@@ -148,21 +142,26 @@ const Sidebar_Nav = () => {
               <li>
                 <Link
                   className={`sidebar-nav-link`}
-                  onClick={() => setSubMenuOpen(!subMenuOpen)}
+                  onClick={() => dispatch(toggleFilterSubMenu())}
                   href={"/explore"}
                 >
                   <ExploreOutlinedIcon className="h-6 w-6 min-w-max" />
                   <p className="sidebar-nav-link-p">Explore</p>
                   <KeyboardArrowDownOutlinedIcon
                     className={` ${
-                      subMenuOpen && "rotate-180"
+                      showFilterSubMenu && "rotate-180"
                     } duration-200 ml-auto`}
+                    onClick={(event) => {
+                      dispatch(toggleFilterSubMenu());
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }}
                   />
                 </Link>
               </li>
               <motion.ul
                 animate={
-                  subMenuOpen
+                  showFilterSubMenu
                     ? {
                         height: "fit-content",
                       }
@@ -181,7 +180,8 @@ const Sidebar_Nav = () => {
                       dispatch(closeSideBar());
                     }}
                   >
-                    Filters
+                    <FilterAltOutlinedIcon className="h-6 w-6 min-w-max" />
+                    <p className="sidebar-nav-link-p">Filters</p>
                   </Link>
                 </li>
               </motion.ul>

@@ -1,11 +1,14 @@
 import React from "react";
 import Carousel from "nuka-carousel/lib/carousel";
 import GalleryImage from "./Cards/GalleryImage";
-import CloseIcon from '@mui/icons-material/Close';
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import CloseIcon from "@mui/icons-material/Close";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import { useSelector } from "react-redux";
 
 const GalleryQuickView = ({ setShowQuickView }) => {
+  const windowWidth = useSelector((state) => state.global.windowWidth);
+
   return (
     <>
       <div className="relative top-0 gallery-quick-view z-[100] bg-gray-100/10">
@@ -21,7 +24,7 @@ const GalleryQuickView = ({ setShowQuickView }) => {
         <div className="image-carousel">
           <Carousel
             wrapAround={true}
-            slidesToShow={`${window ? (window.innerWidth > 1100 ? 2 : 1) : 1}`}
+            slidesToShow={`${windowWidth > 1100 ? 2 : 1}`}
             adaptiveHeight={true}
             autoplay={false}
             autoplayInterval={2000}

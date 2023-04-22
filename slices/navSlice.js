@@ -4,6 +4,7 @@ const initialState = {
   isSideBarOpen: false,
   sideBarOpenWidth: "20vw",
   sideBarCloseWidth: "4vw",
+  showFilterSubMenu: false,
 };
 
 export const navSlice = createSlice({
@@ -28,6 +29,12 @@ export const navSlice = createSlice({
     setSideBarCloseWidth: (state, action) => {
       state.sideBarCloseWidth = action.payload;
     },
+    setShowFilterSubMenu: (state, action) => {
+      state.showFilterSubMenu = action.payload;
+    },
+    toggleFilterSubMenu: (state) => {
+      state.showFilterSubMenu = !state.showFilterSubMenu;
+    },
   },
 });
 
@@ -37,5 +44,7 @@ export const {
   toggleSideBar,
   setSideBarCloseWidth,
   setSideBarOpenWidth,
+  setShowFilterSubMenu,
+  toggleFilterSubMenu,
 } = navSlice.actions;
 export default navSlice.reducer;

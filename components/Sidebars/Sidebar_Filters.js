@@ -62,6 +62,8 @@ const Sidebar_Filters = () => {
     useSelector((state) => state.filter.maxPrice)
   );
 
+  const windowWidth = useSelector((state) => state.global.windowWidth);
+
   const isSideBarOpen = useSelector((state) => state.nav.isSideBarOpen);
   const sideBarOpenWidth = useSelector((state) => state.nav.sideBarOpenWidth);
   const sideBarCloseWidth = useSelector((state) => state.nav.sideBarCloseWidth);
@@ -135,7 +137,7 @@ const Sidebar_Filters = () => {
       }
     }
     getPGs();
-    if (window.innerWidth <= 1024) {
+    if (windowWidth <= 1024) {
       dispatch(toggleFilterSideBar());
     }
   };
@@ -162,7 +164,7 @@ const Sidebar_Filters = () => {
       animate={showSideBar ? "open" : "closed"}
       className={`lg:!inline-block h-screen overflow-y-auto scrollbar-none sidebar w-full lg:w-1/4 border-2 border-gray-200 border-opacity-60 rounded-lg border-t-0 transition-all transform duration-300 ease-in-out z-[10000] flex-none fixed left-0 bg-white`}
       style={{
-        marginLeft: marginLeft,
+        marginLeft: windowWidth >= 768 ? marginLeft : "0px",
       }}
     >
       <div className="sidebar-elements px-10 pt-10 pb-20 ">
