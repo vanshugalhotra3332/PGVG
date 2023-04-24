@@ -33,6 +33,9 @@ export const filterSlice = createSlice({
     toggleFilterSideBar: (state) => {
       state.showSideBar = !state.showSideBar;
     },
+    openFilterSideBar: (state) => {
+      state.showSideBar = true;
+    },
     setMinPrice: (state, action) => {
       state.minPrice = action.payload;
     },
@@ -88,5 +91,6 @@ export const {
   toggleFilterSideBar,
   addSelectedAmenity,
   removeSelectedAmenity,
+  openFilterSideBar,
 } = filterSlice.actions;
 export default filterSlice.reducer;

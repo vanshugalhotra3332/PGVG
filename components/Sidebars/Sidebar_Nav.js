@@ -29,6 +29,7 @@ import {
   toggleSideBar,
   toggleFilterSubMenu,
   setSelectedLink,
+  openFilterSideBar,
 } from "@/slices/navSlice";
 import { toggleFilterSideBar } from "@/slices/filterSlice";
 
@@ -194,7 +195,7 @@ const Sidebar_Nav = () => {
                     href={"/explore"}
                     className="sidebar-nav-link !bg-transparent capitalize"
                     onClick={() => {
-                      dispatch(toggleFilterSideBar());
+                      dispatch(openFilterSideBar());
                       dispatch(closeSideBar());
                     }}
                   >
@@ -256,7 +257,7 @@ const Sidebar_Nav = () => {
                 </li>
                 <li>
                   <Link
-                    href={"#"}
+                    href={"/settings"}
                     className="sidebar-nav-link"
                     onClick={linkClick}
                   >
