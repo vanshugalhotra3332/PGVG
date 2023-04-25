@@ -106,7 +106,7 @@ input[type="range"]::-webkit-slider-thumb {
 
   /* settings page */
   .user-profile-card {
-    @apply border border-gray-300 border-opacity-60 shadow-sm w-[60vw] rounded-xl pl-5 pr-8 py-6 my-6;
+    @apply border border-gray-300 border-opacity-60 shadow-sm w-[60vw] h-fit rounded-xl pl-5 pr-8 py-6 my-6;
   }
 
   .user-profile-item {
