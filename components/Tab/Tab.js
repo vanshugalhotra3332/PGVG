@@ -9,15 +9,13 @@ import {
 
 const Tab = () => {
   return (
-    <div className="border-gray-200 dark:border-gray-700">
-      <ul className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400 space-x-8">
-        <ProfileTab />
-        <NotificationsTab />
-        <SecurityTab />
-        <PrivacyTab />
-        <GeneralTab />
-      </ul>
-    </div>
+    <ul className="flex flex-wrap shrink-0 -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400 space-x-2 md:space-x-8">
+      <ProfileTab />
+      <NotificationsTab />
+      <SecurityTab />
+      <PrivacyTab />
+      <GeneralTab />
+    </ul>
   );
 };
 

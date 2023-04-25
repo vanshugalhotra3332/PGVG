@@ -72,13 +72,13 @@ const Sidebar_Nav = () => {
 
   const linkClick = (event) => {
     dispatch(setSelectedLink(event.target.id));
-    // dispatch(closeSideBar());
+    dispatch(closeSideBar());
   };
 
   return (
     <div
       className={`sidebar 
-      } inline-block overflow-y-auto fixed flex-1 left-0 top-0 shadow-lg z-[10000]`}
+      } inline-block overflow-y-auto fixed flex-1 left-0 top-0 shadow-lg z-[10000] overflow-x-hidden`}
     >
       <motion.div
         variants={Sidebar_animation}
@@ -102,18 +102,21 @@ const Sidebar_Nav = () => {
 
             {isSideBarOpen && loggedIn && (
               <div className="user-details py-4 flex items-center justify-center flex-col">
-                <span className="inline-block text-center text-xl text-gray-700 ">
+                <span className="inline-block text-center xl:text-xl md:text-lg text-xl text-gray-700 ">
                   Hi,{" "}
-                  <span className="font-semibold text-gray-800"> {name}</span>
+                  <span className="font-semibold text-gray-800 xl:text-base md:text-sm text-base">
+                    {" "}
+                    {name}
+                  </span>
                 </span>
-                <p className="text-blue-600">{email}</p>
+                <p className="text-blue-600 xl:text-base md:text-xs text-base">{email}</p>
               </div>
             )}
             {isSideBarOpen && !loggedIn && (
               <div
                 className={`login-signup flex flex-col items-center justify-center py-2`}
               >
-                <h1 className="block text-base md:text-xs lg:text-base text-gray-500 truncate tracking-tight font-normal dark:text-gray-400">
+                <h1 className="block text-base md:text-xs xl:text-base text-gray-500 truncate tracking-tight font-normal dark:text-gray-400">
                   To access account and dashboard
                 </h1>
                 <div className="btns flex items-center justify-center">
@@ -141,7 +144,7 @@ const Sidebar_Nav = () => {
           </div>
 
           <div className="list-content py-2">
-            <ul className="whitespace-pre xl:px-2.5 text-[0.9rem] pt-5 pb-2 flex flex-col gap-1 font-medium overflow-x-hidden">
+            <ul className="sidebar-nav-list">
               <li>
                 <Link
                   href={"/"}
@@ -244,7 +247,7 @@ const Sidebar_Nav = () => {
 
           {loggedIn && (
             <div className="list-content border-t-2 border-gray-200 border-opacity-60">
-              <ul className="whitespace-pre px-2.5 text-[0.9rem] pt-5 pb-2 flex flex-col gap-1 font-medium overflow-x-hidden">
+              <ul className="sidebar-nav-list">
                 <li>
                   <Link
                     href={"#"}
@@ -296,7 +299,7 @@ const Sidebar_Nav = () => {
                   rotate: 0,
                 }
               : {
-                  x: -10,
+                  x: 5,
                   rotate: 180,
                 }
           }

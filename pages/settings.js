@@ -12,6 +12,7 @@ const Settings = () => {
   const sideBarOpenWidth = useSelector((state) => state.nav.sideBarOpenWidth);
   const sideBarCloseWidth = useSelector((state) => state.nav.sideBarCloseWidth);
   const { image, name, email } = useSelector((state) => state.user.userData);
+  const windowWidth = useSelector((state) => state.global.windowWidth);
 
   // local states
   const [fullname, setFullname] = useState(name);
@@ -23,7 +24,7 @@ const Settings = () => {
   const [showOccupationOptions, setShowOccupationOptions] = useState(false);
   const [college, setCollege] = useState("");
   const [degree, setDegree] = useState("");
-  const [semester, setSemester] = useState();
+  const [semester, setSemester] = useState("");
   const [company, setCompany] = useState("");
   const [jobTitle, setJobTitle] = useState("");
 
@@ -69,7 +70,7 @@ const Settings = () => {
       <div
         className={`settings overflow-y-auto overflow-x-hidden py-7`}
         style={{
-          marginLeft: marginLeft,
+          marginLeft: windowWidth >= 768 ? marginLeft : "0px",
         }}
       >
         <h2 className="heading text-3xl font-medium text-gray-800 px-4 py-4">
@@ -78,7 +79,7 @@ const Settings = () => {
         {/* Search Bar */}
 
         {/* Tabs */}
-        <div className="tabs border border-gray-300 border-opacity-60 w-screen my-6">
+        <div className="tabs border border-gray-300 border-opacity-60 w-screen my-6 overflow-x-auto whitespace-nowrap flex scrollbar-none">
           <Tab />
         </div>
 
@@ -149,8 +150,8 @@ const Settings = () => {
                       <span className="">Gender</span>
                     </div>
 
-                    <div className="details space-x-6">
-                      <label for="gender-radio" className="radio-item">
+                    <div className="details md:space-x-6 xs:space-x-2 space-x-0">
+                      <label htmlFor="gender-radio" className="radio-item">
                         <input
                           id="gender-radio"
                           type="radio"
@@ -163,7 +164,7 @@ const Settings = () => {
                         Male
                       </label>
 
-                      <label for="gender-radio" className="radio-item">
+                      <label htmlFor="gender-radio" className="radio-item">
                         {" "}
                         <input
                           id="gender-radio"
@@ -177,7 +178,7 @@ const Settings = () => {
                         Female
                       </label>
 
-                      <label for="gender-radio" className="radio-item">
+                      <label htmlFor="gender-radio" className="radio-item">
                         <input
                           id="gender-radio"
                           type="radio"
@@ -201,10 +202,8 @@ const Settings = () => {
                     Contact Info
                   </h2>
                   <span className="text-sm text-gray-600 py-1 inline-block">
-                    We require your contact information for communication
-                    purposes only. Rest assured, your contact details will be
-                    kept confidential and will not be shared with third parties
-                    without your consent.
+                    Your contact details will be kept confidential and will not
+                    be shared with third parties without your consent.
                   </span>
                 </div>
                 <div className="user-profile-items my-4">
@@ -575,9 +574,14 @@ const Settings = () => {
               </div>
             </div>
             <div className="save-btn inline-block mx-4 my-6">
-              <button className="btn-primary bg-blue-500 text-white hover:bg-blue-600">Save Profile</button>
+              <button className="btn-primary bg-blue-500 text-white hover:bg-blue-600">
+                Save Profile
+              </button>
             </div>
           </div>
+
+          
+
         </div>
       </div>
     </div>

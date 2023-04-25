@@ -88,8 +88,15 @@ input[type="range"]::-webkit-slider-thumb {
   .explore-item span {
     @apply text-gray-700 text-xs tracking-widest font-semibold pt-2 capitalize;
   }
+
+  /* sidebar nav */
+
+  .sidebar-nav-list {
+    @apply whitespace-pre xl:px-2.5 text-[0.9rem] pt-5 pb-2 flex flex-col gap-1 font-medium overflow-x-hidden;
+  }
+
   .sidebar-nav-link {
-    @apply p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-300 font-medium text-lg text-center;
+    @apply xl:p-2.5 md:py-2.5 md:px-1 p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-300 font-medium text-lg text-center;
   }
 
   .sidebar-nav-link .sidebar-nav-link-p {
@@ -106,11 +113,11 @@ input[type="range"]::-webkit-slider-thumb {
 
   /* settings page */
   .user-profile-card {
-    @apply border border-gray-300 border-opacity-60 shadow-sm w-[60vw] h-fit rounded-xl pl-5 pr-8 py-6 my-6;
+    @apply border border-gray-300 border-opacity-60 shadow-sm w-full md:w-[60vw] h-fit rounded-xl md:pl-5 md:pr-8 py-6 my-6 px-4;
   }
 
   .user-profile-item {
-    @apply flex items-center justify-between py-4;
+    @apply flex md:items-center md:justify-between py-4 flex-col md:flex-row justify-center space-y-4 md:space-y-0 w-full;
   }
 
   .user-profile-item .desc span {
@@ -118,11 +125,11 @@ input[type="range"]::-webkit-slider-thumb {
   }
 
   .user-profile-item .details {
-    @apply flex items-center w-3/4;
+    @apply flex items-center md:w-3/4 md:px-4 w-full;
   }
 
   .user-input {
-    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 appearance-none;
+    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 appearance-none w-full;
   }
 
   .user-radio {
