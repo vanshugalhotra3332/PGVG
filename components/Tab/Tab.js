@@ -9,8 +9,8 @@ import {
 
 const Tab = () => {
   return (
-    <div class="border-b border-gray-200 dark:border-gray-700 my-4">
-      <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+    <div className="border-gray-200 dark:border-gray-700">
+      <ul className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400 space-x-8">
         <ProfileTab />
         <NotificationsTab />
         <SecurityTab />

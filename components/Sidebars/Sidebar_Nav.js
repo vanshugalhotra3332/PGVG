@@ -72,7 +72,7 @@ const Sidebar_Nav = () => {
 
   const linkClick = (event) => {
     dispatch(setSelectedLink(event.target.id));
-    dispatch(closeSideBar());
+    // dispatch(closeSideBar());
   };
 
   return (
