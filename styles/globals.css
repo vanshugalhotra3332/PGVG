@@ -112,24 +112,24 @@ input[type="range"]::-webkit-slider-thumb {
   }
 
   /* settings page */
-  .user-profile-card {
+  .user-setting-card {
     @apply border border-gray-300 border-opacity-60 shadow-sm w-full md:w-[60vw] h-fit rounded-xl md:pl-5 md:pr-8 py-6 my-6 px-4;
   }
 
-  .user-profile-item {
+  .user-setting-item {
     @apply flex md:items-center md:justify-between py-4 flex-col md:flex-row justify-center space-y-4 md:space-y-0 w-full;
   }
 
-  .user-profile-item .desc span {
+  .user-setting-item .desc span {
     @apply text-base font-medium text-gray-900;
   }
 
-  .user-profile-item .details {
+  .user-setting-item .details {
     @apply flex items-center md:w-3/4 md:px-4 w-full;
   }
 
   .user-input {
-    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 appearance-none w-full;
+    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 appearance-none;
   }
 
   .user-radio {
