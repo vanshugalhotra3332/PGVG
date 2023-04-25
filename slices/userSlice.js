@@ -7,6 +7,16 @@ const initialState = {
     email: "",
     phone: "",
     image: "../assets/img/icons/avatar.svg",
+    gender: "rather not say",
+    occupation: "student",
+    college: "",
+    degree: "",
+    semester: "",
+    company: "",
+    job: "",
+    bloodGroup: "",
+    emergencyContact: "",
+    allergies: "",
   },
 };
 

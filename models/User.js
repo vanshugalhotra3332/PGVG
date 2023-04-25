@@ -27,6 +27,38 @@ const UserSchema = new mongoose.Schema(
       type: [mongoose.Schema.Types.ObjectId],
       ref: "PGs",
     },
+    gender: {
+      type: String,
+      default: "Rather Not Say",
+    },
+    occupation: {
+      type: String,
+      default: "Student",
+    },
+    college: {
+      type: String,
+    },
+    degree: {
+      type: String,
+    },
+    semester: {
+      type: Number,
+    },
+    company: {
+      type: String,
+    },
+    job: {
+      type: String,
+    },
+    bloodGroup: {
+      type: String,
+    },
+    emergencyContact: {
+      type: String,
+    },
+    allergies: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
