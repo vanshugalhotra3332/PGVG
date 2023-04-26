@@ -16,6 +16,7 @@ import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined
 
 // slices import
 import { logIn, setUserData } from "@/slices/userSlice";
+import { postData } from "@/db/dbFuncs";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -72,44 +73,30 @@ const Signup = () => {
         image: session.user.image,
       };
 
-      const options = {
-        method: "POST",
-        body: JSON.stringify(userData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
+      const api = "http://localhost:3000/api/user/signup";
 
-      try {
-        const response = await fetch(
-          "http://localhost:3000/api/signup",
-          options
-        );
-        const data = await response.json();
-        if (data.success) {
-          // after finally signing up
-          dispatch(logIn());
-          dispatch(setUserData(session.user));
+      const data = await postData("POST", userData, api);
+      if (data.success) {
+        // after finally signing up
+        dispatch(logIn());
+        dispatch(setUserData(session.user));
 
-          toast.success("User Registered Successfully!!🫡", {
-            position: "top-center",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            style: {
-              top: "65px",
-            },
-          });
-          setTimeout(() => {
-            router.replace("/"); // redirecting to home page
-          }, 1500);
-        }
-      } catch (error) {
-        console.error(error);
+        toast.success("User Registered Successfully!!🫡", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          style: {
+            top: "65px",
+          },
+        });
+        setTimeout(() => {
+          router.replace("/"); // redirecting to home page
+        }, 1500);
       }
 
       setPassword("");

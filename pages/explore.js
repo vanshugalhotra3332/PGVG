@@ -14,6 +14,7 @@ import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
 // slices import
 import { setPGs } from "@/slices/pgSlice";
 import { toggleFilterSideBar } from "@/slices/filterSlice";
+import { fetchData } from "@/db/dbFuncs";
 
 const Explore = () => {
   const dispatch = useDispatch();
@@ -21,13 +22,9 @@ const Explore = () => {
   // REACT STUFF
   useEffect(() => {
     async function getPGs() {
-      try {
-        const response = await fetch("http://localhost:3000/api/getpgs");
-        const pgs = await response.json();
-        dispatch(setPGs(pgs.pgs));
-      } catch (error) {
-        console.log(error);
-      }
+      const api = "http://localhost:3000/api/pg/getpgs";
+      const pgs = await fetchData(api);
+      dispatch(setPGs(pgs.pgs));
     }
     getPGs();
   }, [dispatch]);

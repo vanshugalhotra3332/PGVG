@@ -33,7 +33,7 @@ const UserSchema = new mongoose.Schema(
     },
     gender: {
       type: String,
-      default: "Rather Not Say",
+      default: "rather not say",
     },
     occupation: {
       type: String,

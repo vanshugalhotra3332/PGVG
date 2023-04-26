@@ -14,6 +14,7 @@ import { logIn, setUserData } from "@/slices/userSlice";
 
 // icons import
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
+import { postData } from "@/db/dbFuncs";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -42,51 +43,46 @@ const Login = () => {
     }
   };
 
-  const sendLoginRequest = async (options) => {
-    try {
-      const response = await fetch("http://localhost:3000/api/login", options);
-      const data = await response.json();
-      // after finally logging in,
-      if (data.success) {
-        dispatch(logIn());
-        dispatch(setUserData(session.user));
+  const sendLoginRequest = async (userData) => {
+    const api = "http://localhost:3000/api/user/login";
+    const data = await postData("POST", userData, api);
+    if (data.success) {
+      dispatch(logIn());
+      dispatch(setUserData(session.user));
 
-        toast.success("Logged In Successfully!!🫡", {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          style: {
-            top: "65px",
-          },
-        });
-        setTimeout(() => {
-          router.replace("/"); // redirecting to home page
-        }, 1500);
-      } else {
-        toast.info("User not found !! Kindly Sign up", {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          style: {
-            top: "65px",
-          },
-        });
-        setTimeout(() => {
-          signOut("google");
-        }, 1500);
-      }
-    } catch (error) {
-      console.error(error);
+      toast.success("Logged In Successfully!!🫡", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        style: {
+          top: "65px",
+        },
+      });
+      setTimeout(() => {
+        router.replace("/"); // redirecting to home page
+      }, 1500);
+    } else {
+      toast.info("User not found !! Kindly Sign up", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        style: {
+          top: "65px",
+        },
+      });
+      setTimeout(() => {
+        signOut("google");
+      }, 1500);
     }
   };
 
@@ -104,7 +100,7 @@ const Login = () => {
       },
     };
 
-    sendLoginRequest(options);
+    sendLoginRequest(userData);
     // raise a toast
   }
 

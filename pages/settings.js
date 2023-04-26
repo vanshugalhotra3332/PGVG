@@ -15,6 +15,7 @@ import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined
 // mongoose
 import mongoose from "mongoose";
 import User from "@/models/User";
+import { postData } from "@/db/dbFuncs";
 
 const Settings = ({ userData }) => {
   // props
@@ -115,37 +116,23 @@ const Settings = ({ userData }) => {
       emergencyContact: userEmergencyContact,
       allergies: userAllergies,
     };
-    const options = {
-      method: "PATCH",
-      body: JSON.stringify(updateData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
 
-    try {
-      const response = await fetch(
-        "http://localhost:3000/api/updateuser",
-        options
-      );
-      const data = await response.json();
-      if (data.success) {
-        toast.success("Profile Updated Successfully!!", {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          style: {
-            top: "65px",
-          },
-        });
-      }
-    } catch (error) {
-      console.error(error);
+    const api = "http://localhost:3000/api/user/updateuser";
+    const data = await postData("PATCH", updateData, api);
+    if (data.success) {
+      toast.success("Profile Updated Successfully!!", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        style: {
+          top: "65px",
+        },
+      });
     }
   };
 

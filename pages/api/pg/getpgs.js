@@ -22,8 +22,8 @@ const handler = async (req, res) => {
     var sharingsList = sharings.split(",");
     queryObject.sharingsOffered = { $in: sharingsList };
   }
-  
-  if(amenities){
+
+  if (amenities) {
     var amenitiesList = amenities.split(",");
     queryObject.amenities = { $all: amenitiesList };
   }

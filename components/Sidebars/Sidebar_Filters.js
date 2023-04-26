@@ -40,6 +40,7 @@ import {
   addSelectedAmenity,
   removeSelectedAmenity,
 } from "@/slices/filterSlice";
+import { fetchData } from "@/db/dbFuncs";
 
 const Sidebar_Filters = () => {
   const dispatch = useDispatch();
@@ -140,15 +141,9 @@ const Sidebar_Filters = () => {
     }
 
     async function getPGs() {
-      try {
-        const response = await fetch(
-          `http://localhost:3000/api/getpgs${query}`
-        );
-        const pgs = await response.json();
-        dispatch(setPGs(pgs.pgs));
-      } catch (error) {
-        console.log(error);
-      }
+      const api = `http://localhost:3000/api/pg/getpgs${query}`;
+      const pgs = await fetchData(api);
+      dispatch(setPGs(pgs.pgs));
     }
     getPGs();
     if (windowWidth <= 1024) {
