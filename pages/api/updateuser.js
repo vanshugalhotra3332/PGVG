@@ -23,7 +23,7 @@ const handler = async (req, res) => {
     if (!user) {
       res.status(404).json({ success: false, error: "Invalid Credentials" });
     }
-    res.status(200).json({ success: true, user });
+    res.status(200).json({ success: true });
   }
 };
 

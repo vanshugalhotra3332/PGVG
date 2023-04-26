@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Image from "next/image";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // component imports
 import Sidebar_Nav from "@/components/Sidebars/Sidebar_Nav";
@@ -97,9 +99,71 @@ const Settings = ({ userData }) => {
     setShowBloodGroupOptions(false);
   };
 
+  const saveProfile = async () => {
+    const identifier = email.length ? email : phone;
+    const updateData = {
+      [email ? "email" : "phone"]: identifier,
+      name: fullname,
+      gender: genderOption,
+      occupation: userOccupation,
+      college: userCollege,
+      degree: userDegree,
+      semester: userSemester,
+      company: userCompany,
+      job: jobTitle,
+      bloodGroup: userBloodGroup,
+      emergencyContact: userEmergencyContact,
+      allergies: userAllergies,
+    };
+    const options = {
+      method: "PATCH",
+      body: JSON.stringify(updateData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const response = await fetch(
+        "http://localhost:3000/api/updateuser",
+        options
+      );
+      const data = await response.json();
+      if (data.success) {
+        toast.success("Profile Updated Successfully!!", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          style: {
+            top: "65px",
+          },
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="flex">
       <Sidebar_Nav />
+      <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div
         className={`settings overflow-y-auto overflow-x-hidden py-7`}
         style={{
@@ -612,7 +676,10 @@ const Settings = ({ userData }) => {
                   </div>
                 </div>
               </div>
-              <div className="save-btn inline-block mx-4 my-6">
+              <div
+                className="save-btn inline-block mx-4 my-6"
+                onClick={saveProfile}
+              >
                 <button className="btn-primary bg-blue-500 text-white hover:bg-blue-600">
                   Save Profile
                 </button>
