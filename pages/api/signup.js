@@ -6,11 +6,12 @@ var jwt = require("jsonwebtoken");
 
 const handler = async (req, res) => {
   if (req.method == "POST") {
-    const { name, email, phone, password } = req.body;
+    const { name, email, phone, password, image } = req.body;
     let newUser = new User({
       name,
       email,
       phone,
+      image,
       password: CryptoJS.AES.encrypt(password, process.env.SECRET).toString(),
     });
 

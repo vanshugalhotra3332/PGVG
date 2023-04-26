@@ -44,7 +44,9 @@ const Sidebar_Nav = () => {
   const sideBarCloseWidth = useSelector((state) => state.nav.sideBarCloseWidth);
 
   const showFilterSubMenu = useSelector((state) => state.nav.showFilterSubMenu);
-  const { image, name, email } = useSelector((state) => state.user.userData);
+  const { image, name, email, phone } = useSelector(
+    (state) => state.user.userData
+  );
   const loggedIn = useSelector((state) => state.user.loggedIn);
 
   const windowWidth = useSelector((state) => state.global.windowWidth);
@@ -109,7 +111,9 @@ const Sidebar_Nav = () => {
                     {name}
                   </span>
                 </span>
-                <p className="text-blue-600 xl:text-base md:text-xs text-base">{email}</p>
+                <p className="text-blue-600 xl:text-base md:text-xs text-base">
+                  {email}
+                </p>
               </div>
             )}
             {isSideBarOpen && !loggedIn && (
@@ -260,7 +264,9 @@ const Sidebar_Nav = () => {
                 </li>
                 <li>
                   <Link
-                    href={"/settings"}
+                    href={`/settings/?${
+                      email ? `email=${email}` : `phone=${phone}`
+                    }`}
                     className="sidebar-nav-link"
                     onClick={linkClick}
                   >

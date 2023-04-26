@@ -23,6 +23,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "User",
     },
+    image: {
+      type: String,
+      default: "../assets/img/icons/avatar.svg",
+    },
     listings: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "PGs",

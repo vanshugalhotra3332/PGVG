@@ -10,7 +10,7 @@ const handler = async (req, res) => {
     });
 
     if (user) {
-      res.status(200).json({ success: true });
+      res.status(200).json({ success: true, user });
     } else {
       res.status(404).json({ success: false });
     }

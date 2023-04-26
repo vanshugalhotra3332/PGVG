@@ -69,6 +69,7 @@ const Signup = () => {
         name: session.user.name,
         email: session.user.email,
         password: password,
+        image: session.user.image,
       };
 
       const options = {

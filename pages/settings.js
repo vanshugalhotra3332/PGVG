@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
 
 // component imports
@@ -10,32 +10,55 @@ import Tab from "@/components/Tab/Tab";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 
-const Settings = () => {
+// mongoose
+import mongoose from "mongoose";
+import User from "@/models/User";
+
+const Settings = ({ userData }) => {
+  // props
+  const {
+    image,
+    name,
+    email,
+    phone,
+    gender,
+    occupation,
+    college,
+    degree,
+    semester,
+    company,
+    job,
+    bloodGroup,
+    emergencyContact,
+    allergies,
+  } = userData;
+
   // redux
   const isSideBarOpen = useSelector((state) => state.nav.isSideBarOpen);
   const sideBarOpenWidth = useSelector((state) => state.nav.sideBarOpenWidth);
   const sideBarCloseWidth = useSelector((state) => state.nav.sideBarCloseWidth);
-  const { image, name, email } = useSelector((state) => state.user.userData);
+
   const windowWidth = useSelector((state) => state.global.windowWidth);
   const selectedTab = useSelector((state) => state.settings.selectedTab);
 
   // local states
   const [fullname, setFullname] = useState(name);
-  const [selectedOption, setSelectedOption] = useState("rather not say");
+  const [genderOption, setGenderOption] = useState(gender);
   const [useremail, setUseremail] = useState(email);
-  const [userphone, setUserphone] = useState("");
+  const [userphone, setUserphone] = useState(phone);
 
-  const [occupation, setOccupation] = useState("Student");
+  const [userOccupation, setUserOccupation] = useState(occupation);
   const [showOccupationOptions, setShowOccupationOptions] = useState(false);
-  const [college, setCollege] = useState("");
-  const [degree, setDegree] = useState("");
-  const [semester, setSemester] = useState("");
-  const [company, setCompany] = useState("");
-  const [jobTitle, setJobTitle] = useState("");
+  const [userCollege, setUserCollege] = useState(college);
+  const [userDegree, setUserDegree] = useState(degree);
+  const [userSemester, setUserSemester] = useState(semester);
+  const [userCompany, setUserCompany] = useState(company);
+  const [jobTitle, setJobTitle] = useState(job);
 
-  const [bloodGroup, setBloodGroup] = useState("Select Blood Group");
-  const [emergencyContact, setEmergencyContact] = useState("");
-  const [alergies, setAlergies] = useState("");
+  const [userBloodGroup, setUserBloodGroup] = useState(bloodGroup);
+  const [userEmergencyContact, setUserEmergencyContact] =
+    useState(emergencyContact);
+  const [userAllergies, setUserAllergies] = useState(allergies);
 
   const [showBloodGroupOptions, setShowBloodGroupOptions] = useState(false);
 
@@ -61,16 +84,16 @@ const Settings = () => {
 
   // local functions
   const handleRadioChange = (event) => {
-    setSelectedOption(event.target.value);
+    setGenderOption(event.target.value);
   };
 
   const occupationClick = (event) => {
-    setOccupation(event.target.value);
+    setUserOccupation(event.target.value);
     setShowOccupationOptions(false);
   };
 
   const bloodGroupClick = (event) => {
-    setBloodGroup(event.target.value);
+    setUserBloodGroup(event.target.value);
     setShowBloodGroupOptions(false);
   };
 
@@ -171,7 +194,7 @@ const Settings = () => {
                             name="gender-radio"
                             className="user-radio"
                             onChange={handleRadioChange}
-                            checked={selectedOption === "male"}
+                            checked={genderOption === "male"}
                           />
                           Male
                         </label>
@@ -185,7 +208,7 @@ const Settings = () => {
                             className="user-radio"
                             value="female"
                             onChange={handleRadioChange}
-                            checked={selectedOption === "female"}
+                            checked={genderOption === "female"}
                           />
                           Female
                         </label>
@@ -198,7 +221,7 @@ const Settings = () => {
                             name="gender-radio"
                             className="user-radio"
                             onChange={handleRadioChange}
-                            checked={selectedOption === "rather not say"}
+                            checked={genderOption === "rather not say"}
                           />
                           Rather not say
                         </label>
@@ -350,7 +373,7 @@ const Settings = () => {
                       </div>
                     </div>
 
-                    {occupation === "Student" && (
+                    {userOccupation === "Student" && (
                       <div className="student-details">
                         {/* college */}
                         <div className="user-setting-item">
@@ -364,9 +387,9 @@ const Settings = () => {
                               id="college"
                               className="user-input"
                               placeholder="University/College"
-                              value={college}
+                              value={userCollege}
                               onChange={(e) => {
-                                setCollege(e.target.value);
+                                setUserCollege(e.target.value);
                               }}
                             />
                           </div>
@@ -383,9 +406,9 @@ const Settings = () => {
                               id="degree"
                               className="user-input"
                               placeholder="Like Bachelor of Arts (B.A.)"
-                              value={degree}
+                              value={userDegree}
                               onChange={(e) => {
-                                setDegree(e.target.value);
+                                setUserDegree(e.target.value);
                               }}
                             />
                           </div>
@@ -402,16 +425,16 @@ const Settings = () => {
                               id="degree-semester"
                               className="user-input"
                               placeholder="Current Semester"
-                              value={semester}
+                              value={userSemester}
                               onChange={(e) => {
-                                setSemester(e.target.value);
+                                setUserSemester(e.target.value);
                               }}
                             />
                           </div>
                         </div>
                       </div>
                     )}
-                    {occupation === "Working Professional" && (
+                    {userOccupation === "Working Professional" && (
                       <div className="work-details">
                         {/* Company */}
                         <div className="user-setting-item">
@@ -425,9 +448,9 @@ const Settings = () => {
                               id="company"
                               className="user-input"
                               placeholder="Company/Business"
-                              value={company}
+                              value={userCompany}
                               onChange={(e) => {
-                                setCompany(e.target.value);
+                                setUserCompany(e.target.value);
                               }}
                             />
                           </div>
@@ -491,7 +514,7 @@ const Settings = () => {
                                 );
                               }}
                             >
-                              <span className="ml-4">{bloodGroup}</span>
+                              <span className="ml-4">{userBloodGroup}</span>
                               <svg
                                 className="mr-4 h-5 w-5 text-gray-400"
                                 viewBox="0 0 20 20"
@@ -551,9 +574,9 @@ const Settings = () => {
                             type="text"
                             className="text-gray-700 text-sm tracking-tight border border-gray-200 py-3 w-full px-14 placeholder:text-sm focus:border-gray-800 appearance-none rounded-md"
                             placeholder="Emergency Contact"
-                            value={emergencyContact}
+                            value={userEmergencyContact}
                             onChange={(e) => {
-                              setEmergencyContact(e.target.value);
+                              setUserEmergencyContact(e.target.value);
                             }}
                           />
                           <div className="absolute inset-y-0 left-1 flex items-center">
@@ -576,12 +599,12 @@ const Settings = () => {
                       <div className="details">
                         <input
                           type="text"
-                          id="alergies"
+                          id="allergies"
                           className="user-input"
                           placeholder="Write down your allergies or medical conditions (if any)"
-                          value={alergies}
+                          value={userAllergies}
                           onChange={(e) => {
-                            setAlergies(e.target.value);
+                            setUserAllergies(e.target.value);
                           }}
                         />
                       </div>
@@ -709,7 +732,9 @@ const Settings = () => {
                       </div>
                     </div>
                     <div className="update-btn inline-block my-4 mx-auto">
-                      <div className="cursor-pointer btn-primary text-sm px-4">Update Password</div>
+                      <div className="cursor-pointer btn-primary text-sm px-4">
+                        Update Password
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -721,5 +746,24 @@ const Settings = () => {
     </div>
   );
 };
+
+// server side rendering
+export async function getServerSideProps(query) {
+  if (!mongoose.connections[0].readyState) {
+    await mongoose.connect(process.env.MONGO_URI);
+  }
+  const identifier = query.query.phone ? query.query.phone : query.query.email;
+  let user = await User.findOne({
+    $or: [{ email: identifier }, { phone: identifier }],
+  });
+
+  let userData = user ? JSON.parse(JSON.stringify(user)) : null;
+
+  return {
+    props: {
+      userData: userData,
+    },
+  };
+}
 
 export default Settings;
