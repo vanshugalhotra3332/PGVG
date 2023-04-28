@@ -44,7 +44,7 @@ const Slug = ({ pg }) => {
     otherInfo,
     name,
     image,
-    type,
+    propertyType,
     rentPerMonth,
     sharings,
     amenities,
@@ -263,7 +263,7 @@ const Slug = ({ pg }) => {
               <div className="details lg:pt-10 pt-4 pb-6 lg:px-8 px-3">
                 <div className="py-2 grid grid-cols-1 xs:grid-cols-2">
                   <div className="overview-info">
-                    <span className="">Meal Types</span>
+                    <span className="">Meal propertyTypes</span>
                     <p className="">Breakfast, Lunch, Dinner</p>
                   </div>
                   <div className="overview-info">

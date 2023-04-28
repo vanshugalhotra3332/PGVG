@@ -19,7 +19,7 @@ const PgSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    type: {
+    propertyType: {
       type: String,
       default: "PG",
     },
@@ -76,6 +76,11 @@ const PgSchema = new mongoose.Schema(
       },
     },
     location: {
+      type: {
+        type: String,
+        enum: ["Point"],
+        required: true,
+      },
       coordinates: {
         type: [Number],
         required: true,
@@ -122,5 +127,8 @@ const PgSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+// Create a 2dsphere index on the "location" field
+PgSchema.index({ location: "2dsphere" });
 
 export default mongoose.models.PGs || mongoose.model("PGs", PgSchema);

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, use } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
@@ -27,7 +27,6 @@ import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 
 // Slices Import
 
-
 import { setPGs } from "@/slices/pgSlice";
 import {
   setPropertyType,
@@ -43,6 +42,7 @@ import {
   removeSelectedAmenity,
 } from "@/slices/filterSlice";
 import { fetchData } from "@/db/dbFuncs";
+import { set } from "mongoose";
 
 const Sidebar_Filters = () => {
   const dispatch = useDispatch();
@@ -51,6 +51,7 @@ const Sidebar_Filters = () => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [suggestionClicked, setSuggestionClicked] = useState(false);
+  const [coordinates, setCoordinates] = useState([]);
 
   // Redux States
 
@@ -135,7 +136,7 @@ const Sidebar_Filters = () => {
   const applyFilters = () => {
     var query = "?";
     if (propertyType != "All") {
-      query += `&type=${propertyType}`;
+      query += `&propertyType=${propertyType}`;
     }
     query += `&minRentPerMonth=${minRentPerMonth}&maxRentPerMonth=${maxRentPerMonth}`;
 
@@ -147,8 +148,13 @@ const Sidebar_Filters = () => {
       query += `&amenities=${selectedAmenities.join(",")}`;
     }
 
+    if (coordinates.length) {
+      query += `&long=${coordinates[0]}&lat=${coordinates[1]}`;
+    }
+
     async function getPGs() {
       const api = `http://localhost:3000/api/pg/getpgs${query}`;
+      console.log(api);
       const pgs = await fetchData(api);
       dispatch(setPGs(pgs.pgs));
     }
@@ -174,8 +180,8 @@ const Sidebar_Filters = () => {
           ? `${feature.properties.street}, ${feature.properties.city}`
           : undefined,
         latlng: {
-          lat: feature.geometry.coordinates[1],
-          lng: feature.geometry.coordinates[0],
+          lat: feature.geometry.coordinates[0],
+          lng: feature.geometry.coordinates[1],
         },
       }));
 
@@ -194,6 +200,7 @@ const Sidebar_Filters = () => {
   const handleSuggestionClick = (suggestion) => {
     setQuery(suggestion.label);
     setSuggestionClicked(true);
+    setCoordinates([suggestion.latlng.lng, suggestion.latlng.lat]);
   };
 
   function handleKeyDown(event) {

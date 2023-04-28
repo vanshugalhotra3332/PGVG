@@ -5,7 +5,7 @@
     "rentPerMonth": 7999,
     "image": "/assets/img/pgs/pg1.avif",
     "gender": "boys",
-    "type": "PG",
+    "propertyType": "PG",
     "sharingsOffered": ["double", "single"],
     "amenities": ["wi-fi", "balcony", "attached washrooms", "24/7"],
     "sharings": {
@@ -40,7 +40,8 @@
       ]
     },
     "location": {
-      "coordinates": [30.76242, 76.77102],
+      "type": "Point",
+      "coordinates": [30.7521, 76.77382],
       "address": "B56, Sector 15D",
       "city": "Chandigarh",
       "state": "Chandigarh",
@@ -54,7 +55,7 @@
     "rentPerMonth": 9999,
     "image": "/assets/img/pgs/pg1.webp",
     "gender": "girls",
-    "type": "PG",
+    "propertyType": "PG",
     "amenities": [
       "wi-fi",
       "balcony",
@@ -96,8 +97,9 @@
       ]
     },
     "location": {
-      "coordinates": [30.76642, 76.77602],
-      "address": "B52, Sector 15D",
+      "type": "Point",
+      "coordinates": [30.75818, 76.77553],
+      "address": "B52, Sector 15C",
       "city": "Chandigarh",
       "state": "Chandigarh",
       "country": "India",
@@ -110,7 +112,7 @@
     "rentPerMonth": 8999,
     "image": "/assets/img/pgs/pg.webp",
     "gender": "boys",
-    "type": "PG",
+    "propertyType": "PG",
     "amenities": ["with-food", "balcony", "attached washrooms", "24/7"],
     "sharingsOffered": ["double", "single", "triple"],
     "sharings": {
@@ -154,8 +156,9 @@
       ]
     },
     "location": {
-      "coordinates": [30.26642, 76.57602],
-      "address": "B512, Sector 15C",
+      "type": "Point",
+      "coordinates": [30.75534, 76.79665],
+      "address": "P12, Sector 10C",
       "city": "Chandigarh",
       "state": "Chandigarh",
       "country": "India",
@@ -168,7 +171,7 @@
     "rentPerMonth": 8999,
     "image": "/assets/img/pgs/1.jpg",
     "gender": "boys",
-    "type": "Flat",
+    "propertyType": "Flat",
     "amenities": ["wi-fi", "balcony", "attached washrooms", "with-food"],
     "sharingsOffered": ["single"],
     "sharings": {
@@ -202,8 +205,9 @@
       ]
     },
     "location": {
-      "coordinates": [30.46642, 76.27602],
-      "address": "D512, Sector 15C",
+      "type": "Point",
+      "coordinates": [30.74728, 76.79389],
+      "address": "D52, Sector 9A",
       "city": "Chandigarh",
       "state": "Chandigarh",
       "country": "India",
@@ -216,7 +220,7 @@
     "rentPerMonth": 12900,
     "image": "/assets/img/pgs/2.jpg",
     "gender": "girls",
-    "type": "Flat",
+    "propertyType": "Flat",
     "amenities": ["wi-fi", "attached washrooms", "24/7", "laundry"],
     "sharingsOffered": ["double", "triple"],
     "sharings": {
@@ -256,8 +260,9 @@
       ]
     },
     "location": {
-      "coordinates": [30.43642, 76.28602],
-      "address": "D512, Sector 15C",
+      "type": "Point",
+      "coordinates": [30.72622, 76.77042],
+      "address": "D512, Sector 21C",
       "city": "Chandigarh",
       "state": "Chandigarh",
       "country": "India",
@@ -270,9 +275,15 @@
     "rentPerMonth": 19999,
     "image": "/assets/img/pgs/pg1.avif",
     "gender": "boys",
-    "type": "Flat",
+    "propertyType": "Flat",
     "sharingsOffered": ["double", "four"],
-    "amenities": ["wi-fi", "balcony", "attached washrooms", "24/7", "with-food"],
+    "amenities": [
+      "wi-fi",
+      "balcony",
+      "attached washrooms",
+      "24/7",
+      "with-food"
+    ],
     "sharings": {
       "Four": {
         "rentPerMonth": 18900,
@@ -307,8 +318,9 @@
       ]
     },
     "location": {
-      "coordinates": [32.76242, 56.77102],
-      "address": "B56, Sector 15D",
+      "type": "Point",
+      "coordinates": [30.73336, 76.76697],
+      "address": "B56, Sector 22D",
       "city": "Chandigarh",
       "state": "Chandigarh",
       "country": "India",
@@ -321,7 +333,7 @@
     "rentPerMonth": 4999,
     "image": "/assets/img/pgs/pg1.webp",
     "gender": "girls",
-    "type": "PG",
+    "propertyType": "PG",
     "amenities": [
       "wi-fi",
       "balcony",
@@ -363,8 +375,9 @@
       ]
     },
     "location": {
-      "coordinates": [36.76642, 45.77602],
-      "address": "D52, Sector 13D",
+      "type": "Point",
+      "coordinates": [30.72909, 76.75536],
+      "address": "D52, Sector 36A",
       "city": "Chandigarh",
       "state": "Chandigarh",
       "country": "India",
@@ -377,7 +390,7 @@
     "rentPerMonth": 18999,
     "image": "/assets/img/pgs/pg.webp",
     "gender": "boys",
-    "type": "PG",
+    "propertyType": "PG",
     "amenities": ["with-food", "balcony", "attached washrooms", "24/7"],
     "sharingsOffered": ["double", "single", "triple"],
     "sharings": {
@@ -422,8 +435,9 @@
       ]
     },
     "location": {
-      "coordinates": [30.26642, 76.57602],
-      "address": "B512, Sector 15C",
+      "type": "Point",
+      "coordinates": [30.70516, 76.77461],
+      "address": "B512, Sector 32C",
       "city": "Chandigarh",
       "state": "Chandigarh",
       "country": "India",
@@ -436,7 +450,7 @@
     "rentPerMonth": 5999,
     "image": "/assets/img/pgs/1.jpg",
     "gender": "boys",
-    "type": "Flat",
+    "propertyType": "Flat",
     "amenities": ["wi-fi", "balcony", "attached washrooms", "with-food"],
     "sharingsOffered": ["four"],
     "sharings": {
@@ -470,8 +484,9 @@
       ]
     },
     "location": {
-      "coordinates": [32.46642, 46.27202],
-      "address": "D512, Sector 15C",
+      "type": "Point",
+      "coordinates": [30.7018, 76.76882],
+      "address": "D512, Sector 46C",
       "city": "Chandigarh",
       "state": "Chandigarh",
       "country": "India",
@@ -484,7 +499,7 @@
     "rentPerMonth": 9900,
     "image": "/assets/img/pgs/2.jpg",
     "gender": "girls",
-    "type": "PG",
+    "propertyType": "PG",
     "amenities": ["wi-fi", "attached washrooms", "24/7", "laundry"],
     "sharingsOffered": ["double", "triple"],
     "sharings": {
@@ -524,10 +539,11 @@
       ]
     },
     "location": {
-      "coordinates": [40.43642, 71.38602],
-      "address": "D512, Sector 15C",
-      "city": "Chandigarh",
-      "state": "Chandigarh",
+      "type": "Point",
+      "coordinates": [30.77235, 76.79086],
+      "address": "D512, Nayagaon",
+      "city": "Mohali",
+      "state": "Punjab",
       "country": "India",
       "postalCode": "160015"
     }

@@ -1,5 +1,4 @@
 const fs = require("fs");
-import { postData } from "./db/dbFuncs";
 
 const loadSampleData = async () => {
   const data = JSON.parse(fs.readFileSync("./public/sampleData.json"));
@@ -15,7 +14,10 @@ const loadSampleData = async () => {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/api/pg/addpg", options);
+      const response = await fetch(
+        "http://localhost:3000/api/pg/addpg",
+        options
+      );
       const data = await response.json();
       console.log(data);
     } catch (error) {
