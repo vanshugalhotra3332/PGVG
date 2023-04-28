@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 
@@ -26,6 +27,7 @@ import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 
 // Slices Import
 
+
 import { setPGs } from "@/slices/pgSlice";
 import {
   setPropertyType,
@@ -44,6 +46,11 @@ import { fetchData } from "@/db/dbFuncs";
 
 const Sidebar_Filters = () => {
   const dispatch = useDispatch();
+
+  // local States
+  const [query, setQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [suggestionClicked, setSuggestionClicked] = useState(false);
 
   // Redux States
 
@@ -150,6 +157,82 @@ const Sidebar_Filters = () => {
       dispatch(toggleFilterSideBar());
     }
   };
+
+  const fetchSuggestions = async (query) => {
+    const response = await fetch(`https://photon.komoot.io/api/?q=${query}`);
+
+    const data = await response.json();
+    const suggestions = data.features
+      .filter((feature) => feature.properties.country === "India")
+      .map((feature) => ({
+        label: feature.properties.name,
+        city: feature.properties.city,
+        town: feature.properties.town,
+        state: feature.properties.state,
+        country: feature.properties.country,
+        address: feature.properties.street
+          ? `${feature.properties.street}, ${feature.properties.city}`
+          : undefined,
+        latlng: {
+          lat: feature.geometry.coordinates[1],
+          lng: feature.geometry.coordinates[0],
+        },
+      }));
+
+    setSuggestions(suggestions);
+  };
+
+  const handleInputChange = (event) => {
+    setSuggestionClicked(false);
+    const value = event.target.value;
+    setQuery(value);
+    if (value.length > 2) {
+      fetchSuggestions(value);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setQuery(suggestion.label);
+    setSuggestionClicked(true);
+  };
+
+  function handleKeyDown(event) {
+    if (event.key === "Backspace") {
+      setQuery(event.target.value.slice(0, -1));
+      setSuggestions([]);
+    }
+  }
+
+  const suggestionsList =
+    suggestions && suggestions.length > 0 ? (
+      <div className="max-h-80 overflow-y-scroll scrollbar">
+        {suggestions.map((suggestion, index) => (
+          <div
+            key={index}
+            onClick={() => handleSuggestionClick(suggestion)}
+            className="flex items-center py-2 px-4 hover:bg-gray-100 cursor-pointer"
+          >
+            <RoomIcon className="inline-flex text-blue-700 rounded-full cursor-pointer mx-2 transition-all duration-200 ease-out hover:-translate-y-[.5px]" />
+            <div>
+              <p className="text-lg font-medium">{suggestion.label}</p>
+              <p className="text-gray-500 text-sm">
+                {[
+                  suggestion.city,
+                  suggestion.town,
+                  suggestion.state,
+                  suggestion.country,
+                ]
+                  .filter((location) => location)
+                  .join(", ")}
+              </p>
+              {suggestion.address && (
+                <p className="text-gray-500 text-sm">{suggestion.address}</p>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    ) : null;
 
   // Animation
   const sidebarAnimation = {
@@ -335,14 +418,16 @@ const Sidebar_Filters = () => {
             <div className="flex items-center md:border-2 rounded-full py-2  md:shadow-sm filter-element">
               <RoomIcon className="inline-flex text-blue-700 rounded-full cursor-pointer mx-2 transition-all duration-200 ease-out hover:-translate-y-[.5px]" />
               <input
-                value={location}
-                onChange={(e) => {
-                  dispatch(setLocation(e.target.value));
-                }}
                 type="text"
                 placeholder="Search Location"
                 className="pl-5 pr-16 bg-transparent outline-none flex-grow text-sm text-gray-600 placeholder-gray-400"
+                value={query}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
               />
+            </div>
+            <div className="relative">
+              {suggestionClicked ? null : suggestionsList}
             </div>
           </div>
 
