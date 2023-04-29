@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -37,6 +37,9 @@ import MedicationLiquidOutlinedIcon from "@mui/icons-material/MedicationLiquidOu
 import ForestOutlinedIcon from "@mui/icons-material/ForestOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
+// slice imports
+import { setCenter, setZoom } from "@/slices/mapSlice";
+
 const Slug = ({ pg }) => {
   const {
     rules,
@@ -50,6 +53,9 @@ const Slug = ({ pg }) => {
     amenities,
     gender,
   } = pg;
+
+  const dispatch = useDispatch();
+
   // local states
   const [showQuickView, setShowQuickView] = useState(false);
 
@@ -60,6 +66,17 @@ const Slug = ({ pg }) => {
 
   // local variables
   let marginLeft = isSideBarOpen ? sideBarOpenWidth : sideBarCloseWidth;
+
+  useEffect(() => {
+    dispatch(setCenter(pg.location.coordinates));
+    dispatch(setZoom(17));
+
+    // Cleanup function to reset state when leaving the page
+    return () => {
+      dispatch(setCenter([30.7109, 76.7603]));
+      dispatch(setZoom(12));
+    };
+  }, [dispatch, pg.location.coordinates]);
 
   return (
     <div className="flex">
@@ -412,7 +429,7 @@ const Slug = ({ pg }) => {
               </div>
               <div className="map-div px-4 py-4">
                 <div className="map">
-                  <Map className="h-full" coords={[location.coordinates]} />
+                  <Map className="h-full" coordinate={location.coordinates} />
                 </div>
                 <div className="explore my-4 pt-2 px-4 flex items-center flex-wrap justify-between">
                   <div className="explore-item">

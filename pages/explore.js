@@ -34,7 +34,6 @@ const Explore = () => {
 
   // redux state
   const pgs = useSelector((state) => state.pgs.pgs);
-  pgs.map((pg) => coords.push(pg.location.coordinates));
 
   const showSideBar = useSelector((state) => state.filter.showSideBar);
 
@@ -109,7 +108,7 @@ const Explore = () => {
           )}
         </div>
         <div className="map">
-          {pgs.length > 0 && <Map className="h-full" coords={coords} />}
+          {pgs.length > 0 && <Map className="h-full" />}
         </div>
         <div
           className="listing mt-16 grid md:grid-cols-2 grid-cols-1"
