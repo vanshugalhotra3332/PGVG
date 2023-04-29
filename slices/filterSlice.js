@@ -7,7 +7,6 @@ const initialState = {
   minPrice: 0,
   maxPrice: 20000,
   propertyType: "All",
-  location: "",
   sortBy: "Popularity",
   showPropertyType: false,
   showSortType: false,
@@ -24,6 +23,7 @@ const initialState = {
   amenitiesSearch: "",
   selectedAmenities: [],
   selectedSharings: ["any"],
+  nearbyCoordinates: [],
 };
 
 export const filterSlice = createSlice({
@@ -44,9 +44,6 @@ export const filterSlice = createSlice({
     },
     setPropertyType: (state, action) => {
       state.propertyType = action.payload;
-    },
-    setLocation: (state, action) => {
-      state.location = action.payload;
     },
     setAmenitiesSearch: (state, action) => {
       state.amenitiesSearch = action.payload;
@@ -74,6 +71,9 @@ export const filterSlice = createSlice({
       let index = state.selectedAmenities.indexOf(action.payload);
       state.selectedAmenities.splice(index, 1);
     },
+    setNearbyCoordinates: (state, action) => {
+      state.nearbyCoordinates = action.payload;
+    },
   },
 });
 
@@ -81,7 +81,6 @@ export const {
   setMinPrice,
   setMaxPrice,
   setPropertyType,
-  setLocation,
   setAmenitiesSearch,
   setSortBy,
   toggleShowPropertyType,
@@ -92,5 +91,6 @@ export const {
   addSelectedAmenity,
   removeSelectedAmenity,
   openFilterSideBar,
+  setNearbyCoordinates,
 } = filterSlice.actions;
 export default filterSlice.reducer;

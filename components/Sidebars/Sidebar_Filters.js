@@ -30,7 +30,6 @@ import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 import { setPGs } from "@/slices/pgSlice";
 import {
   setPropertyType,
-  setLocation,
   setAmenitiesSearch,
   setSortBy,
   toggleShowPropertyType,
@@ -40,9 +39,10 @@ import {
   toggleFilterSideBar,
   addSelectedAmenity,
   removeSelectedAmenity,
+  setNearbyCoordinates,
 } from "@/slices/filterSlice";
 import { fetchData } from "@/db/dbFuncs";
-import { set } from "mongoose";
+import { setCenter, setZoom } from "@/slices/mapSlice";
 
 const Sidebar_Filters = () => {
   const dispatch = useDispatch();
@@ -51,17 +51,18 @@ const Sidebar_Filters = () => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [suggestionClicked, setSuggestionClicked] = useState(false);
-  const [coordinates, setCoordinates] = useState([]);
 
   // Redux States
 
   const propertyType = useSelector((state) => state.filter.propertyType);
-  const location = useSelector((state) => state.filter.location);
   const amenities = useSelector((state) => state.filter.amenities);
   const amenitiesSearch = useSelector((state) => state.filter.amenitiesSearch);
   const sortBy = useSelector((state) => state.filter.sortBy);
   const sharings = useSelector((state) => state.filter.sharings);
   const showSideBar = useSelector((state) => state.filter.showSideBar);
+  const nearbyCoordinates = useSelector(
+    (state) => state.filter.nearbyCoordinates
+  );
   const selectedSharings = useSelector(
     (state) => state.filter.selectedSharings
   );
@@ -148,13 +149,12 @@ const Sidebar_Filters = () => {
       query += `&amenities=${selectedAmenities.join(",")}`;
     }
 
-    if (coordinates.length) {
-      query += `&long=${coordinates[0]}&lat=${coordinates[1]}`;
+    if (nearbyCoordinates.length) {
+      query += `&long=${nearbyCoordinates[0]}&lat=${nearbyCoordinates[1]}`;
     }
 
     async function getPGs() {
       const api = `http://localhost:3000/api/pg/getpgs${query}`;
-      console.log(api);
       const pgs = await fetchData(api);
       dispatch(setPGs(pgs.pgs));
     }
@@ -200,7 +200,11 @@ const Sidebar_Filters = () => {
   const handleSuggestionClick = (suggestion) => {
     setQuery(suggestion.label);
     setSuggestionClicked(true);
-    setCoordinates([suggestion.latlng.lng, suggestion.latlng.lat]);
+    dispatch(
+      setNearbyCoordinates([suggestion.latlng.lng, suggestion.latlng.lat])
+    );
+    dispatch(setCenter([suggestion.latlng.lng, suggestion.latlng.lat]));
+    dispatch(setZoom(14));
   };
 
   function handleKeyDown(event) {

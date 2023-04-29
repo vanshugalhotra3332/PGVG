@@ -5,6 +5,7 @@ import pgReducer from "../slices/pgSlice";
 import filterReducer from "../slices/filterSlice";
 import globalReducer from "../slices/globalSlice";
 import settingsReducer from "../slices/settingsSlice";
+import mapReducer from "../slices/mapSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
     filter: filterReducer,
     global: globalReducer,
     settings: settingsReducer,
+    map: mapReducer,
   },
 });
