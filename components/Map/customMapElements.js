@@ -24,6 +24,22 @@ export const bankIcon = markerIcon({
 export const busIcon = markerIcon({
   iconUrl: "/assets/img/icons/busMarker.png",
 });
+export const cinemaIcon = markerIcon({
+  iconUrl: "/assets/img/icons/cinemaMarker.png",
+});
+export const foodIcon = markerIcon({
+  iconUrl: "/assets/img/icons/foodMarker.png",
+});
+export const hospitalIcon = markerIcon({
+  iconUrl: "/assets/img/icons/hospitalMarker.png",
+});
+export const parkIcon = markerIcon({
+  iconUrl: "/assets/img/icons/parkMarker.png",
+});
+
+export const shoppingIcon = markerIcon({
+  iconUrl: "/assets/img/icons/shoppingMarker.png",
+});
 
 export const redIcon = new L.Icon({
   iconUrl:
@@ -112,7 +128,9 @@ export function IconMarker({ icon, data }) {
         <div className="flex flex-col items-center min-w-[150px]">
           <span className="text-gray-800 text-base">{data.name}</span>
           <div className="flex justify-between w-full my-2">
-            <span className="text-gray-500 text-sm uppercase">{data.type}</span>
+            <span className="text-gray-500 text-sm uppercase px-8">
+              {data.type}
+            </span>
             <span className="text-gray-500 text-sm ">
               {data.distanceAway} m Away
             </span>

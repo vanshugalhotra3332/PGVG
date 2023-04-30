@@ -9,11 +9,16 @@ import {
   ImageMarker,
   bankIcon,
   busIcon,
+  cinemaIcon,
   IconMarker,
+  foodIcon,
+  hospitalIcon,
+  parkIcon,
+  shoppingIcon,
 } from "./customMapElements";
 
 import { useSelector } from "react-redux";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect } from "react";
 
 function Map({ coordinate }) {
   // redux
@@ -26,6 +31,11 @@ function Map({ coordinate }) {
   const pgs = useSelector((state) => state.pgs.pgs);
   const nearbyBusStops = useSelector((state) => state.pgs.nearbyBusStops);
   const nearbyBanks = useSelector((state) => state.pgs.nearbyBanks);
+  const nearbyCinemas = useSelector((state) => state.pgs.nearbyCinemas);
+  const nearbyRestraunts = useSelector((state) => state.pgs.nearbyRestraunts);
+  const nearbyHospitals = useSelector((state) => state.pgs.nearbyHospitals);
+  const nearbyParks = useSelector((state) => state.pgs.nearbyParks);
+  const nearbyShopping = useSelector((state) => state.pgs.nearbyShopping);
 
   const Recenter = () => {
     const map = useMap();
@@ -91,6 +101,55 @@ function Map({ coordinate }) {
         nearbyBanks.map((bank) => {
           return (
             <IconMarker key={bank.coordinates} data={bank} icon={bankIcon} />
+          );
+        })}
+
+      {nearbyCinemas.length &&
+        nearbyCinemas.map((cinema) => {
+          return (
+            <IconMarker
+              key={cinema.coordinates}
+              data={cinema}
+              icon={cinemaIcon}
+            />
+          );
+        })}
+
+      {nearbyRestraunts.length &&
+        nearbyRestraunts.map((restraunt) => {
+          return (
+            <IconMarker
+              key={restraunt.coordinates}
+              data={restraunt}
+              icon={foodIcon}
+            />
+          );
+        })}
+
+      {nearbyHospitals.length &&
+        nearbyHospitals.map((hospital) => {
+          return (
+            <IconMarker
+              key={hospital.coordinates}
+              data={hospital}
+              icon={hospitalIcon}
+            />
+          );
+        })}
+      {nearbyParks.length &&
+        nearbyParks.map((park) => {
+          return (
+            <IconMarker key={park.coordinates} data={park} icon={parkIcon} />
+          );
+        })}
+      {nearbyShopping.length &&
+        nearbyShopping.map((shop) => {
+          return (
+            <IconMarker
+              key={shop.coordinates}
+              data={shop}
+              icon={shoppingIcon}
+            />
           );
         })}
     </MapContainer>

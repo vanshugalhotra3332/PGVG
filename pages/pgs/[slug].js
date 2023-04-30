@@ -39,7 +39,15 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 // slice imports
 import { setCenter, setZoom } from "@/slices/mapSlice";
-import { setNearbyBanks, setNearbyBusStops } from "@/slices/pgSlice";
+import {
+  setNearbyBanks,
+  setNearbyBusStops,
+  setNearbyCinemas,
+  setNearbyHospitals,
+  setNearbyRestraunts,
+  setNearbyParks,
+  setNearbyShopping,
+} from "@/slices/pgSlice";
 
 const Slug = ({ pg }) => {
   const {
@@ -104,6 +112,17 @@ const Slug = ({ pg }) => {
     return Math.round(d);
   }
 
+  function clearPreviousResults() {
+    // clearing others
+    dispatch(setNearbyBusStops([]));
+    dispatch(setNearbyBanks([]));
+    dispatch(setNearbyCinemas([]));
+    dispatch(setNearbyRestraunts([]));
+    dispatch(setNearbyHospitals([]));
+    dispatch(setNearbyParks([]));
+    dispatch(setNearbyShopping([]));
+  }
+
   async function getNearbyThings(query) {
     const endpoint = `https://lz4.overpass-api.de/api/interpreter`;
     const response = await fetch(endpoint, {
@@ -127,11 +146,12 @@ const Slug = ({ pg }) => {
     busStops.map((each) => {
       return busStopsData.push({
         coordinates: [each.lat, each.lon],
-        name: each.tags.name,
+        name: each.tags.name ? each.tags.name : "",
         type: each.tags.highway,
         distanceAway: calculateDistance(lat, long, each.lat, each.lon),
       });
     });
+    clearPreviousResults();
     dispatch(setNearbyBusStops(busStopsData));
   }
   async function plotBanks() {
@@ -144,18 +164,133 @@ const Slug = ({ pg }) => {
     >;
     out qt;`;
     const banks = await getNearbyThings(query);
-    console.log(banks);
 
     let banksData = [];
     banks.map((each) => {
       return banksData.push({
         coordinates: [each.lat, each.lon],
-        name: each.tags.name,
+        name: each.tags.name ? each.tags.name : "",
         type: each.tags.amenity,
         distanceAway: calculateDistance(lat, long, each.lat, each.lon),
       });
     });
-    dispatch(setNearbyBusStops(banksData));
+    clearPreviousResults();
+    dispatch(setNearbyBanks(banksData));
+  }
+  async function plotCinemas() {
+    const query = `[out:json];
+    (
+      node["amenity"="cinema"](around:${radius},${lat},${long});
+    );
+    out body;
+    >;
+    out skel qt;`;
+
+    const cinemas = await getNearbyThings(query);
+
+    let cinemasData = [];
+    cinemas.map((each) => {
+      return cinemasData.push({
+        coordinates: [each.lat, each.lon],
+        name: each.tags.name ? each.tags.name : "",
+        type: each.tags.amenity,
+        distanceAway: calculateDistance(lat, long, each.lat, each.lon),
+      });
+    });
+    clearPreviousResults();
+    dispatch(setNearbyCinemas(cinemasData));
+  }
+  async function plotRestraunts() {
+    const query = `[out:json];
+    (
+      node["amenity"="fast_food"](around:${radius},${lat},${long});
+    );
+    out body;
+    >;
+    out skel qt;`;
+
+    const restraunts = await getNearbyThings(query);
+
+    let restrauntsData = [];
+    restraunts.map((each) => {
+      return restrauntsData.push({
+        coordinates: [each.lat, each.lon],
+        name: each.tags.name ? each.tags.name : "",
+        type: each.tags.amenity,
+        distanceAway: calculateDistance(lat, long, each.lat, each.lon),
+      });
+    });
+    clearPreviousResults();
+    dispatch(setNearbyRestraunts(restrauntsData));
+  }
+  async function plotHospitals() {
+    const query = `[out:json];
+    (
+      node["amenity"="clinic"](around:${radius},${lat},${long});
+    );
+    out body;
+    >;
+    out skel qt;`;
+
+    const hospitals = await getNearbyThings(query);
+
+    let hospitalsData = [];
+    hospitals.map((each) => {
+      return hospitalsData.push({
+        coordinates: [each.lat, each.lon],
+        name: each.tags.name ? each.tags.name : "",
+        type: each.tags.amenity,
+        distanceAway: calculateDistance(lat, long, each.lat, each.lon),
+      });
+    });
+    clearPreviousResults();
+    dispatch(setNearbyHospitals(hospitalsData));
+  }
+  async function plotParks() {
+    const query = `[out:json];
+    (
+      node["leisure"="park"](around:${radius},${lat},${long});
+    );
+    out body;
+    >;
+    out skel qt;`;
+
+    const parks = await getNearbyThings(query);
+
+    let parksData = [];
+    parks.map((each) => {
+      return parksData.push({
+        coordinates: [each.lat, each.lon],
+        name: each.tags.name ? each.tags.name : "",
+        type: each.tags.leisure,
+        distanceAway: calculateDistance(lat, long, each.lat, each.lon),
+      });
+    });
+    clearPreviousResults();
+    dispatch(setNearbyParks(parksData));
+  }
+  async function plotShops() {
+    const query = `[out:json];
+    (
+      node["shop"](around:${radius},${lat},${long});
+    );
+    out body;
+    >;
+    out skel qt;`;
+
+    const shops = await getNearbyThings(query);
+
+    let shopsData = [];
+    shops.map((each) => {
+      return shopsData.push({
+        coordinates: [each.lat, each.lon],
+        name: each.tags.name ? each.tags.name : "",
+        type: each.tags.shop,
+        distanceAway: calculateDistance(lat, long, each.lat, each.lon),
+      });
+    });
+    clearPreviousResults();
+    dispatch(setNearbyShopping(shopsData));
   }
 
   return (
@@ -524,31 +659,31 @@ const Slug = ({ pg }) => {
                     </div>
                     <span>Banks</span>
                   </div>
-                  <div className="explore-item">
+                  <div className="explore-item" onClick={plotCinemas}>
                     <div>
                       <MovieFilterOutlinedIcon />
                     </div>
                     <span>Cinema</span>
                   </div>
-                  <div className="explore-item">
+                  <div className="explore-item" onClick={plotRestraunts}>
                     <div>
                       <RestaurantMenuOutlinedIcon />
                     </div>
                     <span>Food</span>
                   </div>
-                  <div className="explore-item">
+                  <div className="explore-item" onClick={plotHospitals}>
                     <div>
                       <MedicationLiquidOutlinedIcon />
                     </div>
                     <span>Medcare</span>
                   </div>
-                  <div className="explore-item">
+                  <div className="explore-item" onClick={plotParks}>
                     <div>
                       <ForestOutlinedIcon />
                     </div>
                     <span>Parks</span>
                   </div>
-                  <div className="explore-item">
+                  <div className="explore-item" onClick={plotShops}>
                     <div>
                       <ShoppingCartOutlinedIcon />
                     </div>
