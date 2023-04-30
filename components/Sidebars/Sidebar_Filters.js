@@ -150,7 +150,7 @@ const Sidebar_Filters = () => {
     }
 
     if (nearbyCoordinates.length) {
-      query += `&long=${nearbyCoordinates[0]}&lat=${nearbyCoordinates[1]}`;
+      query += `&lat=${nearbyCoordinates[0]}&long=${nearbyCoordinates[1]}`;
     }
 
     async function getPGs() {

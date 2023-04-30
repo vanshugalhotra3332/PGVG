@@ -23,7 +23,7 @@ const initialState = {
   amenitiesSearch: "",
   selectedAmenities: [],
   selectedSharings: ["any"],
-  nearbyCoordinates: [],
+  nearbyCoordinates: [], // lat, long
 };
 
 export const filterSlice = createSlice({

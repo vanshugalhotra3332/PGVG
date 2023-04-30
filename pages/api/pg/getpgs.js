@@ -37,7 +37,7 @@ const handler = async (req, res) => {
 
   const referencePoint = {
     type: "Point",
-    coordinates: [Number(long), Number(lat)], // Longitude and latitude of the reference point
+    coordinates: [Number(lat), Number(long)], // Longitude and latitude of the reference point
   };
 
   if (long && lat) {

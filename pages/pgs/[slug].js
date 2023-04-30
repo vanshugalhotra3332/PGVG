@@ -39,6 +39,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 // slice imports
 import { setCenter, setZoom } from "@/slices/mapSlice";
+import { setNearbyBanks, setNearbyBusStops } from "@/slices/pgSlice";
 
 const Slug = ({ pg }) => {
   const {
@@ -66,17 +67,96 @@ const Slug = ({ pg }) => {
 
   // local variables
   let marginLeft = isSideBarOpen ? sideBarOpenWidth : sideBarCloseWidth;
+  const radius = 1500;
+  const lat = location.coordinates[0];
+  const long = location.coordinates[1];
 
+  // react stuff
   useEffect(() => {
     dispatch(setCenter(pg.location.coordinates));
-    dispatch(setZoom(17));
+    dispatch(setZoom(16));
 
     // Cleanup function to reset state when leaving the page
     return () => {
       dispatch(setCenter([30.7109, 76.7603]));
       dispatch(setZoom(12));
+      dispatch(setNearbyBusStops([]));
+      dispatch(setNearbyBanks([]));
     };
   }, [dispatch, pg.location.coordinates]);
+
+  function calculateDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371e3; // radius of Earth in meters
+    const phi1 = (lat1 * Math.PI) / 180;
+    const phi2 = (lat2 * Math.PI) / 180;
+    const deltaPhi = ((lat2 - lat1) * Math.PI) / 180;
+    const deltaLambda = ((lon2 - lon1) * Math.PI) / 180;
+
+    const a =
+      Math.sin(deltaPhi / 2) * Math.sin(deltaPhi / 2) +
+      Math.cos(phi1) *
+        Math.cos(phi2) *
+        Math.sin(deltaLambda / 2) *
+        Math.sin(deltaLambda / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    const d = R * c;
+    return Math.round(d);
+  }
+
+  async function getNearbyThings(query) {
+    const endpoint = `https://lz4.overpass-api.de/api/interpreter`;
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `data=${encodeURIComponent(query)}`,
+    });
+    const data = await response.json();
+    return data.elements;
+  }
+
+  async function plotBusStops() {
+    const query = `[out:json];node["highway"="bus_stop"](around:${radius},${lat},${long});out body;   
+    >;
+    out qt;`;
+    const busStops = await getNearbyThings(query);
+
+    let busStopsData = [];
+    busStops.map((each) => {
+      return busStopsData.push({
+        coordinates: [each.lat, each.lon],
+        name: each.tags.name,
+        type: each.tags.highway,
+        distanceAway: calculateDistance(lat, long, each.lat, each.lon),
+      });
+    });
+    dispatch(setNearbyBusStops(busStopsData));
+  }
+  async function plotBanks() {
+    const query = `[out:json];
+    (
+      node["amenity"="bank"](around:${radius},${lat},${long});
+      node["amenity"="atm"](around:${radius},${lat},${long});
+    );
+    out body;
+    >;
+    out qt;`;
+    const banks = await getNearbyThings(query);
+    console.log(banks);
+
+    let banksData = [];
+    banks.map((each) => {
+      return banksData.push({
+        coordinates: [each.lat, each.lon],
+        name: each.tags.name,
+        type: each.tags.amenity,
+        distanceAway: calculateDistance(lat, long, each.lat, each.lon),
+      });
+    });
+    dispatch(setNearbyBusStops(banksData));
+  }
 
   return (
     <div className="flex">
@@ -264,7 +344,7 @@ const Slug = ({ pg }) => {
         </section>
 
         {/* tabs content & reviews */}
-        <section className="my-4 flex justify-between  mx-8 relative gap-6">
+        <section className="my-4 flex justify-between md:mx-8 mx-2 relative gap-6">
           {/* tabs content */}
           <div className="tabs-content w-full">
             {/* overview div */}
@@ -432,13 +512,13 @@ const Slug = ({ pg }) => {
                   <Map className="h-full" coordinate={location.coordinates} />
                 </div>
                 <div className="explore my-4 pt-2 px-4 flex items-center flex-wrap justify-between">
-                  <div className="explore-item">
+                  <div className="explore-item" onClick={plotBusStops}>
                     <div>
                       <DirectionsBusFilledOutlinedIcon />
                     </div>
                     <span>Bus Stops</span>
                   </div>
-                  <div className="explore-item">
+                  <div className="explore-item" onClick={plotBanks}>
                     <div>
                       <AccountBalanceOutlinedIcon />
                     </div>
