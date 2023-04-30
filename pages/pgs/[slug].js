@@ -75,7 +75,7 @@ const Slug = ({ pg }) => {
 
   // local variables
   let marginLeft = isSideBarOpen ? sideBarOpenWidth : sideBarCloseWidth;
-  const radius = 1500;
+  const radius = 1000;
   const lat = location.coordinates[0];
   const long = location.coordinates[1];
 
@@ -181,8 +181,9 @@ const Slug = ({ pg }) => {
     const query = `[out:json];
     (
       node["amenity"="cinema"](around:${radius},${lat},${long});
+      way["amenity"="cinema"](around:${radius},${lat},${long});
     );
-    out body;
+    out center;
     >;
     out skel qt;`;
 
@@ -190,12 +191,22 @@ const Slug = ({ pg }) => {
 
     let cinemasData = [];
     cinemas.map((each) => {
-      return cinemasData.push({
-        coordinates: [each.lat, each.lon],
-        name: each.tags.name ? each.tags.name : "",
-        type: each.tags.amenity,
-        distanceAway: calculateDistance(lat, long, each.lat, each.lon),
-      });
+      if (each.tags && each.tags.name) {
+        return cinemasData.push({
+          coordinates: [
+            each.lat ? each.lat : each.center.lat,
+            each.lon ? each.lon : each.center.lon,
+          ],
+          name: each.tags ? each.tags.name : "",
+          type: each.tags ? each.tags.amenity : "Cinema",
+          distanceAway: calculateDistance(
+            lat,
+            long,
+            each.lat ? each.lat : each.center.lat,
+            each.lon ? each.lon : each.center.lon
+          ),
+        });
+      }
     });
     clearPreviousResults();
     dispatch(setNearbyCinemas(cinemasData));
@@ -250,22 +261,33 @@ const Slug = ({ pg }) => {
     const query = `[out:json];
     (
       node["leisure"="park"](around:${radius},${lat},${long});
+      way["leisure"="park"](around:${radius},${lat},${long});
     );
-    out body;
+    out center;
     >;
     out skel qt;`;
 
     const parks = await getNearbyThings(query);
-
     let parksData = [];
     parks.map((each) => {
-      return parksData.push({
-        coordinates: [each.lat, each.lon],
-        name: each.tags.name ? each.tags.name : "",
-        type: each.tags.leisure,
-        distanceAway: calculateDistance(lat, long, each.lat, each.lon),
-      });
+      if (each.tags && each.tags.name) {
+        return parksData.push({
+          coordinates: [
+            each.lat ? each.lat : each.center.lat,
+            each.lon ? each.lon : each.center.lon,
+          ],
+          name: each.tags ? each.tags.name : "",
+          type: each.tags ? each.tags.leisure : "Park",
+          distanceAway: calculateDistance(
+            lat,
+            long,
+            each.lat ? each.lat : each.center.lat,
+            each.lon ? each.lon : each.center.lon
+          ),
+        });
+      }
     });
+
     clearPreviousResults();
     dispatch(setNearbyParks(parksData));
   }
