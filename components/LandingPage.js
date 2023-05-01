@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 // component imports
 
@@ -11,8 +11,64 @@ import Carousel from "nuka-carousel/lib/carousel";
 import Sidebar_Nav from "./Sidebars/Sidebar_Nav";
 import PGcard from "./Cards/PGcard";
 
+// slices imports
+import { setCoordinates } from "@/slices/userSlice";
+
+// mongoose
+import { fetchData } from "@/db/dbFuncs";
+
 const LandingPage = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    function requestLocationPermission() {
+      navigator.permissions
+        .query({ name: "geolocation" })
+        .then((permissionStatus) => {
+          if (permissionStatus.state === "granted") {
+            // Get the user's coordinates
+            navigator.geolocation.getCurrentPosition((position) => {
+              const { latitude, longitude } = position.coords;
+              // Set the user's coordinates in Redux state
+              dispatch(setCoordinates([latitude, longitude]));
+            });
+          } else if (permissionStatus.state === "prompt") {
+            console.log("Geolocation permission prompt");
+            // Display a prompt to ask for location permission
+            navigator.geolocation.getCurrentPosition((position) => {
+              const { latitude, longitude } = position.coords;
+              // Set the user's coordinates in Redux state
+              dispatch(setCoordinates([latitude, longitude]));
+            });
+          } else if (permissionStatus.state === "denied") {
+          }
+        });
+    }
+
+    requestLocationPermission();
+  }, [dispatch]);
+
+  // local States
+  const [pgs, setPgs] = useState([]);
+
+  // redux
+  const coordinates = useSelector((state) => state.user.coordinates);
+
+  // REACT STUFF
+  useEffect(() => {
+    var query = "?";
+
+    if (coordinates.length) {
+      query += `&lat=${coordinates[0]}&long=${coordinates[1]}`;
+    }
+    async function getPGs() {
+      const api = `http://localhost:3000/api/pg/getpgs${query}&limit=4`;
+      const pgs = await fetchData(api);
+      setPgs(pgs.pgs);
+    }
+    getPGs();
+  }, [coordinates]);
 
   // redux
   const isSideBarOpen = useSelector((state) => state.nav.isSideBarOpen);
@@ -113,63 +169,20 @@ const LandingPage = () => {
               Nearby <span className="text-blue-500">PG</span> Locations
             </h1>
           </div>
-          <div className="nearby-pg-cards py-10 grid 2xl:grid-cols-4 xl:grid-cols-3 lg:grid-cols-2 xs:grid-cols-2 grid-cols-1 items-center justify-center lg:px-20 px-8 md:px-8">
-            <PGcard
-              slug={"eazyrooms"}
-              image={"/assets/img/locations/sec15.jpg"}
-              name={"Eazy Rooms"}
-              location={{
-                coordinates: [30.76642, 76.77602],
-                address: "B52, Sector 15D",
-                city: "Chandigarh",
-                state: "Chandigarh",
-                country: "India",
-                postalCode: "160015",
-              }}
-              rentPerMonth={6000}
-            />
-            <PGcard
-              slug={"eazyrooms"}
-              image={"/assets/img/locations/sec15.jpg"}
-              name={"Eazy Rooms"}
-              location={{
-                coordinates: [30.76642, 76.77602],
-                address: "B52, Sector 15D",
-                city: "Chandigarh",
-                state: "Chandigarh",
-                country: "India",
-                postalCode: "160015",
-              }}
-              rentPerMonth={6000}
-            />
-            <PGcard
-              slug={"eazyrooms"}
-              image={"/assets/img/locations/sec15.jpg"}
-              name={"Eazy Rooms"}
-              location={{
-                coordinates: [30.76642, 76.77602],
-                address: "B52, Sector 15D",
-                city: "Chandigarh",
-                state: "Chandigarh",
-                country: "India",
-                postalCode: "160015",
-              }}
-              rentPerMonth={6000}
-            />
-            <PGcard
-              slug={"eazyrooms"}
-              image={"/assets/img/locations/sec15.jpg"}
-              name={"Eazy Rooms"}
-              location={{
-                coordinates: [30.76642, 76.77602],
-                address: "B52, Sector 15D",
-                city: "Chandigarh",
-                state: "Chandigarh",
-                country: "India",
-                postalCode: "160015",
-              }}
-              rentPerMonth={6000}
-            />
+          <div className="nearby-pg-cards py-10 grid xl:grid-cols-3 lg:grid-cols-2 xs:grid-cols-2 grid-cols-1 items-center justify-center lg:px-20 px-8 md:px-8">
+            {pgs.length > 0 &&
+              pgs.map(({ slug, name, image, location, rentPerMonth }) => {
+                return (
+                  <PGcard
+                    key={slug}
+                    name={name}
+                    image={image}
+                    location={location}
+                    rentPerMonth={rentPerMonth}
+                    slug={slug}
+                  />
+                );
+              })}
           </div>
         </section>
 

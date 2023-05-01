@@ -76,7 +76,7 @@ const Signup = () => {
       const api = "http://localhost:3000/api/user/signup";
 
       const data = await postData("POST", userData, api);
-      if (data.success) {
+      if (data && data.success) {
         // after finally signing up
         dispatch(logIn());
         dispatch(setUserData(session.user));
@@ -96,6 +96,23 @@ const Signup = () => {
         });
         setTimeout(() => {
           router.replace("/"); // redirecting to home page
+        }, 1500);
+      } else {
+        toast.info("User Already Exists, Kindly Login!!", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          style: {
+            top: "65px",
+          },
+        });
+        setTimeout(() => {
+          router.push("/login");
         }, 1500);
       }
 

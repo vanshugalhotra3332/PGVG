@@ -18,6 +18,7 @@ const initialState = {
     emergencyContact: "",
     allergies: "",
   },
+  coordinates: [],
 };
 
 export const userSlice = createSlice({
@@ -33,8 +34,11 @@ export const userSlice = createSlice({
     setUserData: (state, action) => {
       state.userData = { ...state.userData, ...action.payload };
     },
+    setCoordinates: (state, action) => {
+      state.coordinates = action.payload;
+    },
   },
 });
 
-export const { logIn, logOut, setUserData } = userSlice.actions;
+export const { logIn, logOut, setUserData, setCoordinates } = userSlice.actions;
 export default userSlice.reducer;
