@@ -9,7 +9,7 @@ import WhyChoose from "./Cards/WhyChoose";
 import Testimonial from "./Cards/Testimonial";
 import Carousel from "nuka-carousel/lib/carousel";
 import Sidebar_Nav from "./Sidebars/Sidebar_Nav";
-import PGcard from "./Cards/PGcard";
+import PGcard, { PGCardSkeleton } from "./Cards/PGcard";
 
 // slices imports
 import { setCoordinates } from "@/slices/userSlice";
@@ -54,6 +54,7 @@ const LandingPage = () => {
 
   // redux
   const coordinates = useSelector((state) => state.user.coordinates);
+  const progress = useSelector((state) => state.global.progress);
 
   // REACT STUFF
   useEffect(() => {
@@ -171,18 +172,27 @@ const LandingPage = () => {
           </div>
           <div className="nearby-pg-cards py-10 grid xl:grid-cols-3 lg:grid-cols-2 xs:grid-cols-2 grid-cols-1 items-center justify-center lg:px-20 px-8 md:px-8">
             {pgs.length > 0 &&
-              pgs.map(({ slug, name, image, location, rentPerMonth }) => {
-                return (
-                  <PGcard
-                    key={slug}
-                    name={name}
-                    image={image}
-                    location={location}
-                    rentPerMonth={rentPerMonth}
-                    slug={slug}
-                  />
-                );
-              })}
+              pgs.map(
+                ({ slug, name, image, location, rentPerMonth, gender }) => {
+                  // progress === 0  means completed
+                  if (progress === 0) {
+                    return (
+                      <PGcard
+                        key={slug}
+                        name={name}
+                        image={image}
+                        location={location}
+                        rentPerMonth={rentPerMonth}
+                        slug={slug}
+                        gender={gender}
+                      />
+                    );
+                  } else {
+                    return <PGCardSkeleton key={slug} />;
+                  }
+                }
+              )}
+            <PGCardSkeleton />
           </div>
         </section>
 

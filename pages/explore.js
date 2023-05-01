@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 // components import
 import Map from "@/components/Map";
-import PGcard from "@/components/Cards/PGcard";
+import PGcard, { PGCardSkeleton } from "@/components/Cards/PGcard";
 import Sidebar_Filters from "@/components/Sidebars/Sidebar_Filters";
 import Sidebar_Nav from "@/components/Sidebars/Sidebar_Nav";
 
@@ -34,6 +34,7 @@ const Explore = () => {
 
   // redux state
   const pgs = useSelector((state) => state.pgs.pgs);
+  const progress = useSelector((state) => state.global.progress);
 
   const showSideBar = useSelector((state) => state.filter.showSideBar);
 
@@ -115,17 +116,22 @@ const Explore = () => {
           id="listings"
         >
           {pgs.length > 0 &&
-            pgs.map(({ slug, name, image, location, rentPerMonth }) => {
-              return (
-                <PGcard
-                  key={slug}
-                  name={name}
-                  image={image}
-                  location={location}
-                  rentPerMonth={rentPerMonth}
-                  slug={slug}
-                />
-              );
+            pgs.map(({ slug, name, image, location, rentPerMonth, gender }) => {
+              if (progress === 0) {
+                return (
+                  <PGcard
+                    key={slug}
+                    name={name}
+                    image={image}
+                    location={location}
+                    rentPerMonth={rentPerMonth}
+                    slug={slug}
+                    gender={gender}
+                  />
+                );
+              } else {
+                return <PGCardSkeleton key={slug} />;
+              }
             })}
         </div>
       </div>
