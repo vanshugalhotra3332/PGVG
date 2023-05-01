@@ -85,7 +85,7 @@ const Sidebar_Nav = () => {
       <motion.div
         variants={Sidebar_animation}
         animate={isSideBarOpen ? "open" : "closed"}
-        className="bg-white text-gray shadow-xl z-[10000] h-screen w-full"
+        className="bg-white text-gray shadow-xl z-[10000] min-h-screen w-full"
       >
         {/* Menus */}
         <div className="flex flex-col h-full">

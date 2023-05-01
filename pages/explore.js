@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // components import
@@ -14,27 +14,28 @@ import ImportExportOutlinedIcon from "@mui/icons-material/ImportExportOutlined";
 // slices import
 import { setPGs } from "@/slices/pgSlice";
 import { toggleFilterSideBar } from "@/slices/filterSlice";
-import { fetchData } from "@/db/dbFuncs";
 
-const Explore = () => {
+// mongoose
+import mongoose from "mongoose";
+import PGs from "@/models/PGs";
+
+const Explore = ({ PGS }) => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
 
-  // REACT STUFF
   useEffect(() => {
-    async function getPGs() {
-      const api = "http://localhost:3000/api/pg/getpgs";
-      const pgs = await fetchData(api);
-      dispatch(setPGs(pgs.pgs));
+    if (PGS) {
+      dispatch(setPGs(PGS));
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     }
-    getPGs();
-  }, [dispatch]);
+  }, [dispatch, PGS]);
 
   // local variables
-  let coords = [];
 
   // redux state
   const pgs = useSelector((state) => state.pgs.pgs);
-  const progress = useSelector((state) => state.global.progress);
 
   const showSideBar = useSelector((state) => state.filter.showSideBar);
 
@@ -117,7 +118,7 @@ const Explore = () => {
         >
           {pgs.length > 0 &&
             pgs.map(({ slug, name, image, location, rentPerMonth, gender }) => {
-              if (progress === 0) {
+              if (!loading) {
                 return (
                   <PGcard
                     key={slug}
@@ -138,5 +139,20 @@ const Explore = () => {
     </section>
   );
 };
+
+// server side rendering
+export async function getServerSideProps(context) {
+  if (!mongoose.connections[0].readyState) {
+    await mongoose.connect(process.env.MONGO_URI);
+  }
+
+  const pgs = await PGs.find({});
+
+  return {
+    props: {
+      PGS: JSON.parse(JSON.stringify(pgs)),
+    },
+  };
+}
 
 export default Explore;
